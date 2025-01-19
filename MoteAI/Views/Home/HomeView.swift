@@ -94,24 +94,27 @@ struct HomeView: View {
                         VStack {
                             Text("Favorite")
                                 .font(.headline)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.white)
                             Text("Favorite")
                                 .font(.caption)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.white)
                         }
                     }
                     .padding() // Add padding inside the button
                     .frame(
                         maxWidth: .infinity
                     ) // Make the button expand horizontally
-                    .background(Color.blue) // Background color
+                    .background(Color.cyan) // Background color
                     .cornerRadius(20) // Rounded corners
                 }
                 
                 Spacer()
                 
                 NavigationLink(
-                    destination: MessageSuggestView(base64Image: viewModel.base64String, image: viewModel.image),
+                    destination: MessageSuggestView(
+                        base64Image: viewModel.base64String,
+                        image: viewModel.image
+                    ),
                     isActive: $viewModel.navigateToSuggest
                 ) {
                     EmptyView()
@@ -119,7 +122,11 @@ struct HomeView: View {
 
             }.padding()
                 .ignoresSafeArea(.all)
-                .background(Color.cyan.opacity(0.5))
+                .background(LinearGradient(
+                    gradient: Gradient(colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]),
+                    startPoint: .top, // Starting point of the gradient
+                    endPoint: .bottom // Ending point of the gradient
+                ))
                 .onChange(of: viewModel.selectedPhoto) { newItem in
                     if let newItem = newItem {
                         Task {

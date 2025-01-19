@@ -26,16 +26,20 @@ struct MessageSuggestView: View {
                         .shadow(radius: 4)
                         .padding()
                 } else {
+                    Spacer()
+                        .frame(height: 100)
                     ProgressView("Loading Image...")
-                        .padding()
-                }
+                        .padding()                }
 
                 Text("-- メッセージをタップしてコピー --")
                     .font(.caption)
                     .foregroundColor(.gray)
                 
                 VStack(alignment: .trailing) {
-                    ForEach(viewModel.suggestedMessages, id: \.self) { message in
+                    ForEach(
+                        viewModel.suggestedMessages,
+                        id: \.self
+                    ) { message in
                         HStack {
                             Spacer() // Push the content to the trailing edge
                             MessageBubbleView(message: message)
@@ -46,6 +50,34 @@ struct MessageSuggestView: View {
         }
         .task {
             await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
+        }
+        .ignoresSafeArea(.all)
+        .background(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]
+                ),
+                startPoint: .top,
+                // Starting point of the gradient
+                endPoint: .bottom // Ending point of the gradient
+            )
+        )
+        .onAppear {
+            // Make navigation bar transparent when the view appears
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundColor = .clear // Make it clear
+            appearance.shadowColor = .clear // Remove the shadow line
+                    
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        }
+        .onDisappear {
+            // Reset navigation bar appearance when the view disappears
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
     }
 }
