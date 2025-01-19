@@ -22,19 +22,24 @@ struct MessageSuggestView: View {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 200) // Adjust the height as needed
                         .cornerRadius(8)
                         .shadow(radius: 4)
-                        .padding(.horizontal)
+                        .padding()
+                } else {
+                    ProgressView("Loading Image...")
+                        .padding()
                 }
 
-                Text("タップしてコピー")
+                Text("-- メッセージをタップしてコピー --")
                     .font(.caption)
                     .foregroundColor(.gray)
                 
-                if let suggestedMessages = viewModel.suggestedMessages {
-                    ForEach(suggestedMessages, id: \.self) { message in
-                        MessageBubbleView(message: message)
+                VStack(alignment: .trailing) {
+                    ForEach(viewModel.suggestedMessages, id: \.self) { message in
+                        HStack {
+                            Spacer() // Push the content to the trailing edge
+                            MessageBubbleView(message: message)
+                        }
                     }
                 }
             }

@@ -10,7 +10,7 @@ import PhotosUI
 
 struct HomeView: View {
     
-    @ObservedObject private var viewModel = HomeVM()
+    @StateObject private var viewModel = HomeVM()
     
     var body: some View {
         NavigationStack {
@@ -112,7 +112,7 @@ struct HomeView: View {
                 
                 NavigationLink(
                     destination: MessageSuggestView(base64Image: viewModel.base64String, image: viewModel.image),
-                    isActive: $viewModel.navigateToDetail
+                    isActive: $viewModel.navigateToSuggest
                 ) {
                     EmptyView()
                 }
@@ -122,7 +122,9 @@ struct HomeView: View {
                 .background(Color.cyan.opacity(0.5))
                 .onChange(of: viewModel.selectedPhoto) { newItem in
                     if let newItem = newItem {
-                        viewModel.loadAndEncodePhoto(from: newItem)
+                        Task {
+                            await viewModel.loadAndEncodePhoto(from: newItem)
+                        }
                     }
                 }
         }
