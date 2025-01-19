@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Kingfisher
+import PhotosUI
 
 struct MessageSuggestView: View {
     let base64Image: String?
@@ -98,6 +98,16 @@ struct MessageSuggestView: View {
                     .padding()
                     .background(.white)
                     .cornerRadius(24)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: {
+                    print("Leading button tapped")
+                }) {
+                    Image(systemName: "plus")
+                        .bold()
+                }
             }
         }
         .task {

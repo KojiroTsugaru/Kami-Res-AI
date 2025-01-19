@@ -146,7 +146,7 @@ struct HomeView: View {
                 if let newItem = newItem {
                     Task {
                         await viewModel.loadAndEncodePhoto(from: newItem)
-                        try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
+                        try? await Task.sleep(for: .seconds(    0.5)) // Wait for 0.5 seconds
                         self.navigateToSuggest = true
                     }
                 }

@@ -9,8 +9,10 @@ import Foundation
 import UIKit
 
 class MessageSuggestVM: ObservableObject{
-    @Published var suggestedMessages: [String] = []
     private let openAIService = OpenAIService()
+    
+    @Published var suggestedMessages: [String] = []
+    @Published var addedPhotos: [UIImage?] = [] // added photos
     
     @MainActor
     public func getSuggestedMessage(base64Image: String) async {

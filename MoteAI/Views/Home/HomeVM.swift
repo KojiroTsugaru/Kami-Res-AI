@@ -15,7 +15,6 @@ final class HomeVM: ObservableObject {
     @Published var image: UIImage? = nil
     @Published var base64String: String = ""
     @Published var errorMessage: String = ""
-    @Published var navigateToSuggest: Bool = false
     
     /// Loads the selected photo and encodes it to Base64
     @MainActor
@@ -30,8 +29,6 @@ final class HomeVM: ObservableObject {
                     // Encode the image data to Base64
                     self.base64String = data.base64EncodedString()
                     
-                    // Navigate to detail only after successful encoding
-                    self.navigateToSuggest = true
                 } else {
                     self.errorMessage = "Failed to decode the selected photo."
                 }
