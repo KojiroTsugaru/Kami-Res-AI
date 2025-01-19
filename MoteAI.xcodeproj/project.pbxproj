@@ -6,36 +6,52 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		313FE66B2D3B8C57009EA68F /* MoteAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */; };
+		313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */; };
+		313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AB2D3B9E3A009EA68F /* HomeView.swift */; };
+		313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AC2D3B9E3A009EA68F /* HomeVM.swift */; };
+		313FE6BF2D3B9E3A009EA68F /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AE2D3B9E3A009EA68F /* MessageBubbleView.swift */; };
+		313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */; };
+		313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */; };
+		313FE6C22D3B9E3A009EA68F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B42D3B9E3A009EA68F /* ContentView.swift */; };
+		313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */; };
+		313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B82D3B9E3A009EA68F /* Persistence.swift */; };
+		313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */; };
+		313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6B32D3B9E3A009EA68F /* Assets.xcassets */; };
+		313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */; };
+		313FE7022D3BA0E5009EA68F /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE7012D3BA0E5009EA68F /* AccessToken.swift */; };
+		313FE7042D3C04EC009EA68F /* OpenAIPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE7032D3C04EC009EA68F /* OpenAIPrompt.swift */; };
+		313FE7072D3C121F009EA68F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 313FE7062D3C121F009EA68F /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		313FE6672D3B8C57009EA68F /* MoteAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoteAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoteAIApp.swift; sourceTree = "<group>"; };
+		313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
+		313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		313FE6AB2D3B9E3A009EA68F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		313FE6AC2D3B9E3A009EA68F /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		313FE6AE2D3B9E3A009EA68F /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSuggestView.swift; sourceTree = "<group>"; };
+		313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSuggestVM.swift; sourceTree = "<group>"; };
+		313FE6B32D3B9E3A009EA68F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		313FE6B42D3B9E3A009EA68F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		313FE6B52D3B9E3A009EA68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		313FE6B62D3B9E3A009EA68F /* MoteAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoteAI.entitlements; sourceTree = "<group>"; };
+		313FE6B82D3B9E3A009EA68F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoteAI.xcdatamodel; sourceTree = "<group>"; };
+		313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		313FE7012D3BA0E5009EA68F /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		313FE7032D3C04EC009EA68F /* OpenAIPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIPrompt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		313FE67A2D3B8C5A009EA68F /* Exceptions for "MoteAI" folder in "MoteAI" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 313FE6662D3B8C57009EA68F /* MoteAI */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		313FE6692D3B8C57009EA68F /* MoteAI */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				313FE67A2D3B8C5A009EA68F /* Exceptions for "MoteAI" folder in "MoteAI" target */,
-			);
-			path = MoteAI;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		313FE6642D3B8C57009EA68F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313FE7072D3C121F009EA68F /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +61,7 @@
 		313FE65E2D3B8C57009EA68F = {
 			isa = PBXGroup;
 			children = (
-				313FE6692D3B8C57009EA68F /* MoteAI */,
+				313FE6B92D3B9E3A009EA68F /* MoteAI */,
 				313FE6682D3B8C57009EA68F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +72,86 @@
 				313FE6672D3B8C57009EA68F /* MoteAI.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		313FE6A42D3B9E3A009EA68F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */,
+				313FE6B42D3B9E3A009EA68F /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		313FE6A92D3B9E3A009EA68F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		313FE6AA2D3B9E3A009EA68F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */,
+				313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		313FE6AD2D3B9E3A009EA68F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				313FE6AB2D3B9E3A009EA68F /* HomeView.swift */,
+				313FE6AC2D3B9E3A009EA68F /* HomeVM.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		313FE6B12D3B9E3A009EA68F /* MessageSuggest */ = {
+			isa = PBXGroup;
+			children = (
+				313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */,
+				313FE6AE2D3B9E3A009EA68F /* MessageBubbleView.swift */,
+				313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */,
+			);
+			path = MessageSuggest;
+			sourceTree = "<group>";
+		};
+		313FE6B22D3B9E3A009EA68F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				313FE6AD2D3B9E3A009EA68F /* Home */,
+				313FE6B12D3B9E3A009EA68F /* MessageSuggest */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		313FE6B92D3B9E3A009EA68F /* MoteAI */ = {
+			isa = PBXGroup;
+			children = (
+				313FE6CC2D3BA083009EA68F /* Constants */,
+				313FE6AA2D3B9E3A009EA68F /* Services */,
+				313FE6B22D3B9E3A009EA68F /* Views */,
+				313FE6A42D3B9E3A009EA68F /* App */,
+				313FE6A92D3B9E3A009EA68F /* Preview Content */,
+				313FE6B32D3B9E3A009EA68F /* Assets.xcassets */,
+				313FE6B52D3B9E3A009EA68F /* Info.plist */,
+				313FE6B62D3B9E3A009EA68F /* MoteAI.entitlements */,
+				313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */,
+				313FE6B82D3B9E3A009EA68F /* Persistence.swift */,
+			);
+			path = MoteAI;
+			sourceTree = "<group>";
+		};
+		313FE6CC2D3BA083009EA68F /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				313FE7012D3BA0E5009EA68F /* AccessToken.swift */,
+				313FE7032D3C04EC009EA68F /* OpenAIPrompt.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,11 +169,9 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				313FE6692D3B8C57009EA68F /* MoteAI */,
-			);
 			name = MoteAI;
 			packageProductDependencies = (
+				313FE7062D3C121F009EA68F /* Kingfisher */,
 			);
 			productName = MoteAI;
 			productReference = 313FE6672D3B8C57009EA68F /* MoteAI.app */;
@@ -107,6 +201,9 @@
 			);
 			mainGroup = 313FE65E2D3B8C57009EA68F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				313FE7052D3C121F009EA68F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 313FE6682D3B8C57009EA68F /* Products */;
 			projectDirPath = "";
@@ -122,6 +219,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */,
+				313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +231,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */,
+				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
+				313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */,
+				313FE7042D3C04EC009EA68F /* OpenAIPrompt.swift in Sources */,
+				313FE6BF2D3B9E3A009EA68F /* MessageBubbleView.swift in Sources */,
+				313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */,
+				313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */,
+				313FE6C22D3B9E3A009EA68F /* ContentView.swift in Sources */,
+				313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */,
+				313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */,
+				313FE66B2D3B8C57009EA68F /* MoteAIApp.swift in Sources */,
+				313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */,
+				313FE7022D3BA0E5009EA68F /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +453,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		313FE7052D3C121F009EA68F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		313FE7062D3C121F009EA68F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 313FE7052D3C121F009EA68F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */,
+			);
+			currentVersion = 313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */;
+			path = MoteAI.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 313FE65F2D3B8C57009EA68F /* Project object */;
 }
