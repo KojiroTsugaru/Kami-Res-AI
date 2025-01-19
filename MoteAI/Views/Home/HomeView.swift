@@ -39,9 +39,13 @@ struct HomeView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(.white)
                                 .bold()
+                                .lineLimit(1) // Ensure only one line
+                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
                             Text("メッセージのスクリーンショットを選択")
                                 .font(.caption)
                                 .foregroundColor(.white)
+                                .lineLimit(1) // Ensure only one line
+                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
                         }
                         Spacer()
                     }
@@ -68,9 +72,13 @@ struct HomeView: View {
                                 .font(.system(size: 24))
                                 .foregroundColor(.white)
                                 .bold()
+                                .lineLimit(1) // Ensure only one line
+                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
                             Text("メッセージのスクリーンショットを選択")
                                 .font(.caption)
                                 .foregroundColor(.white)
+                                .lineLimit(1) // Ensure only one line
+                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
                         }
                         Spacer()
                     }

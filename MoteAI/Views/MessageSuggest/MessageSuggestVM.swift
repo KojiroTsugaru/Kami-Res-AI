@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MessageSuggestVM: ObservableObject{
     @Published var suggestedMessages: [String] = []
@@ -36,5 +37,9 @@ class MessageSuggestVM: ObservableObject{
             }
             suggestedMessages.append("Failed to load suggestions. Please try again.")
         }
+    }
+    
+    public func copyToClipboard(text: String) {
+        UIPasteboard.general.string = text
     }
 }
