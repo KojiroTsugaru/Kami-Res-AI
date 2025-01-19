@@ -17,7 +17,7 @@ struct HomeView: View {
             VStack(spacing: 40) {
                 Spacer()
                 
-                Text("Logo")
+                Text("MoteAI")
                     .font(.largeTitle)
                     .bold()
                     .foregroundColor(.accentColor)
@@ -120,20 +120,26 @@ struct HomeView: View {
                     EmptyView()
                 }
 
-            }.padding()
-                .ignoresSafeArea(.all)
-                .background(LinearGradient(
-                    gradient: Gradient(colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]),
-                    startPoint: .top, // Starting point of the gradient
+            }
+            .padding()
+            .ignoresSafeArea(.all)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(
+                        colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]
+                    ),
+                    startPoint: .top,
+                    // Starting point of the gradient
                     endPoint: .bottom // Ending point of the gradient
-                ))
-                .onChange(of: viewModel.selectedPhoto) { newItem in
-                    if let newItem = newItem {
-                        Task {
-                            await viewModel.loadAndEncodePhoto(from: newItem)
-                        }
+                )
+            )
+            .onChange(of: viewModel.selectedPhoto) { newItem in
+                if let newItem = newItem {
+                    Task {
+                        await viewModel.loadAndEncodePhoto(from: newItem)
                     }
                 }
+            }
         }
     }
 
