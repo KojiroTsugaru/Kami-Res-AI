@@ -13,7 +13,7 @@ final class HomeVM: ObservableObject {
     
     @Published var selectedPhoto: PhotosPickerItem? = nil
     @Published var image: UIImage? = nil
-    @Published var base64String: String? = nil
+    @Published var base64String: String = ""
     @Published var errorMessage: String = ""
     @Published var navigateToSuggest: Bool = false
     

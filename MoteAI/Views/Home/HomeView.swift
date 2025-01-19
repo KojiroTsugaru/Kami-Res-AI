@@ -11,6 +11,7 @@ import PhotosUI
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeVM()
+    @State private var navigateToSuggest = false
     
     var body: some View {
         NavigationStack {
@@ -123,7 +124,7 @@ struct HomeView: View {
                         base64Image: viewModel.base64String,
                         image: viewModel.image
                     ),
-                    isActive: $viewModel.navigateToSuggest
+                    isActive: self.$navigateToSuggest
                 ) {
                     EmptyView()
                 }
@@ -145,6 +146,8 @@ struct HomeView: View {
                 if let newItem = newItem {
                     Task {
                         await viewModel.loadAndEncodePhoto(from: newItem)
+                        try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
+                        self.navigateToSuggest = true
                     }
                 }
             }
