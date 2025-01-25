@@ -20,10 +20,10 @@
 		313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */; };
 		313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6B32D3B9E3A009EA68F /* Assets.xcassets */; };
 		313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */; };
-		313FE7022D3BA0E5009EA68F /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE7012D3BA0E5009EA68F /* AccessToken.swift */; };
-		313FE7042D3C04EC009EA68F /* OpenAIPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE7032D3C04EC009EA68F /* OpenAIPrompt.swift */; };
 		313FE7072D3C121F009EA68F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 313FE7062D3C121F009EA68F /* Kingfisher */; };
 		313FE70A2D3C9E99009EA68F /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */; };
+		313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE70E2D40B8EF009EA68F /* ChatItem.swift */; };
+		31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BBD2D44EADB00A30C7B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +43,8 @@
 		313FE6B82D3B9E3A009EA68F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoteAI.xcdatamodel; sourceTree = "<group>"; };
 		313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
-		313FE7012D3BA0E5009EA68F /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
-		313FE7032D3C04EC009EA68F /* OpenAIPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIPrompt.swift; sourceTree = "<group>"; };
+		313FE70E2D40B8EF009EA68F /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		31642BBD2D44EADB00A30C7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +117,7 @@
 				313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */,
 				313FE6AE2D3B9E3A009EA68F /* MessageBubbleView.swift */,
 				313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */,
+				313FE70E2D40B8EF009EA68F /* ChatItem.swift */,
 			);
 			path = MessageSuggest;
 			sourceTree = "<group>";
@@ -133,11 +134,11 @@
 		313FE6B92D3B9E3A009EA68F /* MoteAI */ = {
 			isa = PBXGroup;
 			children = (
-				313FE6CC2D3BA083009EA68F /* Constants */,
-				313FE6AA2D3B9E3A009EA68F /* Services */,
 				313FE6B22D3B9E3A009EA68F /* Views */,
 				313FE6A42D3B9E3A009EA68F /* App */,
 				313FE6A92D3B9E3A009EA68F /* Preview Content */,
+				313FE6AA2D3B9E3A009EA68F /* Services */,
+				313FE6CC2D3BA083009EA68F /* Constants */,
 				313FE6B32D3B9E3A009EA68F /* Assets.xcassets */,
 				313FE6B52D3B9E3A009EA68F /* Info.plist */,
 				313FE6B62D3B9E3A009EA68F /* MoteAI.entitlements */,
@@ -150,8 +151,7 @@
 		313FE6CC2D3BA083009EA68F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				313FE7012D3BA0E5009EA68F /* AccessToken.swift */,
-				313FE7032D3C04EC009EA68F /* OpenAIPrompt.swift */,
+				31642BBD2D44EADB00A30C7B /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -237,17 +237,17 @@
 			files = (
 				313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */,
 				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
+				313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */,
 				313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */,
-				313FE7042D3C04EC009EA68F /* OpenAIPrompt.swift in Sources */,
 				313FE6BF2D3B9E3A009EA68F /* MessageBubbleView.swift in Sources */,
 				313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */,
 				313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */,
 				313FE6C22D3B9E3A009EA68F /* ContentView.swift in Sources */,
+				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,
 				313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */,
 				313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */,
 				313FE66B2D3B8C57009EA68F /* MoteAIApp.swift in Sources */,
 				313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */,
-				313FE7022D3BA0E5009EA68F /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

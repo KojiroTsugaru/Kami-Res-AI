@@ -42,7 +42,7 @@ struct HomeView: View {
                                 .bold()
                                 .lineLimit(1) // Ensure only one line
                                 .minimumScaleFactor(0.5) // Shrink text to fit within the space
-                            Text("メッセージのスクリーンショットを選択")
+                            Text("メッセージのスクショを選択してください")
                                 .font(.caption)
                                 .foregroundColor(.white)
                                 .lineLimit(1) // Ensure only one line
@@ -146,7 +146,7 @@ struct HomeView: View {
                 if let newItem = newItem {
                     Task {
                         await viewModel.loadAndEncodePhoto(from: newItem)
-                        try? await Task.sleep(for: .seconds(    0.5)) // Wait for 0.5 seconds
+                        try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
                         self.navigateToSuggest = true
                     }
                 }

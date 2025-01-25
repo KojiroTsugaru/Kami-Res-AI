@@ -13,133 +13,177 @@ struct MessageSuggestView: View {
     let image: UIImage?
     
     @ObservedObject private var viewModel = MessageSuggestVM()
-    
     @State private var showCopyConfirmation: Bool = false
-        
+
     var body: some View {
         ZStack {
             VStack {
-                ScrollViewReader { proxy in
-                    ScrollView(.vertical) {
-                        VStack {
-                            // Display the UIImage if available
-                            if let image = image {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .cornerRadius(8)
-                                    .shadow(radius: 4)
-                                    .padding()
-                            } else {
-                                Spacer()
-                                    .frame(height: 100)
-                                ProgressView("画像をロード中...")
-                                .padding()                }
-                            
-                            Text("-- メッセージをタップしてコピー --")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
-                            VStack(alignment: .trailing) {
-                                ForEach(
-                                    viewModel.suggestedMessages,
-                                    id: \.self
-                                ) { message in
-                                    HStack {
-                                        Spacer() // Push the content to the trailing edge
-                                        MessageBubbleView(message: message)
-                                            .onTapGesture {
-                                                viewModel.copyToClipboard(text: message)
-                                                showCopyConfirmation = true
-                                                
-                                                // Hide confirmation after 2 seconds
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                                    showCopyConfirmation = false
-                                                }
-                                            }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .onAppear {
-                        // スクロールが表示されたときに、一番下にスクロール
-                        if let lastItem = viewModel.suggestedMessages.last {
-                            proxy.scrollTo(lastItem, anchor: .bottom)
-                        }
-                    }
-                }
-                
-                VStack {
-                    Button {
-                        Task {
-                            await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
-                        }
-                    } label: {
-                        Text("もっと返信を生成")
-                            .foregroundColor(.black)
-                            .bold()
-                            .padding()
-                            .background(Color(.white))
-                            .cornerRadius(24)
-                    }
-                    
-                    Text("あと3回返信を生成できます")
-                        .foregroundColor(.gray)
-                        .font(.caption)
-                        .padding(.bottom, 16)
-                }
+                ScrollableContent(image: image)
+                GenerateMoreButton
             }
-            
             if showCopyConfirmation {
-                Text("メッセージをコピーしました！")
-                    .font(.subheadline)
-                    .foregroundColor(.black)
-                    .padding()
-                    .background(.white)
-                    .cornerRadius(24)
+                CopyConfirmationView
             }
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    print("Leading button tapped")
-                }) {
-                    Image(systemName: "plus")
-                        .bold()
+            PhotosPickerToolbar
+        }
+        .background(BackgroundGradient)
+        .ignoresSafeArea(.all)
+        .task {
+            await viewModel.getSuggestedMessage(from: base64Image ?? "")
+        }
+        .onChange(of: viewModel.selectedPhoto) { newItem in
+            handlePhotoSelection(newItem)
+        }
+        .onAppear {
+            setTransparentNavigationBar()
+        }
+        .onDisappear {
+            resetNavigationBarAppearance()
+        }
+    }
+
+    // MARK: - Subviews
+    private func ScrollableContent(image: UIImage?) -> some View {
+        ScrollViewReader { proxy in
+            ScrollView(.vertical) {
+                VStack {
+                    DisplayImage(image: image)
+                    InstructionText
+                    ChatItemsList(proxy: proxy)
                 }
             }
         }
-        .task {
-            await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
-        }
-        .ignoresSafeArea(.all)
-        .background(
-            LinearGradient(
-                gradient: Gradient(
-                    colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]
-                ),
-                startPoint: .top,
-                // Starting point of the gradient
-                endPoint: .bottom // Ending point of the gradient
-            )
-        )
-        .onAppear {
-            // Make navigation bar transparent when the view appears
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundColor = .clear // Make it clear
-            appearance.shadowColor = .clear // Remove the shadow line
-                    
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
-        }
-        .onDisappear {
-            // Reset navigation bar appearance when the view disappears
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            UINavigationBar.appearance().standardAppearance = appearance
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+
+    private func DisplayImage(image: UIImage?) -> some View {
+        Group {
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .cornerRadius(8)
+                    .shadow(radius: 4)
+                    .padding()
+            } else {
+                Spacer().frame(height: 100)
+                ProgressView("画像をロード中...")
+                    .padding()
+            }
         }
     }
+
+    private var InstructionText: some View {
+        Text("-- メッセージをタップしてコピー --")
+            .font(.caption)
+            .foregroundColor(.gray)
+    }
+
+    private func ChatItemsList(proxy: ScrollViewProxy) -> some View {
+        VStack(alignment: .trailing) {
+            ForEach(viewModel.chatItems) { item in
+                if case .message(let text) = item {
+                    HStack {
+                        Spacer()
+                        MessageBubbleView(message: text)
+                            .onTapGesture {
+                                handleTextCopy(text)
+                            }
+                    }
+                } else if case .image(let image) = item {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(8)
+                        .shadow(radius: 4)
+                        .padding()
+                }
+            }
+        }
+    }
+
+    private var GenerateMoreButton: some View {
+        VStack {
+            Button {
+                Task {
+                    await viewModel.getSuggestedMessage(from: base64Image ?? "")
+                }
+            } label: {
+                Text("もっと返信を生成")
+                    .foregroundColor(.black)
+                    .bold()
+                    .padding()
+                    .background(Color(.white))
+                    .cornerRadius(24)
+            }
+            Text("あと3回返信を生成できます")
+                .foregroundColor(.gray)
+                .font(.caption)
+                .padding(.bottom, 16)
+        }
+    }
+
+    private var CopyConfirmationView: some View {
+        Text("メッセージをコピーしました！")
+            .font(.subheadline)
+            .foregroundColor(.black)
+            .padding()
+            .background(.white)
+            .cornerRadius(24)
+    }
+
+    private var PhotosPickerToolbar: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            PhotosPicker(
+                selection: $viewModel.selectedPhoto,
+                matching: .images,
+                photoLibrary: .shared()
+            ) {
+                Image(systemName: "plus").bold()
+            }
+        }
+    }
+
+    private var BackgroundGradient: some View {
+        LinearGradient(
+            gradient: Gradient(colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+
+    private func handleTextCopy(_ text: String) {
+        viewModel.copyToClipboard(text: text)
+        showCopyConfirmation = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            showCopyConfirmation = false
+        }
+    }
+
+    private func handlePhotoSelection(_ newItem: PhotosPickerItem?) {
+        guard let newItem = newItem else { return }
+        Task {
+            await viewModel.getSuggestedMessageAfterPhotoAdded(from: newItem)
+            try? await Task.sleep(for: .seconds(0.2)) // Wait for 0.5 seconds
+        }
+    }
+
+    private func setTransparentNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = .clear
+        appearance.shadowColor = .clear
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+
+    private func resetNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
 }
+

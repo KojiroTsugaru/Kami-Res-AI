@@ -12,7 +12,7 @@ struct MessageBubbleView: View {
     let message: String
     var body: some View {
         ZStack {
-            if message == "Loading" {
+            if message == Constants.loadingMessage {
                 LoadingIndicator(
                     animation: .threeBalls,
                     color: Color.white,
