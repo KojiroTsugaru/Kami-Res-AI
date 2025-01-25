@@ -28,14 +28,12 @@ class MessageSuggestVM: ObservableObject{
     }
     
     @MainActor
-    public func getSuggestedMessage(from base64Image: String) async {
+    public func getSuggestedMessage(base64Image: String) async {
         // Add a loading placeholder message
         self.addMessage(text: loadingMessage)
         
         do {
-            let response = try await openAIService.getSuggestedMesssageFromImage(
-                base64Image: base64Image
-            )
+            let response = try await openAIService.getSuggestedMesssageFromImage(base64Image: base64Image)
             
             removeLoadingMessage()
             
@@ -52,7 +50,7 @@ class MessageSuggestVM: ObservableObject{
     
     /// Loads the selected photo and encodes it to Base64
     @MainActor
-    public func loadAndEncodePhoto(from item: PhotosPickerItem) async -> String? {
+    public func loadAndEncodePhoto(from item: PhotosPickerItem) async {
         do {
             // Load image data
             if let data = try await item.loadTransferable(type: Data.self) {
@@ -64,32 +62,21 @@ class MessageSuggestVM: ObservableObject{
                     
                     // Encode the image data to Base64
                     let base64Image = data.base64EncodedString()
-                    return base64Image
+                    await self.getSuggestedMessage(base64Image: base64Image)
                     
                 } else {
                     self.errorMessage = "Failed to decode the selected photo."
-                    return nil
                 }
             } else {
                 self.errorMessage = "Failed to load the selected photo."
-                return nil
             }
         } catch {
             self.errorMessage = "An error occurred: \(error.localizedDescription)"
-            return nil
         }
     }
     
-    func getSuggestedMessageAfterPhotoAdded(from item: PhotosPickerItem) async {
-        if let base64Image = await loadAndEncodePhoto(from: item) {
-            await self.getSuggestedMessage(from: base64Image)
-        } else {
-            return
-        }
-    }
-    
-    // Remove the loading message and add an error message
     private func removeLoadingMessage() {
+        // Remove the loading message
         if let loadingIndex = chatItems.firstIndex(where: {
             if case .message(let text) = $0, text == loadingMessage {
                 return true

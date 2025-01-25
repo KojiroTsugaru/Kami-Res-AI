@@ -31,7 +31,7 @@ struct MessageSuggestView: View {
         .background(BackgroundGradient)
         .ignoresSafeArea(.all)
         .task {
-            await viewModel.getSuggestedMessage(from: base64Image ?? "")
+            await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
         }
         .onChange(of: viewModel.selectedPhoto) { newItem in
             handlePhotoSelection(newItem)
@@ -52,6 +52,12 @@ struct MessageSuggestView: View {
                     DisplayImage(image: image)
                     InstructionText
                     ChatItemsList(proxy: proxy)
+                }
+            }
+            .onChange(of: $viewModel.chatItems.count) { _ in
+                if let lastItem = viewModel.chatItems.last {
+                    print(lastItem.self)
+                    proxy.scrollTo(lastItem.id)
                 }
             }
         }
@@ -98,6 +104,7 @@ struct MessageSuggestView: View {
                         .cornerRadius(8)
                         .shadow(radius: 4)
                         .padding()
+                        .id(item.id)
                 }
             }
         }
@@ -107,7 +114,7 @@ struct MessageSuggestView: View {
         VStack {
             Button {
                 Task {
-                    await viewModel.getSuggestedMessage(from: base64Image ?? "")
+                    await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
                 }
             } label: {
                 Text("もっと返信を生成")
@@ -156,16 +163,16 @@ struct MessageSuggestView: View {
     private func handleTextCopy(_ text: String) {
         viewModel.copyToClipboard(text: text)
         showCopyConfirmation = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             showCopyConfirmation = false
         }
     }
 
     private func handlePhotoSelection(_ newItem: PhotosPickerItem?) {
-        guard let newItem = newItem else { return }
+        guard newItem != nil else { return }
         Task {
-            await viewModel.getSuggestedMessageAfterPhotoAdded(from: newItem)
-            try? await Task.sleep(for: .seconds(0.2)) // Wait for 0.5 seconds
+            await viewModel.loadAndEncodePhoto(from: newItem!)
+            try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
         }
     }
 

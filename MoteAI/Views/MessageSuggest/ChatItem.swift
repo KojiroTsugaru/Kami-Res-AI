@@ -13,8 +13,8 @@ enum ChatItem: Identifiable {
     
     var id: UUID {
         switch self {
-        case .message(_):
-            return UUID() // Or hash the text if uniqueness is guaranteed
+        case .message(let text):
+            return UUID(uuidString: text.hash.description) ?? UUID()
         case .image:
             return UUID()
         }
