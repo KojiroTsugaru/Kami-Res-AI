@@ -9,6 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct MessageSuggestView: View {
+    @Environment(\.dismiss) private var dismiss
+    
     let base64Image: String?
     let image: UIImage?
     
@@ -26,6 +28,7 @@ struct MessageSuggestView: View {
             }
         }
         .toolbar {
+            BackButtonToolbar
             PhotosPickerToolbar
         }
         .background(BackgroundGradient)
@@ -36,6 +39,7 @@ struct MessageSuggestView: View {
         .onChange(of: viewModel.selectedPhoto) { newItem in
             handlePhotoSelection(newItem)
         }
+        .navigationBarBackButtonHidden()
         .onAppear {
             setTransparentNavigationBar()
         }
@@ -93,6 +97,7 @@ struct MessageSuggestView: View {
                     HStack {
                         Spacer()
                         MessageBubbleView(message: text)
+                            .id(item.id)
                             .onTapGesture {
                                 handleTextCopy(text)
                             }
@@ -114,15 +119,18 @@ struct MessageSuggestView: View {
         VStack {
             Button {
                 Task {
-                    await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
+                    await viewModel
+                        .getSuggestedMessage(base64Image: base64Image ?? "")
                 }
             } label: {
-                Text("もっと返信を生成")
-                    .foregroundColor(.black)
-                    .bold()
-                    .padding()
-                    .background(Color(.white))
-                    .cornerRadius(24)
+                GradientText("もっと返信を生成",
+                             font: .subheadline,
+                             gradient: Constants.ColorAsset
+                    .createGradient(from: .topLeading, to: .bottomTrailing))
+                .bold()
+                .padding()
+                .background(Color(.black))
+                .cornerRadius(24)
             }
             Text("あと3回返信を生成できます")
                 .foregroundColor(.gray)
@@ -139,6 +147,12 @@ struct MessageSuggestView: View {
             .background(.white)
             .cornerRadius(24)
     }
+    
+    private var BackButtonToolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            GradientBackButton()
+        }
+    }
 
     private var PhotosPickerToolbar: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
@@ -147,17 +161,23 @@ struct MessageSuggestView: View {
                 matching: .images,
                 photoLibrary: .shared()
             ) {
-                Image(systemName: "plus").bold()
+                GradientPlusIcon(
+                    size: CGSize(width: 24, height: 24),
+                    lineThickness: 5,
+                    cornerRadius: 8,
+                    outlineColor: .black,
+                    outlineWidth: 5,
+                    gradient: Constants.ColorAsset
+                        .createGradient(from: .topLeading, to: .bottomTrailing)
+                )
             }
         }
     }
 
     private var BackgroundGradient: some View {
-        LinearGradient(
-            gradient: Gradient(colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]),
-            startPoint: .top,
-            endPoint: .bottom
-        )
+        Constants.ColorAsset
+            .createGradient(from: .bottom, to: .top)
+            .opacity(0.5)
     }
 
     private func handleTextCopy(_ text: String) {

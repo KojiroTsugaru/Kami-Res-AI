@@ -14,7 +14,7 @@
 		313FE6BF2D3B9E3A009EA68F /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AE2D3B9E3A009EA68F /* MessageBubbleView.swift */; };
 		313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */; };
 		313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */; };
-		313FE6C22D3B9E3A009EA68F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B42D3B9E3A009EA68F /* ContentView.swift */; };
+		313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B42D3B9E3A009EA68F /* RootView.swift */; };
 		313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */; };
 		313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B82D3B9E3A009EA68F /* Persistence.swift */; };
 		313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */; };
@@ -24,6 +24,15 @@
 		313FE70A2D3C9E99009EA68F /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */; };
 		313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE70E2D40B8EF009EA68F /* ChatItem.swift */; };
 		31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BBD2D44EADB00A30C7B /* Constants.swift */; };
+		31642BC12D46152E00A30C7B /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 31642BC02D46152E00A30C7B /* SuperwallKit */; };
+		31642BC42D46196400A30C7B /* OnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BC32D46196400A30C7B /* OnboardingSheetView.swift */; };
+		31642BC62D461A2200A30C7B /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BC52D461A2200A30C7B /* OnboardingPage.swift */; };
+		31642BC82D461BC700A30C7B /* OnboadingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BC72D461BC700A30C7B /* OnboadingPageView.swift */; };
+		3165BF0C2D491399005BDB8A /* GradientText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF0B2D491392005BDB8A /* GradientText.swift */; };
+		3165BF0E2D4914DC005BDB8A /* GradientIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF0D2D4914D6005BDB8A /* GradientIcon.swift */; };
+		3165BF102D491AA9005BDB8A /* GradientOutlinedIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF0F2D491A9B005BDB8A /* GradientOutlinedIcon.swift */; };
+		3165BF122D492302005BDB8A /* GradientPlusIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF112D4922FC005BDB8A /* GradientPlusIcon.swift */; };
+		3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF132D492B19005BDB8A /* GradientBackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +46,7 @@
 		313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSuggestView.swift; sourceTree = "<group>"; };
 		313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSuggestVM.swift; sourceTree = "<group>"; };
 		313FE6B32D3B9E3A009EA68F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		313FE6B42D3B9E3A009EA68F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		313FE6B42D3B9E3A009EA68F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		313FE6B52D3B9E3A009EA68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		313FE6B62D3B9E3A009EA68F /* MoteAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoteAI.entitlements; sourceTree = "<group>"; };
 		313FE6B82D3B9E3A009EA68F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -45,6 +54,14 @@
 		313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		313FE70E2D40B8EF009EA68F /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
 		31642BBD2D44EADB00A30C7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		31642BC32D46196400A30C7B /* OnboardingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheetView.swift; sourceTree = "<group>"; };
+		31642BC52D461A2200A30C7B /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
+		31642BC72D461BC700A30C7B /* OnboadingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadingPageView.swift; sourceTree = "<group>"; };
+		3165BF0B2D491392005BDB8A /* GradientText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientText.swift; sourceTree = "<group>"; };
+		3165BF0D2D4914D6005BDB8A /* GradientIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientIcon.swift; sourceTree = "<group>"; };
+		3165BF0F2D491A9B005BDB8A /* GradientOutlinedIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientOutlinedIcon.swift; sourceTree = "<group>"; };
+		3165BF112D4922FC005BDB8A /* GradientPlusIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPlusIcon.swift; sourceTree = "<group>"; };
+		3165BF132D492B19005BDB8A /* GradientBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +71,7 @@
 			files = (
 				313FE7072D3C121F009EA68F /* Kingfisher in Frameworks */,
 				313FE70A2D3C9E99009EA68F /* SwiftfulLoadingIndicators in Frameworks */,
+				31642BC12D46152E00A30C7B /* SuperwallKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */,
-				313FE6B42D3B9E3A009EA68F /* ContentView.swift */,
+				313FE6B42D3B9E3A009EA68F /* RootView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -127,6 +145,8 @@
 			children = (
 				313FE6AD2D3B9E3A009EA68F /* Home */,
 				313FE6B12D3B9E3A009EA68F /* MessageSuggest */,
+				31642BC22D46194800A30C7B /* Onboarding */,
+				3165BF0A2D491366005BDB8A /* UIComponent */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -156,6 +176,28 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		31642BC22D46194800A30C7B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				31642BC32D46196400A30C7B /* OnboardingSheetView.swift */,
+				31642BC72D461BC700A30C7B /* OnboadingPageView.swift */,
+				31642BC52D461A2200A30C7B /* OnboardingPage.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		3165BF0A2D491366005BDB8A /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3165BF132D492B19005BDB8A /* GradientBackButton.swift */,
+				3165BF112D4922FC005BDB8A /* GradientPlusIcon.swift */,
+				3165BF0F2D491A9B005BDB8A /* GradientOutlinedIcon.swift */,
+				3165BF0B2D491392005BDB8A /* GradientText.swift */,
+				3165BF0D2D4914D6005BDB8A /* GradientIcon.swift */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,6 +217,7 @@
 			packageProductDependencies = (
 				313FE7062D3C121F009EA68F /* Kingfisher */,
 				313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */,
+				31642BC02D46152E00A30C7B /* SuperwallKit */,
 			);
 			productName = MoteAI;
 			productReference = 313FE6672D3B8C57009EA68F /* MoteAI.app */;
@@ -207,6 +250,7 @@
 			packageReferences = (
 				313FE7052D3C121F009EA68F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				313FE7082D3C9E99009EA68F /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+				31642BBF2D46152E00A30C7B /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 313FE6682D3B8C57009EA68F /* Products */;
@@ -238,16 +282,24 @@
 				313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */,
 				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
 				313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */,
+				3165BF122D492302005BDB8A /* GradientPlusIcon.swift in Sources */,
 				313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */,
 				313FE6BF2D3B9E3A009EA68F /* MessageBubbleView.swift in Sources */,
+				31642BC42D46196400A30C7B /* OnboardingSheetView.swift in Sources */,
+				3165BF0C2D491399005BDB8A /* GradientText.swift in Sources */,
 				313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */,
 				313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */,
-				313FE6C22D3B9E3A009EA68F /* ContentView.swift in Sources */,
+				313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */,
+				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,
+				3165BF102D491AA9005BDB8A /* GradientOutlinedIcon.swift in Sources */,
 				313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */,
+				3165BF0E2D4914DC005BDB8A /* GradientIcon.swift in Sources */,
+				31642BC82D461BC700A30C7B /* OnboadingPageView.swift in Sources */,
 				313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */,
 				313FE66B2D3B8C57009EA68F /* MoteAIApp.swift in Sources */,
 				313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */,
+				31642BC62D461A2200A30C7B /* OnboardingPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +537,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		31642BBF2D46152E00A30C7B /* XCRemoteSwiftPackageReference "Superwall-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/superwall/Superwall-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.12.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -497,6 +557,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 313FE7082D3C9E99009EA68F /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
 			productName = SwiftfulLoadingIndicators;
+		};
+		31642BC02D46152E00A30C7B /* SuperwallKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31642BBF2D46152E00A30C7B /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
+			productName = SuperwallKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

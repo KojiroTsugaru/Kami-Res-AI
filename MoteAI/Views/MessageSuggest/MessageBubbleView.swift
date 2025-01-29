@@ -15,19 +15,19 @@ struct MessageBubbleView: View {
             if message == Constants.loadingMessage {
                 LoadingIndicator(
                     animation: .threeBalls,
-                    color: Color.white,
+                    color: Color.black,
                     size: .small
                 )
                 .padding(.horizontal)
                 .padding(.vertical, 4)
-                .background(Color.accentColor)
-                .cornerRadius(24)
+                .background(Color("ChatBubbleColor"))
+                .cornerRadius(20)
             } else {
                 Text(message)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(.black))
                     .padding()
-                    .background(Color.accentColor)
-                    .cornerRadius(24)
+                    .background(Color("ChatBubbleColor"))
+                    .cornerRadius(20)
             }
         }.padding()
     }

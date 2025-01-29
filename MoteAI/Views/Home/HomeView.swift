@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import SuperwallKit
 
 struct HomeView: View {
     
@@ -15,13 +16,16 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 40) {
+            VStack(spacing: 36) {
                 Spacer()
                 
-                Text("MoteAI")
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundColor(.accentColor)
+                GradientText(
+                    "MoteAI",
+                    font: .largeTitle.bold(),
+                    gradient: Constants.ColorAsset.createGradient(
+                        from: .topLeading,
+                        to: .bottomTrailing
+                    ))
                 
                 PhotosPicker(
                     selection: $viewModel.selectedPhoto,
@@ -29,24 +33,40 @@ struct HomeView: View {
                     photoLibrary: .shared()
                 ) {
                     HStack(spacing: 12) {
-                        Image(
-                            systemName: "square.dashed"
-                        ) // Replace with your desired icon
-                        .font(.system(size: 60))
-                        .foregroundColor(.white)
+                        GradientIcon(
+                            systemName: "square.dashed",
+                            gradient: Constants.ColorAsset.createGradient(
+                                from: .topLeading,
+                                to: .bottomTrailing
+                        ),
+                            size: 60
+                        )
                         .padding()
                         VStack(spacing: 8) {
-                            Text("写真をアップロード")
-                                .font(.system(size: 24))
-                                .foregroundColor(.white)
-                                .bold()
-                                .lineLimit(1) // Ensure only one line
-                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
-                            Text("メッセージのスクショを選択してください")
-                                .font(.caption)
-                                .foregroundColor(.white)
-                                .lineLimit(1) // Ensure only one line
-                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
+                            GradientText(
+                                "写真をアップロード",
+                                font: .largeTitle,
+                                gradient: Constants.ColorAsset.createGradient(
+                                    from: .topLeading,
+                                    to: .bottomTrailing
+                            ))
+                            .bold()
+                            .lineLimit(1) // Ensure only one line
+                            .minimumScaleFactor(
+                                0.5
+                            ) // Shrink text to fit within the space
+                            
+                            GradientText(
+                                "メッセージのスクショを選択してください",
+                                font: .caption,
+                                gradient: Constants.ColorAsset.createGradient(
+                                    from: .topLeading,
+                                    to: .bottomTrailing
+                            ))
+                            .lineLimit(1) // Ensure only one line
+                            .minimumScaleFactor(
+                                0.5
+                            ) // Shrink text to fit within the space
                         }
                         Spacer()
                     }
@@ -54,57 +74,24 @@ struct HomeView: View {
                     .frame(
                         maxWidth: .infinity
                     ) // Make the button expand horizontally
-                    .background(Color.accentColor) // Background color
-                    .cornerRadius(24) // Rounded corners
-                }
-                
-                Button(action: {
-                    print("Button 2 tapped")
-                }) {
-                    HStack(spacing: 12) {
-                        Image(
-                            systemName: "square.dashed"
-                        ) // Replace with your desired icon
-                        .font(.system(size: 60))
-                        .foregroundColor(.white)
-                        .padding()
-                        VStack(spacing: 8) {
-                            Text("写真をアップロード")
-                                .font(.system(size: 24))
-                                .foregroundColor(.white)
-                                .bold()
-                                .lineLimit(1) // Ensure only one line
-                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
-                            Text("メッセージのスクリーンショットを選択")
-                                .font(.caption)
-                                .foregroundColor(.white)
-                                .lineLimit(1) // Ensure only one line
-                                .minimumScaleFactor(0.5) // Shrink text to fit within the space
-                        }
-                        Spacer()
-                    }
-                    .padding() // Add padding inside the button
-                    .frame(
-                        maxWidth: .infinity
-                    ) // Make the button expand horizontally
-                    .background(Color.accentColor) // Background color
+                    .background(Color("SecondaryColor"))
                     .cornerRadius(24) // Rounded corners
                 }
                             
                 Button(action: {
-                    print("Button 2 tapped")
+                    Superwall.shared.register(event: "campaign_trigger")
                 }) {
                     HStack {
                         Image(
-                            systemName: "heart.fill"
+                            systemName: "keyboard"
                         ) // Replace with your desired icon
                         .font(.largeTitle)
                         .foregroundColor(.white)
                         VStack {
-                            Text("Favorite")
+                            Text("自分でメッセージを入力する")
                                 .font(.headline)
                                 .foregroundColor(.white)
-                            Text("Favorite")
+                            Text("過去のメッセージ内容を手動で登録")
                                 .font(.caption)
                                 .foregroundColor(.white)
                         }
@@ -118,7 +105,6 @@ struct HomeView: View {
                 }
                 
                 Spacer()
-                
                 NavigationLink(
                     destination: MessageSuggestView(
                         base64Image: viewModel.base64String,
@@ -132,21 +118,13 @@ struct HomeView: View {
             }
             .padding()
             .ignoresSafeArea(.all)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(
-                        colors: [.cyan.opacity(0.5), .accentColor.opacity(0.5)]
-                    ),
-                    startPoint: .top,
-                    // Starting point of the gradient
-                    endPoint: .bottom // Ending point of the gradient
-                )
-            )
+            .background(Constants.ColorAsset.primaryGradient.opacity(0.5))
             .onChange(of: viewModel.selectedPhoto) { newItem in
                 if let newItem = newItem {
                     Task {
                         await viewModel.loadAndEncodePhoto(from: newItem)
-                        try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
+                        try? await Task
+                            .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
                         self.navigateToSuggest = true
                     }
                 }

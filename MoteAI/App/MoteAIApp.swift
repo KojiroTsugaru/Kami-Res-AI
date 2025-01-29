@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import SuperwallKit
 
 @main
 struct MoteAIApp: App {
     let persistenceController = PersistenceController.shared
+    
+    init() {
+        Superwall.configure(apiKey: Constants.AccessToken.superWall)
+    }
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            RootView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
