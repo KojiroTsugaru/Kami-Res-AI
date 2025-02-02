@@ -14,6 +14,8 @@ class MessageSuggestVM: ObservableObject{
     private let openAIService = OpenAIService()
     private let loadingMessage = Constants.loadingMessage
     
+    @Published var remainedGenerationCount = DailyActionManager.shared.canPerformAction() ? 1 : 0
+    
     @Published var chatItems: [ChatItem] = []
     @Published var addedPhotos: [UIImage?] = [] // added photos
     @Published var selectedPhoto: PhotosPickerItem?

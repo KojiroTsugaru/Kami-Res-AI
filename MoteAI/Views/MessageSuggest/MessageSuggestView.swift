@@ -7,13 +7,15 @@
 
 import SwiftUI
 import PhotosUI
+import SuperwallKit
 
 struct MessageSuggestView: View {
-    @Environment(\.dismiss) private var dismiss
-    
     let base64Image: String?
     let image: UIImage?
     
+    @Environment(\.dismiss) private var dismiss
+
+    @StateObject private var actionManager = DailyActionManager.shared
     @ObservedObject private var viewModel = MessageSuggestVM()
     @State private var showCopyConfirmation: Bool = false
 
@@ -119,8 +121,12 @@ struct MessageSuggestView: View {
         VStack {
             Button {
                 Task {
-                    await viewModel
-                        .getSuggestedMessage(base64Image: base64Image ?? "")
+                    if actionManager.performActionIfNeeded() {
+                        await viewModel
+                            .getSuggestedMessage(base64Image: base64Image ?? "")
+                    } else {
+                        Superwall.shared.register(event: "campaign_trigger")
+                    }
                 }
             } label: {
                 GradientText("もっと返信を生成",
@@ -132,7 +138,7 @@ struct MessageSuggestView: View {
                 .background(Color(.black))
                 .cornerRadius(24)
             }
-            Text("あと3回返信を生成できます")
+            Text("今日あと\(String(describing: viewModel.remainedGenerationCount))回返信を生成できます")
                 .foregroundColor(.gray)
                 .font(.caption)
                 .padding(.bottom, 16)
