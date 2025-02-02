@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "313FE6662D3B8C57009EA68F"
-               BuildableName = "MoteAI.app"
-               BlueprintName = "MoteAI"
-               ReferencedContainer = "container:MoteAI.xcodeproj">
+               BuildableName = "kami-res-ai.app"
+               BlueprintName = "kami-res-ai"
+               ReferencedContainer = "container:kami-res-ai.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "313FE6662D3B8C57009EA68F"
-            BuildableName = "MoteAI.app"
-            BlueprintName = "MoteAI"
-            ReferencedContainer = "container:MoteAI.xcodeproj">
+            BuildableName = "kami-res-ai.app"
+            BlueprintName = "kami-res-ai"
+            ReferencedContainer = "container:kami-res-ai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "313FE6662D3B8C57009EA68F"
-            BuildableName = "MoteAI.app"
-            BlueprintName = "MoteAI"
-            ReferencedContainer = "container:MoteAI.xcodeproj">
+            BuildableName = "kami-res-ai.app"
+            BlueprintName = "kami-res-ai"
+            ReferencedContainer = "container:kami-res-ai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -15,7 +15,7 @@
 		313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */; };
 		313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */; };
 		313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B42D3B9E3A009EA68F /* RootView.swift */; };
-		313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */; };
+		313FE6C32D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B72D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld */; };
 		313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6B82D3B9E3A009EA68F /* Persistence.swift */; };
 		313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */; };
 		313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313FE6B32D3B9E3A009EA68F /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		313FE6672D3B8C57009EA68F /* MoteAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoteAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		313FE6672D3B8C57009EA68F /* kami-res-ai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kami-res-ai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoteAIApp.swift; sourceTree = "<group>"; };
 		313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
 		313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -49,9 +49,9 @@
 		313FE6B32D3B9E3A009EA68F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		313FE6B42D3B9E3A009EA68F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		313FE6B52D3B9E3A009EA68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		313FE6B62D3B9E3A009EA68F /* MoteAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MoteAI.entitlements; sourceTree = "<group>"; };
+		313FE6B62D3B9E3A009EA68F /* kami-res-ai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "kami-res-ai.entitlements"; sourceTree = "<group>"; };
 		313FE6B82D3B9E3A009EA68F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoteAI.xcdatamodel; sourceTree = "<group>"; };
+		313FE6BA2D3B9E3A009EA68F /* kami-res-ai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "kami-res-ai.xcdatamodel"; sourceTree = "<group>"; };
 		313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		313FE70E2D40B8EF009EA68F /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
 		31642BBD2D44EADB00A30C7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		313FE65E2D3B8C57009EA68F = {
 			isa = PBXGroup;
 			children = (
-				313FE6B92D3B9E3A009EA68F /* MoteAI */,
+				313FE6B92D3B9E3A009EA68F /* kami-res-ai */,
 				3165BF152D49EE61005BDB8A /* Frameworks */,
 				313FE6682D3B8C57009EA68F /* Products */,
 			);
@@ -93,7 +93,7 @@
 		313FE6682D3B8C57009EA68F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				313FE6672D3B8C57009EA68F /* MoteAI.app */,
+				313FE6672D3B8C57009EA68F /* kami-res-ai.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,7 +155,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		313FE6B92D3B9E3A009EA68F /* MoteAI */ = {
+		313FE6B92D3B9E3A009EA68F /* kami-res-ai */ = {
 			isa = PBXGroup;
 			children = (
 				313FE6B22D3B9E3A009EA68F /* Views */,
@@ -166,11 +166,11 @@
 				313FE6CC2D3BA083009EA68F /* Constants */,
 				313FE6B32D3B9E3A009EA68F /* Assets.xcassets */,
 				313FE6B52D3B9E3A009EA68F /* Info.plist */,
-				313FE6B62D3B9E3A009EA68F /* MoteAI.entitlements */,
-				313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */,
+				313FE6B62D3B9E3A009EA68F /* kami-res-ai.entitlements */,
+				313FE6B72D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld */,
 				313FE6B82D3B9E3A009EA68F /* Persistence.swift */,
 			);
-			path = MoteAI;
+			path = "kami-res-ai";
 			sourceTree = "<group>";
 		};
 		313FE6CC2D3BA083009EA68F /* Constants */ = {
@@ -222,9 +222,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		313FE6662D3B8C57009EA68F /* MoteAI */ = {
+		313FE6662D3B8C57009EA68F /* kami-res-ai */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 313FE67B2D3B8C5A009EA68F /* Build configuration list for PBXNativeTarget "MoteAI" */;
+			buildConfigurationList = 313FE67B2D3B8C5A009EA68F /* Build configuration list for PBXNativeTarget "kami-res-ai" */;
 			buildPhases = (
 				313FE6632D3B8C57009EA68F /* Sources */,
 				313FE6642D3B8C57009EA68F /* Frameworks */,
@@ -234,13 +234,13 @@
 			);
 			dependencies = (
 			);
-			name = MoteAI;
+			name = "kami-res-ai";
 			packageProductDependencies = (
 				313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */,
 				31642BC02D46152E00A30C7B /* SuperwallKit */,
 			);
 			productName = MoteAI;
-			productReference = 313FE6672D3B8C57009EA68F /* MoteAI.app */;
+			productReference = 313FE6672D3B8C57009EA68F /* kami-res-ai.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -258,7 +258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 313FE6622D3B8C57009EA68F /* Build configuration list for PBXProject "MoteAI" */;
+			buildConfigurationList = 313FE6622D3B8C57009EA68F /* Build configuration list for PBXProject "kami-res-ai" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -276,7 +276,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				313FE6662D3B8C57009EA68F /* MoteAI */,
+				313FE6662D3B8C57009EA68F /* kami-res-ai */,
 			);
 		};
 /* End PBXProject section */
@@ -312,7 +312,7 @@
 				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,
 				3165BF102D491AA9005BDB8A /* GradientOutlinedIcon.swift in Sources */,
-				313FE6C32D3B9E3A009EA68F /* MoteAI.xcdatamodeld in Sources */,
+				313FE6C32D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld in Sources */,
 				3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */,
 				3165BF0E2D4914DC005BDB8A /* GradientIcon.swift in Sources */,
 				31642BC82D461BC700A30C7B /* OnboadingPageView.swift in Sources */,
@@ -331,14 +331,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MoteAI/MoteAI.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MoteAI/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"kami-res-ai/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MoteAI/Info.plist;
+				INFOPLIST_FILE = "kami-res-ai/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -350,7 +350,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KojiroTsugaru.MoteAI;
+				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-ai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -367,14 +367,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MoteAI/MoteAI.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MoteAI/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"kami-res-ai/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MoteAI/Info.plist;
+				INFOPLIST_FILE = "kami-res-ai/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -386,7 +386,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = KojiroTsugaru.MoteAI;
+				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-ai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -520,7 +520,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		313FE6622D3B8C57009EA68F /* Build configuration list for PBXProject "MoteAI" */ = {
+		313FE6622D3B8C57009EA68F /* Build configuration list for PBXProject "kami-res-ai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				313FE67E2D3B8C5A009EA68F /* Debug */,
@@ -529,7 +529,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		313FE67B2D3B8C5A009EA68F /* Build configuration list for PBXNativeTarget "MoteAI" */ = {
+		313FE67B2D3B8C5A009EA68F /* Build configuration list for PBXNativeTarget "kami-res-ai" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				313FE67C2D3B8C5A009EA68F /* Debug */,
@@ -573,13 +573,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		313FE6B72D3B9E3A009EA68F /* MoteAI.xcdatamodeld */ = {
+		313FE6B72D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */,
+				313FE6BA2D3B9E3A009EA68F /* kami-res-ai.xcdatamodel */,
 			);
-			currentVersion = 313FE6BA2D3B9E3A009EA68F /* MoteAI.xcdatamodel */;
-			path = MoteAI.xcdatamodeld;
+			currentVersion = 313FE6BA2D3B9E3A009EA68F /* kami-res-ai.xcdatamodel */;
+			path = "kami-res-ai.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
