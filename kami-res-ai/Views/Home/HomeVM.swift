@@ -41,10 +41,6 @@ final class HomeVM: ObservableObject {
         }
     }
     
-    public func canOpenPhotoPicker() -> Bool {
-        return Superwall.shared.subscriptionStatus == .active || DailyActionManager.shared.canPerformAction()
-    }
-    
     public func showPaywallIfNeeded() {
         if !DailyActionManager.shared.canPerformAction() {
             Superwall.shared.register(event: "campaign_trigger") // Superwall で課金ページを表示

@@ -36,8 +36,7 @@ struct MessageSuggestView: View {
         .background(BackgroundGradient)
         .ignoresSafeArea(.all)
         .task {
-            viewModel.base64Image = base64Image
-            await viewModel.getSuggestedMessage()
+            await viewModel.generateResponseIfNeeded()
         }
         .onChange(of: viewModel.selectedPhoto) { newItem in
             handlePhotoSelection(newItem)
@@ -134,7 +133,7 @@ struct MessageSuggestView: View {
                 .background(Color(.black))
                 .cornerRadius(24)
             }
-            Text("今日はあと\(String(describing: actionManager.getCurrentActionCount))回返信を生成できます")
+            Text("今日はあと\(String(describing: actionManager.getCurrentRemainedActionCount()))回返信を生成できます")
                 .foregroundColor(.gray)
                 .font(.caption)
                 .padding(.bottom, 16)

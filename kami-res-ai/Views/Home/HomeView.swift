@@ -28,7 +28,7 @@ struct HomeView: View {
                     ))
                 .shadow(color: Color.white.opacity(0.75), radius: 12)
                 
-                if viewModel.canOpenPhotoPicker() {
+                if DailyActionManager.shared.canPerformAction() {
                     PhotosPicker(
                         selection: $viewModel.selectedPhoto,
                         matching: .images,
@@ -46,7 +46,8 @@ struct HomeView: View {
                             
                 VStack(spacing: 12) {
                     Button(action: {
-                        Superwall.shared.register(event: "campaign_trigger")
+                        DailyActionManager.shared.resetActionLimit()
+                        print(DailyActionManager.shared.getCurrentActionCount())
                     }) {
                         HStack(spacing: 12) {
                             Image(

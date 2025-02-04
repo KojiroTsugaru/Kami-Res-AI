@@ -15,8 +15,6 @@ class MessageSuggestVM: ObservableObject{
     private let openAIService = OpenAIService()
     private let loadingMessage = Constants.loadingMessage
     
-    @Published var remainedGenerationCount = DailyActionManager.shared.canPerformAction() ? 1 : 0
-    
     @Published var chatItems: [ChatItem] = []
     @Published var addedPhotos: [UIImage?] = [] // added photos
     @Published var selectedPhoto: PhotosPickerItem?
@@ -81,6 +79,10 @@ class MessageSuggestVM: ObservableObject{
     
     private func removeLoadingMessage() {
         // Remove the loading message
+        guard isLoadingMessage() else {
+            return
+        }
+        
         if let loadingIndex = chatItems.firstIndex(where: {
             if case .message(let text) = $0, text == loadingMessage {
                 return true
@@ -91,13 +93,25 @@ class MessageSuggestVM: ObservableObject{
         }
     }
     
+    private func isLoadingMessage() -> Bool {
+        if let lastItem = chatItems.last, case .message("Loading") = lastItem {
+            return true
+        }
+        return false
+    }
+    
     public func copyToClipboard(text: String) {
         UIPasteboard.general.string = text
     }
     
     public func generateResponseIfNeeded() async {
+        guard !isLoadingMessage() else {
+            return
+        }
+        
         if DailyActionManager.shared.performActionIfNeeded() {
             await self.getSuggestedMessage()
+            print("Action remained today: \(DailyActionManager.shared.getCurrentActionCount())")
         } else {
             Superwall.shared.register(event: "campaign_trigger")
         }

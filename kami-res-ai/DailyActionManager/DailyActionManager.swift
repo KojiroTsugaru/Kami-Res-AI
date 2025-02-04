@@ -20,7 +20,7 @@ class DailyActionManager: NSObject, ObservableObject {
     private let lastActionKey = "lastActionDate"
     private let currentActionCountKey = "currentActionCount"
     
-    private let maxActionsPerDay = 3 // 1日に実行できる最大回数
+    private let maxActionsPerDay = 2 // 1日に実行できる最大回数
     private let isUserSubscribed = Superwall.shared.subscriptionStatus == .active
 
     /// アクションを実行できるかチェック
@@ -30,8 +30,6 @@ class DailyActionManager: NSObject, ObservableObject {
         if isUserSubscribed {
             return true
         }
-        
-        let today = Date()
         
         // 最後のアクション日を取得
         let lastActionDate = userDefaults.object(forKey: lastActionKey) as? Date
@@ -80,6 +78,10 @@ class DailyActionManager: NSObject, ObservableObject {
     
     public func getCurrentActionCount() -> Int {
         return userDefaults.integer(forKey: currentActionCountKey)
+    }
+    
+    public func getCurrentRemainedActionCount() -> Int {
+        return maxActionsPerDay - getCurrentActionCount()
     }
 }
 
