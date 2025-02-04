@@ -9,76 +9,86 @@ import SwiftUI
 import PhotosUI
 import SuperwallKit
 
-struct HomeView: View {	
+struct HomeView: View {
     
     @StateObject private var viewModel = HomeVM()
     @State private var navigateToSuggest = false
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 28) {
-                Spacer()
-                
-                GradientText(
-                    "神レスAI",
-                    font: .largeTitle.bold(),
-                    gradient: Constants.ColorAsset.createGradient(
-                        from: .topLeading,
-                        to: .bottomTrailing
-                    ))
-                .shadow(color: Color.white.opacity(0.75), radius: 12)
-                
-                if DailyActionManager.shared.canPerformAction() {
-                    PhotosPicker(
-                        selection: $viewModel.selectedPhoto,
-                        matching: .images,
-                        photoLibrary: .shared()
-                    ) {
-                        HomeTopButtonLabel()
-                    }
-                } else {
-                    Button {
-                        viewModel.showPaywallIfNeeded()
-                    } label: {
-                        HomeTopButtonLabel()
-                    }
-                }
-                            
-                VStack(spacing: 12) {
-                    Button(action: {
-                        DailyActionManager.shared.resetActionLimit()
-                        print(DailyActionManager.shared.getCurrentActionCount())
-                    }) {
-                        HStack(spacing: 12) {
-                            Image(
-                                systemName: "keyboard"
-                            ) // Replace with your desired icon
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            VStack {
-                                Text("自分でメッセージを入力する")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                Text("過去のメッセージ内容を手動で登録")
-                                    .font(.caption)
-                                    .foregroundColor(.white)
+            ZStack {
+                Constants.ColorAsset.primaryGradient.opacity(0.5)
+                    .ignoresSafeArea()
+
+                ScrollView {
+                    VStack(spacing: 28) {
+                        Spacer()
+                            .frame(height: 144)
+
+                        // タイトル
+                        GradientText(
+                            "神レスAI",
+                            font: .largeTitle.bold(),
+                            gradient: Constants.ColorAsset.createGradient(
+                                from: .topLeading,
+                                to: .bottomTrailing
+                            ))
+                        .shadow(color: Color.white.opacity(0.75), radius: 12)
+                        
+                        // 写真アップロードボタン
+                        if DailyActionManager.shared.canPerformAction() {
+                            PhotosPicker(
+                                selection: $viewModel.selectedPhoto,
+                                matching: .images,
+                                photoLibrary: .shared()
+                            ) {
+                                HomeTopButtonLabel()
+                            }
+                        } else {
+                            Button {
+                                viewModel.showPaywallIfNeeded()
+                            } label: {
+                                HomeTopButtonLabel()
                             }
                         }
-                        .padding() // Add padding inside the button
-                        .frame(
-                            maxWidth: .infinity
-                        ) // Make the button expand horizontally
-                        .background(Color("gradientSecondary")) // Background color
-                        .cornerRadius(20) // Rounded corners
-                        .shadow(color: Color("gradientSecondary").opacity(0.25), radius: 8)
+                                    
+                        // メッセージ入力ボタン
+                        VStack(spacing: 12) {
+                            Button(action: {
+                                DailyActionManager.shared.resetActionLimit()
+                                print(DailyActionManager.shared.getCurrentActionCount())
+                            }) {
+                                HStack(spacing: 12) {
+                                    Image(systemName: "keyboard")
+                                        .font(.largeTitle)
+                                        .foregroundColor(.white)
+                                    VStack {
+                                        Text("自分でメッセージを入力する")
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                        Text("過去のメッセージ内容を手動で登録")
+                                            .font(.caption)
+                                            .foregroundColor(.white)
+                                    }
+                                }
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color("gradientSecondary"))
+                                .cornerRadius(20)
+                                .shadow(color: Color("gradientSecondary").opacity(0.25), radius: 8)
+                            }
+                            
+                            Text("*アップロードされた画像はサーバーに保存されません")
+                                .font(.caption)
+                                .foregroundColor(Color(.systemGray))
+                        }
+
+                        Spacer()
                     }
-                    
-                    Text("*アップロードされた画像はサーバーに保存されません")
-                        .font(.caption)
-                        .foregroundColor(Color(.systemGray))
-                    
+                    .padding()
                 }
-                Spacer()
+
+                // NavigationLink (ナビゲーションを非表示にする)
                 NavigationLink(
                     destination: MessageSuggestView(
                         base64Image: viewModel.base64String,
@@ -87,20 +97,6 @@ struct HomeView: View {
                     isActive: self.$navigateToSuggest
                 ) {
                     EmptyView()
-                }
-
-            }
-            .padding()
-            .ignoresSafeArea(.all)
-            .background(Constants.ColorAsset.primaryGradient.opacity(0.5))
-            .onChange(of: viewModel.selectedPhoto) { newItem in
-                if let newItem = newItem {
-                    Task {
-                        await viewModel.loadAndEncodePhoto(from: newItem)
-                        try? await Task
-                            .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
-                        self.navigateToSuggest = true
-                    }
                 }
             }
             .toolbar {
@@ -119,10 +115,19 @@ struct HomeView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.selectedPhoto) { newItem in
+                if let newItem = newItem {
+                    Task {
+                        await viewModel.loadAndEncodePhoto(from: newItem)
+                        try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
+                        self.navigateToSuggest = true
+                    }
+                }
+            }
         }
     }
-
 }
+
 
 #Preview {
     HomeView()

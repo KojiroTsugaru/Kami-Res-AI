@@ -43,12 +43,6 @@ struct MessageSuggestView: View {
             handlePhotoSelection(newItem)
         }
         .navigationBarBackButtonHidden()
-        .onAppear {
-            setTransparentNavigationBar()
-        }
-        .onDisappear {
-            resetNavigationBarAppearance()
-        }
     }
 
     // MARK: - Subviews
@@ -196,23 +190,6 @@ struct MessageSuggestView: View {
             await viewModel.loadAndEncodePhoto(from: newItem!)
             try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
         }
-    }
-
-    private func setTransparentNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = .clear
-        appearance.shadowColor = .clear
-
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-    }
-
-    private func resetNavigationBarAppearance() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithDefaultBackground()
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }
 
