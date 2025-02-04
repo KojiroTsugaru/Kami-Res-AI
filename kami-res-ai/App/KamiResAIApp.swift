@@ -9,7 +9,7 @@ import SwiftUI
 import SuperwallKit
 
 @main
-struct MoteAIApp: App {
+struct KamiResAIApp: App {
     let persistenceController = PersistenceController.shared
     
     init() {

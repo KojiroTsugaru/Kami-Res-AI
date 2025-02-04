@@ -9,6 +9,7 @@ import Foundation
 import PhotosUI
 import SwiftUI
 import UIKit
+import SuperwallKit
 
 class MessageSuggestVM: ObservableObject{
     private let openAIService = OpenAIService()
@@ -20,24 +21,25 @@ class MessageSuggestVM: ObservableObject{
     @Published var addedPhotos: [UIImage?] = [] // added photos
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var errorMessage: String = ""
+    @Published var base64Image: String?
     
     func addMessage(text: String) {
-        chatItems.append(.message(text))
+        self.chatItems.append(.message(text))
     }
     
     func addImage(image: UIImage) {
-        chatItems.append(.image(image))
+        self.chatItems.append(.image(image))
     }
     
     @MainActor
-    public func getSuggestedMessage(base64Image: String) async {
+    public func getSuggestedMessage() async {
         // Add a loading placeholder message
         self.addMessage(text: loadingMessage)
         
         do {
-            let response = try await openAIService.getSuggestedMesssageFromImage(base64Image: base64Image)
+            let response = try await openAIService.getSuggestedMesssageFromImage(base64Image: base64Image ?? "")
             
-            removeLoadingMessage()
+            self.removeLoadingMessage()
             
             // Add the response to chat item
             self.addMessage(text: response)
@@ -45,8 +47,8 @@ class MessageSuggestVM: ObservableObject{
         } catch {
             print("Error: \(error)")
             
-            removeLoadingMessage()
-            addMessage(text: "Failed to load suggestions. Please try again.")
+            self.removeLoadingMessage()
+            self.addMessage(text: "Failed to load suggestions. Please try again.")
         }
     }
     
@@ -63,8 +65,8 @@ class MessageSuggestVM: ObservableObject{
                     self.addImage(image: uiImage)
                     
                     // Encode the image data to Base64
-                    let base64Image = data.base64EncodedString()
-                    await self.getSuggestedMessage(base64Image: base64Image)
+                    self.base64Image = data.base64EncodedString()
+                    await self.getSuggestedMessage()
                     
                 } else {
                     self.errorMessage = "Failed to decode the selected photo."
@@ -85,11 +87,19 @@ class MessageSuggestVM: ObservableObject{
             }
             return false
         }) {
-            chatItems.remove(at: loadingIndex)
+            self.chatItems.remove(at: loadingIndex)
         }
     }
     
     public func copyToClipboard(text: String) {
         UIPasteboard.general.string = text
+    }
+    
+    public func generateResponseIfNeeded() async {
+        if DailyActionManager.shared.performActionIfNeeded() {
+            await self.getSuggestedMessage()
+        } else {
+            Superwall.shared.register(event: "campaign_trigger")
+        }
     }
 }

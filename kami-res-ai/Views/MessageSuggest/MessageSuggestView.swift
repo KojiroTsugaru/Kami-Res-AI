@@ -36,7 +36,8 @@ struct MessageSuggestView: View {
         .background(BackgroundGradient)
         .ignoresSafeArea(.all)
         .task {
-            await viewModel.getSuggestedMessage(base64Image: base64Image ?? "")
+            viewModel.base64Image = base64Image
+            await viewModel.getSuggestedMessage()
         }
         .onChange(of: viewModel.selectedPhoto) { newItem in
             handlePhotoSelection(newItem)
@@ -121,12 +122,7 @@ struct MessageSuggestView: View {
         VStack {
             Button {
                 Task {
-                    if actionManager.performActionIfNeeded() {
-                        await viewModel
-                            .getSuggestedMessage(base64Image: base64Image ?? "")
-                    } else {
-                        Superwall.shared.register(event: "campaign_trigger")
-                    }
+                    await viewModel.generateResponseIfNeeded()
                 }
             } label: {
                 GradientText("もっと返信を生成",
@@ -138,7 +134,7 @@ struct MessageSuggestView: View {
                 .background(Color(.black))
                 .cornerRadius(24)
             }
-            Text("今日あと\(String(describing: viewModel.remainedGenerationCount))回返信を生成できます")
+            Text("今日はあと\(String(describing: actionManager.getCurrentActionCount))回返信を生成できます")
                 .foregroundColor(.gray)
                 .font(.caption)
                 .padding(.bottom, 16)

@@ -13,9 +13,6 @@ struct HomeView: View {
     
     @StateObject private var viewModel = HomeVM()
     @State private var navigateToSuggest = false
-    private var canOpenPhotoPicker: Bool {
-        Superwall.shared.subscriptionStatus == .active || DailyActionManager.shared.canPerformAction()
-    }
     
     var body: some View {
         NavigationStack {
@@ -31,61 +28,19 @@ struct HomeView: View {
                     ))
                 .shadow(color: Color.white.opacity(0.75), radius: 12)
                 
-                PhotosPicker(
-                    selection: $viewModel.selectedPhoto,
-                    matching: .images,
-                    photoLibrary: .shared()
-                ) {
-                    HStack(spacing: 12) {
-                        GradientIcon(
-                            systemName: "square.dashed",
-                            gradient: Constants.ColorAsset.createGradient(
-                                from: .topLeading,
-                                to: .bottomTrailing
-                            ),
-                            size: 60
-                        )
-                        .padding()
-                        VStack(spacing: 8) {
-                            GradientText(
-                                "写真をアップロード",
-                                font: .largeTitle,
-                                gradient: Constants.ColorAsset.createGradient(
-                                    from: .topLeading,
-                                    to: .bottomTrailing
-                                ))
-                            .bold()
-                            .lineLimit(1) // Ensure only one line
-                            .minimumScaleFactor(
-                                0.5
-                            ) // Shrink text to fit within the space
-                            
-                            GradientText(
-                                "メッセージのスクショを選択してください*",
-                                font: .caption,
-                                gradient: Constants.ColorAsset.createGradient(
-                                    from: .topLeading,
-                                    to: .bottomTrailing
-                                ))
-                            .lineLimit(1) // Ensure only one line
-                            .minimumScaleFactor(
-                                0.5
-                            ) // Shrink text to fit within the space
-                        }
-                        Spacer()
+                if viewModel.canOpenPhotoPicker() {
+                    PhotosPicker(
+                        selection: $viewModel.selectedPhoto,
+                        matching: .images,
+                        photoLibrary: .shared()
+                    ) {
+                        HomeTopButtonLabel()
                     }
-                    .padding() // Add padding inside the button
-                    .frame(
-                        maxWidth: .infinity
-                    ) // Make the button expand horizontally
-                    .background(Color("SecondaryColor"))
-                    .cornerRadius(24) // Rounded corners
-                    .shadow(color: Color.black.opacity(0.25), radius: 8)
-                }
-                .disabled(!canOpenPhotoPicker)
-                .onTapGesture {
-                    if Superwall.shared.subscriptionStatus != .active && !canOpenPhotoPicker {
-                        Superwall.shared.register(event: "campaign_trigger") // Superwall で課金ページを表示
+                } else {
+                    Button {
+                        viewModel.showPaywallIfNeeded()
+                    } label: {
+                        HomeTopButtonLabel()
                     }
                 }
                             

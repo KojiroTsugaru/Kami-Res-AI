@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		313FE66B2D3B8C57009EA68F /* MoteAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */; };
+		313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */; };
 		313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */; };
 		313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AB2D3B9E3A009EA68F /* HomeView.swift */; };
 		313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AC2D3B9E3A009EA68F /* HomeVM.swift */; };
@@ -34,11 +34,12 @@
 		3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF132D492B19005BDB8A /* GradientBackButton.swift */; };
 		3165BF172D49EE61005BDB8A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
 		3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF192D4E6015005BDB8A /* DailyActionManager.swift */; };
+		31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		313FE6672D3B8C57009EA68F /* kami-res-ai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kami-res-ai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoteAIApp.swift; sourceTree = "<group>"; };
+		313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KamiResAIApp.swift; sourceTree = "<group>"; };
 		313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
 		313FE6A82D3B9E3A009EA68F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		313FE6AB2D3B9E3A009EA68F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		3165BF132D492B19005BDB8A /* GradientBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackButton.swift; sourceTree = "<group>"; };
 		3165BF162D49EE61005BDB8A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3165BF192D4E6015005BDB8A /* DailyActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionManager.swift; sourceTree = "<group>"; };
+		31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 		313FE6A42D3B9E3A009EA68F /* App */ = {
 			isa = PBXGroup;
 			children = (
-				313FE66A2D3B8C57009EA68F /* MoteAIApp.swift */,
+				313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */,
 				313FE6B42D3B9E3A009EA68F /* RootView.swift */,
 			);
 			path = App;
@@ -129,6 +131,7 @@
 			children = (
 				313FE6AB2D3B9E3A009EA68F /* HomeView.swift */,
 				313FE6AC2D3B9E3A009EA68F /* HomeVM.swift */,
+				31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */,
 				313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */,
 				313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */,
+				31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */,
 				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,
 				3165BF102D491AA9005BDB8A /* GradientOutlinedIcon.swift in Sources */,
@@ -317,7 +321,7 @@
 				3165BF0E2D4914DC005BDB8A /* GradientIcon.swift in Sources */,
 				31642BC82D461BC700A30C7B /* OnboadingPageView.swift in Sources */,
 				313FE6C42D3B9E3A009EA68F /* Persistence.swift in Sources */,
-				313FE66B2D3B8C57009EA68F /* MoteAIApp.swift in Sources */,
+				313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */,
 				313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */,
 				31642BC62D461A2200A30C7B /* OnboardingPage.swift in Sources */,
 			);
@@ -339,6 +343,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "kami-res-ai/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "神レスAI";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -375,6 +380,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "kami-res-ai/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "神レスAI";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
