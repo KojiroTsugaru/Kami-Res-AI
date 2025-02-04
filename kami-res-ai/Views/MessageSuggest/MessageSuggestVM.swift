@@ -64,6 +64,9 @@ class MessageSuggestVM: ObservableObject{
                     
                     // Encode the image data to Base64
                     self.base64Image = data.base64EncodedString()
+                    
+                    try? await Task
+                        .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
                     await self.getSuggestedMessage()
                     
                 } else {

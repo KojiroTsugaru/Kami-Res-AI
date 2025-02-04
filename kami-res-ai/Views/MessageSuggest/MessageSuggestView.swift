@@ -36,6 +36,7 @@ struct MessageSuggestView: View {
         .background(BackgroundGradient)
         .ignoresSafeArea(.all)
         .task {
+            viewModel.base64Image = base64Image
             await viewModel.generateResponseIfNeeded()
         }
         .onChange(of: viewModel.selectedPhoto) { newItem in
