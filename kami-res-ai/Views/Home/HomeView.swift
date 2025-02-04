@@ -13,6 +13,7 @@ struct HomeView: View {
     
     @StateObject private var viewModel = HomeVM()
     @State private var navigateToSuggest = false
+    @State private var showComingSoonAlert = false
     
     var body: some View {
         NavigationStack {
@@ -55,6 +56,7 @@ struct HomeView: View {
                         // メッセージ入力ボタン
                         VStack(spacing: 12) {
                             Button(action: {
+                                showComingSoonAlert = true
                                 DailyActionManager.shared.resetActionLimit()
                                 print(DailyActionManager.shared.getCurrentActionCount())
                             }) {
@@ -123,6 +125,11 @@ struct HomeView: View {
                         self.navigateToSuggest = true
                     }
                 }
+            }
+            .alert("Coming Soon!", isPresented: $showComingSoonAlert) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("この機能は現在開発中で、まもなくリリース予定です。お楽しみに！")
             }
         }
     }
