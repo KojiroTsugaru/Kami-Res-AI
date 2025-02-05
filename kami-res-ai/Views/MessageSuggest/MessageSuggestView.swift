@@ -82,7 +82,7 @@ struct MessageSuggestView: View {
     }
 
     private var InstructionText: some View {
-        Text("-- メッセージをタップしてコピー --")
+        Text("-- 📄メッセージをタップしてコピー --")
             .font(.caption)
             .foregroundColor(.gray)
     }

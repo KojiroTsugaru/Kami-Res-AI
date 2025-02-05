@@ -31,10 +31,10 @@ final class HomeVM: ObservableObject {
                     self.base64String = data.base64EncodedString()
                     
                 } else {
-                    self.errorMessage = "Failed to decode the selected photo."
+                    self.errorMessage = "画像のアップロードに失敗しました"
                 }
             } else {
-                self.errorMessage = "Failed to load the selected photo."
+                self.errorMessage = "画像のロードに失敗しました"
             }
         } catch {
             self.errorMessage = "An error occurred: \(error.localizedDescription)"

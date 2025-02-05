@@ -46,7 +46,7 @@ class MessageSuggestVM: ObservableObject{
             print("Error: \(error)")
             
             self.removeLoadingMessage()
-            self.addMessage(text: "Failed to load suggestions. Please try again.")
+            self.addMessage(text: "レスポンスの取得に失敗しました。通信環境を確認し、再試行してください。")
         }
     }
     
@@ -70,10 +70,10 @@ class MessageSuggestVM: ObservableObject{
                     await self.getSuggestedMessage()
                     
                 } else {
-                    self.errorMessage = "Failed to decode the selected photo."
+                    self.errorMessage = "画像のアップロードに失敗しました"
                 }
             } else {
-                self.errorMessage = "Failed to load the selected photo."
+                self.errorMessage = "写真のロードに失敗しました"
             }
         } catch {
             self.errorMessage = "An error occurred: \(error.localizedDescription)"
