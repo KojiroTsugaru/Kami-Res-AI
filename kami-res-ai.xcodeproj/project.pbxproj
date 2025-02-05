@@ -36,6 +36,8 @@
 		3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF192D4E6015005BDB8A /* DailyActionManager.swift */; };
 		31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */; };
 		31B7DBDF2D534F380010CD9A /* kami-res-ai-product.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */; };
+		31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */; };
+		31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE52D5363210010CD9A /* MessageMood.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		3165BF192D4E6015005BDB8A /* DailyActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionManager.swift; sourceTree = "<group>"; };
 		31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonLabel.swift; sourceTree = "<group>"; };
 		31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "kami-res-ai-product.storekit"; sourceTree = "<group>"; };
+		31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMoodButton.swift; sourceTree = "<group>"; };
+		31B7DBE52D5363210010CD9A /* MessageMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMood.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 				313FE6AF2D3B9E3A009EA68F /* MessageSuggestView.swift */,
 				313FE6AE2D3B9E3A009EA68F /* MessageBubbleView.swift */,
 				313FE6B02D3B9E3A009EA68F /* MessageSuggestVM.swift */,
+				31B7DBE42D5363040010CD9A /* MessageMood */,
 				313FE70E2D40B8EF009EA68F /* ChatItem.swift */,
 			);
 			path = MessageSuggest;
@@ -163,8 +168,8 @@
 		313FE6B92D3B9E3A009EA68F /* kami-res-ai */ = {
 			isa = PBXGroup;
 			children = (
-				313FE6B22D3B9E3A009EA68F /* Views */,
 				313FE6A42D3B9E3A009EA68F /* App */,
+				313FE6B22D3B9E3A009EA68F /* Views */,
 				3165BF182D4E5FFD005BDB8A /* DailyActionManager */,
 				313FE6A92D3B9E3A009EA68F /* Preview Content */,
 				313FE6AA2D3B9E3A009EA68F /* Services */,
@@ -223,6 +228,15 @@
 				3165BF192D4E6015005BDB8A /* DailyActionManager.swift */,
 			);
 			path = DailyActionManager;
+			sourceTree = "<group>";
+		};
+		31B7DBE42D5363040010CD9A /* MessageMood */ = {
+			isa = PBXGroup;
+			children = (
+				31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */,
+				31B7DBE52D5363210010CD9A /* MessageMood.swift */,
+			);
+			path = MessageMood;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +321,7 @@
 			files = (
 				313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */,
 				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
+				31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */,
 				313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */,
 				3165BF122D492302005BDB8A /* GradientPlusIcon.swift in Sources */,
 				313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */,
@@ -317,6 +332,7 @@
 				313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */,
 				313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */,
 				31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */,
+				31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */,
 				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,
 				3165BF102D491AA9005BDB8A /* GradientOutlinedIcon.swift in Sources */,

@@ -23,7 +23,7 @@ struct MessageSuggestView: View {
         ZStack {
             VStack {
                 ScrollableContent(image: image)
-                GenerateMoreButton
+                actionButtons
             }
             if showCopyConfirmation {
                 CopyConfirmationView
@@ -111,27 +111,35 @@ struct MessageSuggestView: View {
             }
         }
     }
-
-    private var GenerateMoreButton: some View {
+    
+    private var actionButtons: some View {
         VStack {
-            Button {
-                Task {
-                    await viewModel.generateResponseIfNeeded()
-                }
-            } label: {
-                GradientText("もっと返信を生成",
-                             font: .subheadline,
-                             gradient: Constants.ColorAsset
-                    .createGradient(from: .topLeading, to: .bottomTrailing))
-                .bold()
-                .padding()
-                .background(Color(.black))
-                .cornerRadius(24)
+            HStack {
+                MessageMoodButton()
+                GenerateMoreButton
             }
             Text("今日はあと\(String(describing: actionManager.getCurrentRemainedActionCount()))回返信を生成できます")
                 .foregroundColor(.gray)
                 .font(.caption)
                 .padding(.bottom, 16)
+        }
+    }
+
+    private var GenerateMoreButton: some View {
+        Button {
+            Task {
+                await viewModel.generateResponseIfNeeded()
+            }
+        } label: {
+            GradientText("もっと返信を生成",
+                         font: .subheadline,
+                         gradient: Constants.ColorAsset
+                .createGradient(from: .topLeading, to: .bottomTrailing))
+
+            .bold()
+            .padding()
+            .background(Color(.black))
+            .cornerRadius(24)
         }
     }
 
