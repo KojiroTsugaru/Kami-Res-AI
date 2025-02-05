@@ -18,7 +18,8 @@ struct MessageSuggestView: View {
     @StateObject private var actionManager = DailyActionManager.shared
     @ObservedObject private var viewModel = MessageSuggestVM()
     @State private var showCopyConfirmation: Bool = false
-    @State private var showMessageMoodChangeModal: Bool = false
+    @State private var showMessageMoodChange: Bool = false
+    @State private var messageMoodText: String = ""
 
     var body: some View {
         ZStack {
@@ -29,8 +30,8 @@ struct MessageSuggestView: View {
             if showCopyConfirmation {
                 CopyConfirmationView
             }
-            if showMessageMoodChangeModal {
-                
+            if showMessageMoodChange {
+                MessageMoodChangeView
             }
         }
         .toolbar {
@@ -86,7 +87,7 @@ struct MessageSuggestView: View {
     }
 
     private var InstructionText: some View {
-        Text("-- 📄メッセージをタップしてコピー --")
+        Text("-- 📎メッセージをタップしてコピー --")
             .font(.caption)
             .foregroundColor(.gray)
     }
@@ -120,7 +121,8 @@ struct MessageSuggestView: View {
         VStack {
             HStack {
                 MessageMoodButton(
-                    showMessageMoodChangeModal: $showMessageMoodChangeModal
+                    showMessageMoodChange: $showMessageMoodChange,
+                    messageMoodText: $messageMoodText
                 )
                 GenerateMoreButton
             }
@@ -141,21 +143,35 @@ struct MessageSuggestView: View {
                          font: .subheadline,
                          gradient: Constants.ColorAsset
                 .createGradient(from: .topLeading, to: .bottomTrailing))
-
             .bold()
             .padding()
+            .frame(maxWidth: 240)
             .background(Color(.black))
             .cornerRadius(24)
         }
     }
 
     private var CopyConfirmationView: some View {
-        Text("メッセージをコピーしました！")
+        Text("📎メッセージをコピーしました！")
             .font(.subheadline)
             .foregroundColor(.black)
-            .padding()
+            .padding(16)
             .background(.white)
-            .cornerRadius(24)
+            .cornerRadius(20)
+    }
+    
+    private var MessageMoodChangeView: some View {
+        VStack(spacing: 12) {
+            GradientText("メッセージの雰囲気を変更しました", font: .headline)
+            Text(messageMoodText)
+                .font(.subheadline)
+                .bold()
+                .foregroundColor(.white)
+        }
+        .padding()
+        .background(.black)
+        .cornerRadius(20)
+        .shadow(color: Color.white.opacity(0.75), radius: 12)
     }
     
     private var BackButtonToolbar: some ToolbarContent {
@@ -193,12 +209,12 @@ struct MessageSuggestView: View {
     private func handleTextCopy(_ text: String) {
         viewModel.copyToClipboard(text: text)
             
-        withAnimation(.easeInOut(duration: 0.3)) { // Fade in animation
+        withAnimation(.easeInOut(duration: 0.2)) { // Fade in animation
             showCopyConfirmation = true
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            withAnimation(.easeInOut(duration: 0.3)) { // Fade out animation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            withAnimation(.easeInOut(duration: 0.1)) { // Fade out animation
                 showCopyConfirmation = false
             }
         }
@@ -208,7 +224,7 @@ struct MessageSuggestView: View {
         guard newItem != nil else { return }
         Task {
             await viewModel.loadAndEncodePhoto(from: newItem!)
-            try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
+            try? await Task.sleep(for: .seconds(1.0)) // Wait for 0.5 seconds
         }
     }
 }

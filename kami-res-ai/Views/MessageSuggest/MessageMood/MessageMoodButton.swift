@@ -10,19 +10,21 @@ import SwiftUI
 import SuperwallKit
 
 struct MessageMoodButton: View {
-    @Binding var showMessageMoodChangeModal: Bool
+    @Binding var showMessageMoodChange: Bool
+    @Binding var messageMoodText: String 
     @State private var mood: MessageMood = MessageMood.defaultMood
     @State private var scale: CGFloat = 1.0
 
     var body: some View {
         Button(action: {
-            withAnimation(.easeInOut(duration: 0.3)) { // Fade in animation
-                showMessageMoodChangeModal = true
+            withAnimation(.easeInOut(duration: 0.2)) { // Fade in animation
+                messageMoodText = "\(mood.emoji) \(mood.text)"
+                showMessageMoodChange = true
             }
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                withAnimation(.easeInOut(duration: 0.3)) { // Fade out animation
-                    showMessageMoodChangeModal = false
+                withAnimation(.easeInOut(duration: 0.2)) { // Fade out animation
+                    showMessageMoodChange = false
                 }
             }
             withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
@@ -37,7 +39,7 @@ struct MessageMoodButton: View {
         }) {
             Text(mood.emoji)
                 .scaleEffect(scale)
-                .frame(width: 40, height: 40)
+                .frame(width: 50, height: 50)
                 .background(Circle().fill(Color.white))
                 .foregroundColor(.white)
                 .shadow(radius: 2)
@@ -69,6 +71,9 @@ struct MessageMoodButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageMoodButton(showMessageMoodChangeModal: Binding.constant(false))
+        MessageMoodButton(
+            showMessageMoodChange: Binding.constant(false),
+            messageMoodText: Binding.constant("")
+        )
     }
 }

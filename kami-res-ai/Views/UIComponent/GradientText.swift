@@ -12,11 +12,15 @@ struct GradientText: View {
     let gradient: LinearGradient
     let font: Font
     
-    init(_ text: String, font: Font, gradient: LinearGradient) {
-        self.text = text
-        self.font = font
-        self.gradient = gradient
-    }
+    init(
+        _ text: String,
+        font: Font,
+        gradient: LinearGradient = Constants.ColorAsset
+            .createGradient(from: .topLeading, to: .topTrailing)) {
+                self.text = text
+                self.font = font
+                self.gradient = gradient
+            }
 
     var body: some View {
         Text(text)
@@ -27,7 +31,7 @@ struct GradientText: View {
                     .mask(    // グラデーションをテキストの形に切り抜く
                         Text(text)
                             .font(font)
-                    )
+                         )
             )
     }
 }

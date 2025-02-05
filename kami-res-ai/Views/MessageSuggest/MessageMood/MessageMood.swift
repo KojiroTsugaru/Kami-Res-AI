@@ -23,9 +23,9 @@ enum MessageMood: CaseIterable {
 
     var text: String {
         switch self {
-        case .casual: return "Casual"
-        case .humorous: return "Humorous"
-        case .cool: return "Cool"
+        case .casual: return "カジュアルに"
+        case .humorous: return "ユーモア溢れる"
+        case .cool: return "クールに"
         }
     }
 }
