@@ -11,7 +11,7 @@ enum MessageMood: CaseIterable {
     case casual
     case humorous
     case cool
-    static let defaultMood: MessageMood = .cool
+    static let defaultMood: MessageMood = .casual
 
     var emoji: String {
         switch self {
