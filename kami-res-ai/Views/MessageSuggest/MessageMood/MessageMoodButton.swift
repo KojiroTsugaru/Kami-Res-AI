@@ -17,6 +17,15 @@ struct MessageMoodButton: View {
 
     var body: some View {
         Button(action: {
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                toggleMoodAlways()
+                scale = 1.2
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation {
+                    scale = 1.0
+                }
+            }
             withAnimation(.easeInOut(duration: 0.2)) { // Fade in animation
                 messageMoodText = "\(mood.emoji) \(mood.text)"
                 showMessageMoodChange = true
@@ -25,15 +34,6 @@ struct MessageMoodButton: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation(.easeInOut(duration: 0.2)) { // Fade out animation
                     showMessageMoodChange = false
-                }
-            }
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
-                toggleMoodAlways()
-                scale = 1.2
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                withAnimation {
-                    scale = 1.0
                 }
             }
         }) {
