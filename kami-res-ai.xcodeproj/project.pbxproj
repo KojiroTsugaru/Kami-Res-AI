@@ -35,6 +35,7 @@
 		3165BF172D49EE61005BDB8A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
 		3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF192D4E6015005BDB8A /* DailyActionManager.swift */; };
 		31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */; };
+		31B7DBDF2D534F380010CD9A /* kami-res-ai-product.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		3165BF162D49EE61005BDB8A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3165BF192D4E6015005BDB8A /* DailyActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionManager.swift; sourceTree = "<group>"; };
 		31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonLabel.swift; sourceTree = "<group>"; };
+		31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "kami-res-ai-product.storekit"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				313FE6B62D3B9E3A009EA68F /* kami-res-ai.entitlements */,
 				313FE6B72D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld */,
 				313FE6B82D3B9E3A009EA68F /* Persistence.swift */,
+				31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */,
 			);
 			path = "kami-res-ai";
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			files = (
 				313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */,
 				313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */,
+				31B7DBDF2D534F380010CD9A /* kami-res-ai-product.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
