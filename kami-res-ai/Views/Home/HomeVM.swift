@@ -29,6 +29,7 @@ final class HomeVM: ObservableObject {
                         
                     // Encode the image data to Base64
                     self.base64String = data.base64EncodedString()
+                    try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
                     
                 } else {
                     self.errorMessage = "画像のアップロードに失敗しました"

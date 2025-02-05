@@ -11,7 +11,7 @@ class OpenAIService {
     private let apiKey = Constants.AccessToken.openAI
     private let endpoint = "https://api.openai.com/v1/chat/completions"
     private let model = "gpt-4o"
-    private let maxTokens: Int = 500
+    private let maxTokens: Int = 2000
 
     func getSuggestedMesssageFromImage(base64Image: String) async throws -> String {
         
