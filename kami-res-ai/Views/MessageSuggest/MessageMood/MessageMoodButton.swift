@@ -10,14 +10,21 @@ import SwiftUI
 import SuperwallKit
 
 struct MessageMoodButton: View {
+    @Binding var showMessageMoodChangeModal: Bool
     @State private var mood: MessageMood = MessageMood.defaultMood
     @State private var scale: CGFloat = 1.0
 
     var body: some View {
         Button(action: {
-//            withAnimation(.easeInOut(duration: 0.3)) {
-//                toggleMoodAlways()
-//            }
+            withAnimation(.easeInOut(duration: 0.3)) { // Fade in animation
+                showMessageMoodChangeModal = true
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation(.easeInOut(duration: 0.3)) { // Fade out animation
+                    showMessageMoodChangeModal = false
+                }
+            }
             withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
                 toggleMoodAlways()
                 scale = 1.2
@@ -62,6 +69,6 @@ struct MessageMoodButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MessageMoodButton()
+        MessageMoodButton(showMessageMoodChangeModal: Binding.constant(false))
     }
 }

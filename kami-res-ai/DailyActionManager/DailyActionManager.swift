@@ -58,6 +58,16 @@ class DailyActionManager: NSObject, ObservableObject {
         }
     }
 
+    /// アクション回数を減らす
+    /// エラーが起こった時に呼び出す
+    func decreaseActionCount() {
+        if getCurrentActionCount() > 0 {
+            let newCount = userDefaults.integer(forKey: currentActionCountKey) - 1
+            userDefaults.set(newCount, forKey: currentActionCountKey)
+            userDefaults.set(Date(), forKey: lastActionKey) // 日付も更新
+        }
+    }
+    
     /// アクション回数を増加
     private func increaseActionCount() {
         let newCount = userDefaults.integer(forKey: currentActionCountKey) + 1

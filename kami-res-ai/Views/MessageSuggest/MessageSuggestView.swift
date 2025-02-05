@@ -18,15 +18,19 @@ struct MessageSuggestView: View {
     @StateObject private var actionManager = DailyActionManager.shared
     @ObservedObject private var viewModel = MessageSuggestVM()
     @State private var showCopyConfirmation: Bool = false
+    @State private var showMessageMoodChangeModal: Bool = false
 
     var body: some View {
         ZStack {
             VStack {
                 ScrollableContent(image: image)
-                actionButtons
+                actionButtonsBottom
             }
             if showCopyConfirmation {
                 CopyConfirmationView
+            }
+            if showMessageMoodChangeModal {
+                
             }
         }
         .toolbar {
@@ -112,10 +116,12 @@ struct MessageSuggestView: View {
         }
     }
     
-    private var actionButtons: some View {
+    private var actionButtonsBottom: some View {
         VStack {
             HStack {
-                MessageMoodButton()
+                MessageMoodButton(
+                    showMessageMoodChangeModal: $showMessageMoodChangeModal
+                )
                 GenerateMoreButton
             }
             Text("今日はあと\(String(describing: actionManager.getCurrentRemainedActionCount()))回返信を生成できます")
@@ -186,9 +192,15 @@ struct MessageSuggestView: View {
 
     private func handleTextCopy(_ text: String) {
         viewModel.copyToClipboard(text: text)
-        showCopyConfirmation = true
+            
+        withAnimation(.easeInOut(duration: 0.3)) { // Fade in animation
+            showCopyConfirmation = true
+        }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            showCopyConfirmation = false
+            withAnimation(.easeInOut(duration: 0.3)) { // Fade out animation
+                showCopyConfirmation = false
+            }
         }
     }
 

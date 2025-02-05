@@ -47,6 +47,7 @@ class MessageSuggestVM: ObservableObject{
             
             self.removeLoadingMessage()
             self.addMessage(text: "レスポンスの取得に失敗しました。通信環境を確認し、再試行してください。")
+            DailyActionManager.shared.decreaseActionCount()
         }
     }
     
