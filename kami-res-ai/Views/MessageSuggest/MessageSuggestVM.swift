@@ -68,7 +68,7 @@ class MessageSuggestVM: ObservableObject{
                     
                     try? await Task
                         .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
-                    await self.getSuggestedMessage()
+                    await self.generateResponseIfNeeded()
                     
                 } else {
                     self.errorMessage = "画像のアップロードに失敗しました"

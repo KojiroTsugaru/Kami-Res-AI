@@ -60,10 +60,18 @@ struct MessageSuggestView: View {
                     ChatItemsList(proxy: proxy)
                 }
             }
-            .onChange(of: $viewModel.chatItems.count) { _ in
+            .onAppear {
                 if let lastItem = viewModel.chatItems.last {
-                    print(lastItem.self)
-                    proxy.scrollTo(lastItem.id)
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(lastItem.id, anchor: .bottom)
+                    }
+                }
+            }
+            .onChange(of: viewModel.chatItems.count) { _ in
+                if let lastItem = viewModel.chatItems.last {
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(lastItem.id, anchor: .bottom)
+                    }
                 }
             }
         }
