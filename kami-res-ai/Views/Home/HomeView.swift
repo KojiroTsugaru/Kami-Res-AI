@@ -24,7 +24,7 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 28) {
                         Spacer()
-                            .frame(height: 144)
+                            .frame(height: 136)
 
                         // タイトル
                         GradientText(
@@ -119,7 +119,7 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 20, height: 20)
-                            .foregroundColor(Color(.systemYellow))
+                            .foregroundColor(Color("premiumIcon"))
                             .padding(12)
                             .background(Circle().fill(Color.black))
                             .shadow(color: Color.black.opacity(0.2), radius: 8)

@@ -20,7 +20,7 @@
     "_applicationInternalID" : "6741389098",
     "_developerTeamID" : "265P8798N4",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 760679561.45040202,
+    "_lastSynchronizedDate" : 760691240.16266596,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [
@@ -72,48 +72,7 @@
     ]
   },
   "subscriptionGroups" : [
-    {
-      "id" : "21630849",
-      "localizations" : [
 
-      ],
-      "name" : "神レスプレミアム",
-      "subscriptions" : [
-        {
-          "adHocOffers" : [
-
-          ],
-          "codeOffers" : [
-
-          ],
-          "displayPrice" : "5.99",
-          "familyShareable" : false,
-          "groupNumber" : 2,
-          "internalID" : "6741507939",
-          "introductoryOffer" : null,
-          "localizations" : [
-            {
-              "description" : "Godly Response Premium",
-              "displayName" : "Godly Response Premium",
-              "locale" : "en_US"
-            },
-            {
-              "description" : "神レスプレミアム",
-              "displayName" : "神レスプレミアム",
-              "locale" : "ja"
-            }
-          ],
-          "productID" : "premium_980_1w_3d0",
-          "recurringSubscriptionPeriod" : "P1W",
-          "referenceName" : "神レスプレミアム Weekly",
-          "subscriptionGroupID" : "21630849",
-          "type" : "RecurringSubscription",
-          "winbackOffers" : [
-
-          ]
-        }
-      ]
-    }
   ],
   "version" : {
     "major" : 4,

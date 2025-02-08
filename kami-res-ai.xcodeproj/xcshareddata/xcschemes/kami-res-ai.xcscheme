@@ -34,6 +34,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = "ja"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -50,6 +51,13 @@
             ReferencedContainer = "container:kami-res-ai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <LocationScenarioReference
+         identifier = "Tokyo, Japan"
+         referenceType = "1">
+      </LocationScenarioReference>
+      <StoreKitConfigurationFileReference
+         identifier = "../../../../../../../Library/Developer/Xcode/DerivedData/kami-res-ai-akxukvquteahplbiwyrxdimrdycc/SourcePackages/checkouts/Superwall-iOS/Examples/SwiftUI/Superwall-SwiftUI/Superwall_SwiftUI-Products.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
