@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "神レス_1024x1024.png",
+      "filename" : "神レスAI App Icon.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "神レス_1024x1024 2.png",
+      "filename" : "神レスAI App Icon 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,7 +25,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "神レス_1024x1024 1.png",
+      "filename" : "神レスAI App Icon 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -29,12 +29,13 @@ struct HomeView: View {
                         // タイトル
                         GradientText(
                             "神レスAI",
-                            font: .largeTitle.bold(),
+                            font: .custom("HannariMincho-Regular", size: 40).bold(),
                             gradient: Constants.ColorAsset.createGradient(
                                 from: .topLeading,
                                 to: .bottomTrailing
                             ))
                         .shadow(color: Color.white.opacity(0.75), radius: 12)
+                        .padding(.bottom, 8)
                         
                         // 写真アップロードボタン
                         if DailyActionManager.shared.canPerformAction() {
@@ -55,30 +56,38 @@ struct HomeView: View {
                                     
                         // メッセージ入力ボタン
                         VStack(spacing: 12) {
-                            Button(action: {
-                                showComingSoonAlert = true
-                                DailyActionManager.shared.resetActionLimit()
-                                print(DailyActionManager.shared.getCurrentActionCount())
-                            }) {
-                                HStack(spacing: 12) {
-                                    Image(systemName: "keyboard")
-                                        .font(.largeTitle)
-                                        .foregroundColor(.white)
-                                    VStack {
-                                        Text("自分でメッセージを入力する")
-                                            .font(.headline)
+                            Button(
+                                action: {
+                                    showComingSoonAlert = true
+                                    DailyActionManager.shared.resetActionLimit()
+                                    print(
+                                        DailyActionManager.shared
+                                            .getCurrentActionCount()
+                                    )
+                                }) {
+                                    HStack(spacing: 12) {
+                                        Image(systemName: "keyboard")
+                                            .font(.largeTitle)
                                             .foregroundColor(.white)
-                                        Text("過去のメッセージ内容を手動で登録")
-                                            .font(.caption)
-                                            .foregroundColor(.white)
+                                        VStack {
+                                            Text("自分でメッセージを入力する")
+                                                .font(.headline)
+                                                .foregroundColor(.white)
+                                            Text("過去のメッセージ内容を手動で登録")
+                                                .font(.caption)
+                                                .foregroundColor(.white)
+                                        }
                                     }
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color("gradientSecondary"))
+                                    .cornerRadius(20)
+                                    .shadow(
+                                        color: Color("gradientSecondary")
+                                            .opacity(0.25),
+                                        radius: 8
+                                    )
                                 }
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color("gradientSecondary"))
-                                .cornerRadius(20)
-                                .shadow(color: Color("gradientSecondary").opacity(0.25), radius: 8)
-                            }
                             
                             Text("*アップロードされた画像はサーバーに保存されません")
                                 .font(.caption)
@@ -121,7 +130,8 @@ struct HomeView: View {
                 if let newItem = newItem {
                     Task {
                         await viewModel.loadAndEncodePhoto(from: newItem)
-                        try? await Task.sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
+                        try? await Task
+                            .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
                         self.navigateToSuggest = true
                     }
                 }

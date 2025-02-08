@@ -39,6 +39,7 @@
 		31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */; };
 		31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE52D5363210010CD9A /* MessageMood.swift */; };
 		31D1F7DE2D564443008A7E83 /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1F7DD2D564433008A7E83 /* Prompts.swift */; };
+		31EAC9242D570ED2001AF978 /* HannariMincho-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 31EAC9232D570ED2001AF978 /* HannariMincho-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMoodButton.swift; sourceTree = "<group>"; };
 		31B7DBE52D5363210010CD9A /* MessageMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMood.swift; sourceTree = "<group>"; };
 		31D1F7DD2D564433008A7E83 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
+		31EAC9232D570ED2001AF978 /* HannariMincho-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HannariMincho-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				313FE6AA2D3B9E3A009EA68F /* Services */,
 				313FE6CC2D3BA083009EA68F /* Constants */,
 				313FE6B32D3B9E3A009EA68F /* Assets.xcassets */,
+				31EAC9222D570EAE001AF978 /* Fonts */,
 				313FE6B52D3B9E3A009EA68F /* Info.plist */,
 				313FE6B62D3B9E3A009EA68F /* kami-res-ai.entitlements */,
 				313FE6B72D3B9E3A009EA68F /* kami-res-ai.xcdatamodeld */,
@@ -240,6 +243,14 @@
 				31B7DBE52D5363210010CD9A /* MessageMood.swift */,
 			);
 			path = MessageMood;
+			sourceTree = "<group>";
+		};
+		31EAC9222D570EAE001AF978 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				31EAC9232D570ED2001AF978 /* HannariMincho-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +322,7 @@
 			files = (
 				313FE6C52D3B9E3A009EA68F /* Preview Assets.xcassets in Resources */,
 				313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */,
+				31EAC9242D570ED2001AF978 /* HannariMincho-Regular.otf in Resources */,
 				31B7DBDF2D534F380010CD9A /* kami-res-ai-product.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
