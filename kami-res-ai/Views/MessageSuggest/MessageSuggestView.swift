@@ -19,7 +19,6 @@ struct MessageSuggestView: View {
     @ObservedObject private var viewModel = MessageSuggestVM()
     @State private var showCopyConfirmation: Bool = false
     @State private var showMessageMoodChange: Bool = false
-    @State private var messageMoodText: String = ""
 
     var body: some View {
         ZStack {
@@ -61,19 +60,19 @@ struct MessageSuggestView: View {
                 }
             }
             .onAppear {
-                if let lastItem = viewModel.chatItems.last {
-                    DispatchQueue.main.async {
-                        proxy.scrollTo(lastItem.id, anchor: .bottom)
+                    if let lastItem = viewModel.chatItems.last {
+                        DispatchQueue.main.async {
+                            proxy.scrollTo(lastItem.id, anchor: .bottom)
+                        }
                     }
                 }
-            }
-            .onChange(of: viewModel.chatItems.count) { _ in
-                if let lastItem = viewModel.chatItems.last {
-                    DispatchQueue.main.async {
-                        proxy.scrollTo(lastItem.id, anchor: .bottom)
+                .onChange(of: viewModel.chatItems.count) { _ in
+                    if let lastItem = viewModel.chatItems.last {
+                        DispatchQueue.main.async {
+                            proxy.scrollTo(lastItem.id, anchor: .bottom)
+                        }
                     }
                 }
-            }
         }
     }
 
@@ -130,7 +129,7 @@ struct MessageSuggestView: View {
             HStack {
                 MessageMoodButton(
                     showMessageMoodChange: $showMessageMoodChange,
-                    messageMoodText: $messageMoodText
+                    mood: $viewModel.messageMood
                 )
                 GenerateMoreButton
             }
@@ -171,7 +170,7 @@ struct MessageSuggestView: View {
     private var MessageMoodChangeView: some View {
         VStack(spacing: 12) {
             GradientText("メッセージの雰囲気を変更しました", font: .headline)
-            Text(messageMoodText)
+            Text("\(viewModel.messageMood.emoji) \(viewModel.messageMood.text)")
                 .font(.subheadline)
                 .bold()
                 .foregroundColor(.white)

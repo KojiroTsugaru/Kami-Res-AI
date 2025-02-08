@@ -11,8 +11,7 @@ import SuperwallKit
 
 struct MessageMoodButton: View {
     @Binding var showMessageMoodChange: Bool
-    @Binding var messageMoodText: String 
-    @State private var mood: MessageMood = MessageMood.defaultMood
+    @Binding var mood: MessageMood
     @State private var scale: CGFloat = 1.0
 
     var body: some View {
@@ -21,19 +20,10 @@ struct MessageMoodButton: View {
                 toggleMoodAlways()
                 scale = 1.2
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                withAnimation {
-                    scale = 1.0
-                }
-            }
-            withAnimation(.easeInOut(duration: 0.2)) { // Fade in animation
-                messageMoodText = "\(mood.emoji) \(mood.text)"
-                showMessageMoodChange = true
-            }
-
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation(.easeInOut(duration: 0.2)) { // Fade out animation
                     showMessageMoodChange = false
+                    scale = 1.0
                 }
             }
         }) {
@@ -66,14 +56,14 @@ struct MessageMoodButton: View {
             let nextIndex = (currentIndex + 1) % moods.count
             mood = moods[nextIndex]
         }
+        showMessageMoodChange = true
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageMoodButton(
-            showMessageMoodChange: Binding.constant(false),
-            messageMoodText: Binding.constant("")
-        )
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MessageMoodButton(
+//            showMessageMoodChange: Binding.constant(false),
+//        )
+//    }
+//}

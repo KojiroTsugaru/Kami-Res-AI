@@ -13,9 +13,7 @@ class OpenAIService {
     private let model = "gpt-4o"
     private let maxTokens: Int = 1000
 
-    func getSuggestedMesssageFromImage(base64Image: String) async throws -> String {
-        
-        let prompt = Constants.openAIPrompt
+    func getSuggestedMesssageFromImage(base64Image: String, prompt: String) async throws -> String {
         
         guard let url = URL(string: endpoint) else {
             throw OpenAIServiceError.invalidURL

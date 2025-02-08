@@ -47,4 +47,11 @@ final class HomeVM: ObservableObject {
             Superwall.shared.register(event: "campaign_trigger") // Superwall で課金ページを表示
         }
     }
+    
+    public func refreshViewModel() {
+        self.selectedPhoto = nil
+        self.image = nil
+        self.base64String = ""
+        self.errorMessage = ""
+    }
 }

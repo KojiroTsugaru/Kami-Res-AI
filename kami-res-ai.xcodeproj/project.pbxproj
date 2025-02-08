@@ -38,6 +38,7 @@
 		31B7DBDF2D534F380010CD9A /* kami-res-ai-product.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */; };
 		31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */; };
 		31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE52D5363210010CD9A /* MessageMood.swift */; };
+		31D1F7DE2D564443008A7E83 /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1F7DD2D564433008A7E83 /* Prompts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		31B7DBDE2D534F380010CD9A /* kami-res-ai-product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = "kami-res-ai-product.storekit"; sourceTree = "<group>"; };
 		31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMoodButton.swift; sourceTree = "<group>"; };
 		31B7DBE52D5363210010CD9A /* MessageMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMood.swift; sourceTree = "<group>"; };
+		31D1F7DD2D564433008A7E83 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				31642BBD2D44EADB00A30C7B /* Constants.swift */,
+				31D1F7DD2D564433008A7E83 /* Prompts.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				313FE6C12D3B9E3A009EA68F /* MessageSuggestVM.swift in Sources */,
 				313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */,
 				31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */,
+				31D1F7DE2D564443008A7E83 /* Prompts.swift in Sources */,
 				31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */,
 				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,

@@ -20,6 +20,7 @@ class MessageSuggestVM: ObservableObject{
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var errorMessage: String = ""
     @Published var base64Image: String?
+    @Published var messageMood: MessageMood = MessageMood.defaultMood
     
     func addMessage(text: String) {
         self.chatItems.append(.message(text))
@@ -35,7 +36,10 @@ class MessageSuggestVM: ObservableObject{
         self.addMessage(text: loadingMessage)
         
         do {
-            let response = try await openAIService.getSuggestedMesssageFromImage(base64Image: base64Image ?? "")
+            let response = try await openAIService.getSuggestedMesssageFromImage(
+                base64Image: base64Image ?? "",
+                prompt: messageMood.prompt
+            )
             
             self.removeLoadingMessage()
             

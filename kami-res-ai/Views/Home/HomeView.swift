@@ -126,6 +126,9 @@ struct HomeView: View {
                     }
                 }
             }
+            .onAppear {
+                viewModel.refreshViewModel()
+            }
             .alert("Coming Soon!", isPresented: $showComingSoonAlert) {
                 Button("OK", role: .cancel) {}
             } message: {

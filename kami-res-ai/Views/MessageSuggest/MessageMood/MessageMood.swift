@@ -28,4 +28,12 @@ enum MessageMood: CaseIterable {
         case .cool: return "クールに大人っぽく"
         }
     }
+    
+    var prompt: String {
+        switch self {
+        case .casual: return Constants.Prompts.casual
+        case .humorous: return Constants.Prompts.humorous
+        case .cool: return Constants.Prompts.cool
+        }
+    }
 }
