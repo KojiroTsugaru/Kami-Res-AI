@@ -57,20 +57,16 @@ struct MessageSuggestView: View {
                     DisplayImage(image: image)
                     InstructionText
                     ChatItemsList(proxy: proxy)
+                    
+                    // Dummy hidden view for scrolling
+                    Color.clear
+                        .frame(height: 8)
+                        .id("BottomAnchor")
                 }
             }
-            .onAppear {
-                    if let lastItem = viewModel.chatItems.last {
-                        DispatchQueue.main.async {
-                            proxy.scrollTo(lastItem.id, anchor: .bottom)
-                        }
-                    }
-                }
             .onChange(of: viewModel.chatItems.count) { _ in
-                if let lastItem = viewModel.chatItems.last {
-                    DispatchQueue.main.async {
-                        proxy.scrollTo(lastItem.id, anchor: .bottom)
-                    }
+                DispatchQueue.main.async {
+                    proxy.scrollTo("BottomAnchor", anchor: .bottom)
                 }
             }
         }
