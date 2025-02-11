@@ -60,11 +60,6 @@ struct HomeView: View {
                             Button(
                                 action: {
                                     showComingSoonAlert = true
-//                                    DailyActionManager.shared.resetActionLimit()
-//                                    print(
-//                                        DailyActionManager.shared
-//                                            .getCurrentActionCount()
-//                                    )
                                 }) {
                                     HStack(spacing: 12) {
                                         Image(systemName: "keyboard")

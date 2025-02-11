@@ -60,7 +60,7 @@ struct MessageSuggestView: View {
                     
                     // Dummy hidden view for scrolling
                     Color.clear
-                        .frame(height: 8)
+                        .frame(height: 40)
                         .id("BottomAnchor")
                 }
             }

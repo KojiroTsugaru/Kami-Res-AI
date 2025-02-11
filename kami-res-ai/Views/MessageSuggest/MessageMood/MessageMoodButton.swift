@@ -13,17 +13,22 @@ struct MessageMoodButton: View {
     @Binding var showMessageMoodChange: Bool
     @Binding var mood: MessageMood
     @State private var scale: CGFloat = 1.0
+    @State private var canPressButton = true
 
     var body: some View {
         Button(action: {
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
-                toggleMoodAlways()
-                scale = 1.2
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                withAnimation(.easeInOut(duration: 0.2)) { // Fade out animation
-                    showMessageMoodChange = false
-                    scale = 1.0
+            if canPressButton {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    canPressButton = false
+                    toggleMoodAlways()
+                    scale = 1.2
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    withAnimation(.easeInOut(duration: 0.3)) { // Fade out animation
+                        showMessageMoodChange = false
+                        scale = 1.0
+                        canPressButton = true
+                    }
                 }
             }
         }) {
