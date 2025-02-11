@@ -51,12 +51,19 @@
             ReferencedContainer = "container:kami-res-ai.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = ""
+            value = ""
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <LocationScenarioReference
          identifier = "Tokyo, Japan"
          referenceType = "1">
       </LocationScenarioReference>
       <StoreKitConfigurationFileReference
-         identifier = "../../../../../../../Library/Developer/Xcode/DerivedData/kami-res-ai-aznnagpihmablucsidswcbifehjz/SourcePackages/checkouts/Superwall-iOS/Examples/SwiftUI/Superwall-SwiftUI/Superwall_SwiftUI-Products.storekit">
+         identifier = "../../kami-res-ai/Products.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction

@@ -9,7 +9,7 @@
       }
     ]
   },
-  "identifier" : "8C235CD7",
+  "identifier" : "3C477036",
   "nonRenewingSubscriptions" : [
 
   ],
@@ -17,15 +17,15 @@
 
   ],
   "settings" : {
-    "_applicationInternalID" : "6741389098",
-    "_developerTeamID" : "265P8798N4",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 760691240.16266596,
-    "_locale" : "en_US",
-    "_storefront" : "USA",
+    "_locale" : "ja",
+    "_storefront" : "JPN",
     "_storeKitErrors" : [
       {
-        "current" : null,
+        "current" : {
+          "index" : 2,
+          "type" : "generic"
+        },
         "enabled" : false,
         "name" : "Load Products"
       },
@@ -72,7 +72,47 @@
     ]
   },
   "subscriptionGroups" : [
+    {
+      "id" : "65A6A083",
+      "localizations" : [
 
+      ],
+      "name" : "kami-res-premium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "980",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "22670F8B",
+          "introductoryOffer" : {
+            "internalID" : "AAD7EB1D",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P3D"
+          },
+          "localizations" : [
+            {
+              "description" : "１週間で自動更新される神レスプレミアムプラン",
+              "displayName" : "神レスプレミアムWeekly",
+              "locale" : "ja"
+            }
+          ],
+          "productID" : "premium_980_1w_3d0",
+          "recurringSubscriptionPeriod" : "P1W",
+          "referenceName" : "神レスプレミアムローカル",
+          "subscriptionGroupID" : "65A6A083",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        }
+      ]
+    }
   ],
   "version" : {
     "major" : 4,
