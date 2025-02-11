@@ -66,13 +66,13 @@ struct MessageSuggestView: View {
                         }
                     }
                 }
-                .onChange(of: viewModel.chatItems.count) { _ in
-                    if let lastItem = viewModel.chatItems.last {
-                        DispatchQueue.main.async {
-                            proxy.scrollTo(lastItem.id, anchor: .bottom)
-                        }
+            .onChange(of: viewModel.chatItems.count) { _ in
+                if let lastItem = viewModel.chatItems.last {
+                    DispatchQueue.main.async {
+                        proxy.scrollTo(lastItem.id, anchor: .bottom)
                     }
                 }
+            }
         }
     }
 
@@ -133,7 +133,7 @@ struct MessageSuggestView: View {
                 )
                 GenerateMoreButton
             }
-            Text("今日はあと\(String(describing: actionManager.getCurrentRemainedActionCount()))回返信を生成できます")
+            Text(viewModel.actionRemainedForTodayString())
                 .foregroundColor(.gray)
                 .font(.caption)
                 .padding(.bottom, 16)

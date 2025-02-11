@@ -16,7 +16,6 @@ class MessageSuggestVM: ObservableObject{
     private let loadingMessage = Constants.loadingMessage
     
     @Published var chatItems: [ChatItem] = []
-    @Published var addedPhotos: [UIImage?] = [] // added photos
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var errorMessage: String = ""
     @Published var base64Image: String?
@@ -122,6 +121,15 @@ class MessageSuggestVM: ObservableObject{
             print("Action remained today: \(DailyActionManager.shared.getCurrentActionCount())")
         } else {
             Superwall.shared.register(event: "campaign_trigger")
+        }
+    }
+    
+    public func actionRemainedForTodayString() -> String {
+        let actionManager = DailyActionManager.shared
+        if actionManager.isUserSubscribed() {
+            return "返信を無制限に生成できます🙌"
+        } else {
+            return "今日はあと\(String(describing: actionManager.getCurrentRemainedActionCount()))回返信を生成できます"
         }
     }
 }
