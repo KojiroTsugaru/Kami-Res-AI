@@ -18,13 +18,13 @@ struct MessageMoodButton: View {
     var body: some View {
         Button(action: {
             if canPressButton {
-                withAnimation(.easeInOut(duration: 0.3)) {
+                withAnimation(.default) {
                     canPressButton = false
                     toggleMoodAlways()
                     scale = 1.2
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    withAnimation(.easeInOut(duration: 0.3)) { // Fade out animation
+                    withAnimation(.default) { // Fade out animation
                         showMessageMoodChange = false
                         scale = 1.0
                         canPressButton = true

@@ -56,7 +56,7 @@ struct MessageSuggestView: View {
                 VStack {
                     DisplayImage(image: image)
                     InstructionText
-                    ChatItemsList(proxy: proxy)
+                    ChatItemsList()
                     
                     // Dummy hidden view for scrolling
                     Color.clear
@@ -95,14 +95,13 @@ struct MessageSuggestView: View {
             .foregroundColor(.gray)
     }
 
-    private func ChatItemsList(proxy: ScrollViewProxy) -> some View {
+    private func ChatItemsList() -> some View {
         VStack(alignment: .trailing) {
             ForEach(viewModel.chatItems) { item in
                 if case .message(let text) = item {
                     HStack {
                         Spacer()
                         MessageBubbleView(message: text)
-                            .id(item.id)
                             .onTapGesture {
                                 handleTextCopy(text)
                             }
