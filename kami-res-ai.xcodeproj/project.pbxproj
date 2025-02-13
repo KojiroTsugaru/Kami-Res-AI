@@ -35,6 +35,9 @@
 		3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF132D492B19005BDB8A /* GradientBackButton.swift */; };
 		3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF192D4E6015005BDB8A /* DailyActionManager.swift */; };
 		316797C42D5B28C00062C8B7 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 316797C32D5B28C00062C8B7 /* Products.storekit */; };
+		31A182AA2D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A182A92D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift */; };
+		31A182AC2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A182AB2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift */; };
+		31A182AE2D5E436F0013A9CE /* ChatHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A182AD2D5E43690013A9CE /* ChatHistoryItem.swift */; };
 		31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */; };
 		31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */; };
 		31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE52D5363210010CD9A /* MessageMood.swift */; };
@@ -72,6 +75,9 @@
 		3165BF162D49EE61005BDB8A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3165BF192D4E6015005BDB8A /* DailyActionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActionManager.swift; sourceTree = "<group>"; };
 		316797C32D5B28C00062C8B7 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
+		31A182A92D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterMeesageView.swift; sourceTree = "<group>"; };
+		31A182AB2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterMessageViewModel.swift; sourceTree = "<group>"; };
+		31A182AD2D5E43690013A9CE /* ChatHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryItem.swift; sourceTree = "<group>"; };
 		31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonLabel.swift; sourceTree = "<group>"; };
 		31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMoodButton.swift; sourceTree = "<group>"; };
 		31B7DBE52D5363210010CD9A /* MessageMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMood.swift; sourceTree = "<group>"; };
@@ -132,6 +138,7 @@
 			children = (
 				313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */,
 				313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */,
+				31A182AD2D5E43690013A9CE /* ChatHistoryItem.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -163,6 +170,7 @@
 			children = (
 				313FE6AD2D3B9E3A009EA68F /* Home */,
 				313FE6B12D3B9E3A009EA68F /* MessageSuggest */,
+				31A182A62D5E396A0013A9CE /* ManuallyEnter */,
 				31642BC22D46194800A30C7B /* Onboarding */,
 				3165BF0A2D491366005BDB8A /* UIComponent */,
 			);
@@ -234,6 +242,15 @@
 				3165BF192D4E6015005BDB8A /* DailyActionManager.swift */,
 			);
 			path = DailyActionManager;
+			sourceTree = "<group>";
+		};
+		31A182A62D5E396A0013A9CE /* ManuallyEnter */ = {
+			isa = PBXGroup;
+			children = (
+				31A182A92D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift */,
+				31A182AB2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift */,
+			);
+			path = ManuallyEnter;
 			sourceTree = "<group>";
 		};
 		31B7DBE42D5363040010CD9A /* MessageMood */ = {
@@ -338,9 +355,12 @@
 				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
 				31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */,
 				313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */,
+				31A182AE2D5E436F0013A9CE /* ChatHistoryItem.swift in Sources */,
+				31A182AA2D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift in Sources */,
 				3165BF122D492302005BDB8A /* GradientPlusIcon.swift in Sources */,
 				313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */,
 				313FE6BF2D3B9E3A009EA68F /* MessageBubbleView.swift in Sources */,
+				31A182AC2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift in Sources */,
 				31642BC42D46196400A30C7B /* OnboardingSheetView.swift in Sources */,
 				3165BF0C2D491399005BDB8A /* GradientText.swift in Sources */,
 				313FE6C02D3B9E3A009EA68F /* MessageSuggestView.swift in Sources */,

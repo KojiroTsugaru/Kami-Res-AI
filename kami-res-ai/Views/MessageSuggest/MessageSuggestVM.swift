@@ -35,7 +35,7 @@ class MessageSuggestVM: ObservableObject{
         self.addMessage(text: loadingMessage)
         
         do {
-            let response = try await openAIService.getSuggestedMesssageFromImage(
+            let response = try await openAIService.getSuggestedReplyFromImage(
                 base64Image: base64Image ?? "",
                 prompt: messageMood.prompt
             )
@@ -50,7 +50,6 @@ class MessageSuggestVM: ObservableObject{
             
             self.removeLoadingMessage()
             self.addMessage(text: "レスポンスの取得に失敗しました。通信環境を確認し、再試行してください。")
-//            DailyActionManager.shared.increaseActionCount()
         }
     }
     
