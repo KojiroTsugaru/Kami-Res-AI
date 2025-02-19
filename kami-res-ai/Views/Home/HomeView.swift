@@ -12,7 +12,8 @@ import SuperwallKit
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeVM()
-    @State private var navigateToSuggest = false
+    @State private var navigateToUploadScreenshot = false
+    @State private var navigateToManuallyType = false
     @State private var showComingSoonAlert = false
     @State private var showPremiumAlert = false
     
@@ -25,18 +26,7 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 28) {
                         Spacer()
-                            .frame(height: 136)
-
-                        // タイトル
-                        GradientText(
-                            "神レスAI",
-                            font: .custom("HannariMincho-Regular", size: 40).bold(),
-                            gradient: Constants.ColorAsset.createGradient(
-                                from: .topLeading,
-                                to: .bottomTrailing
-                            ))
-                        .shadow(color: Color.white.opacity(0.75), radius: 12)
-                        .padding(.bottom, 8)
+                            .frame(height: 200)
                         
                         // 写真アップロードボタン
                         if DailyActionManager.shared.canPerformAction() {
@@ -59,7 +49,11 @@ struct HomeView: View {
                         VStack(spacing: 12) {
                             Button(
                                 action: {
+                                    // 手動入力開発中のアラートを表示
                                     showComingSoonAlert = true
+                                    
+                                    // 手動入力Viewに移動する
+//                                    navigateToManuallyType = true
                                 }) {
                                     HStack(spacing: 12) {
                                         Image(systemName: "keyboard")
@@ -95,13 +89,21 @@ struct HomeView: View {
                     .padding()
                 }
 
-                // NavigationLink (ナビゲーションを非表示にする)
+                // NavigationLink for screen shot upload
                 NavigationLink(
-                    destination: MessageSuggestView(
+                    destination: ScreenshotMessageSuggestView(
                         base64Image: viewModel.base64String,
                         image: viewModel.image
                     ),
-                    isActive: self.$navigateToSuggest
+                    isActive: $navigateToUploadScreenshot
+                ) {
+                    EmptyView()
+                }
+                
+                // NavigationLink for manually typed messages
+                NavigationLink(
+                    destination: ManuallyEnterMeesageView(),
+                    isActive: $navigateToManuallyType
                 ) {
                     EmptyView()
                 }
@@ -132,7 +134,7 @@ struct HomeView: View {
                         await viewModel.loadAndEncodePhoto(from: newItem)
                         try? await Task
                             .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
-                        self.navigateToSuggest = true
+                        self.navigateToUploadScreenshot = true
                     }
                 }
             }
