@@ -13,7 +13,7 @@ class OpenAIService {
     private let model = "gpt-4o"
     private let maxTokens: Int = 1000
 
-    func getSuggestedMesssageFromImage(base64Image: String, prompt: String) async throws -> String {
+    func getSuggestedReplyFromImage(base64Image: String, prompt: String) async throws -> String {
         
         guard let url = URL(string: endpoint) else {
             throw OpenAIServiceError.invalidURL
@@ -21,9 +21,16 @@ class OpenAIService {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request
-            .setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let promptHelper =
+            """
+            #前提
+            ・この画像はあなたが仲良くなりたい思っている相手とのチャットのスクリーンショットです。\n
+            """
+         
+        let finalPrompt = promptHelper + prompt
         
         // Create the JSON payload
         let payload: [String: Any] = [
@@ -34,7 +41,7 @@ class OpenAIService {
                     "content": [
                         [
                             "type": "text",
-                            "text": prompt
+                            "text": finalPrompt
                         ],
                         [
                             "type": "image_url",
@@ -75,5 +82,69 @@ class OpenAIService {
         } catch {
             throw OpenAIServiceError.decodingError
         }
+    }
+    
+    func getSuggestedReply(recipientName: String, chatHistory: [ChatHistoryItem], prompt: String) async throws -> String {
+        guard let url = URL(string: endpoint) else {
+            throw OpenAIServiceError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // プロンプト作成
+        let formattedChatHistory = formatChatHistory(chatHistory: chatHistory)
+        let promptHelper =
+            """
+            #前提
+            ・以下は\(recipientName)との過去の会話履歴です。\n
+            """
+         
+        let finalPrompt = promptHelper + prompt
+        
+        let payload: [String: Any] = [
+            "model": model,
+            "messages": [
+                ["role": "user", "content": formattedChatHistory],
+                ["role": "system", "content": finalPrompt]
+            ],
+            "max_tokens": maxTokens
+        ]
+        
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: payload, options: [])
+            request.httpBody = jsonData
+        } catch {
+            throw OpenAIServiceError.encodingError
+        }
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw OpenAIServiceError.invalidResponse
+        }
+        
+        do {
+            let decodedResponse = try JSONDecoder().decode(OpenAIResponse.self, from: data)
+            if let content = decodedResponse.choices.first?.message.content {
+                return content
+            } else {
+                throw OpenAIServiceError.emptyResponse
+            }
+        } catch {
+            throw OpenAIServiceError.decodingError
+        }
+    }
+    
+    private func formatChatHistory(chatHistory: [ChatHistoryItem]) -> String {
+        var formattedHistory = ""
+        
+        for (_, item) in chatHistory.enumerated() {
+            formattedHistory += "\"\(item.sender)\": \(item.message)\n"
+        }
+        
+        return formattedHistory.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

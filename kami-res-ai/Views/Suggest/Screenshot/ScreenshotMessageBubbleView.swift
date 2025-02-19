@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftfulLoadingIndicators
 
-struct MessageBubbleView: View {
+struct ScreenshotMessageBubbleView: View {
     let message: String
     var body: some View {
         ZStack {
@@ -20,7 +20,8 @@ struct MessageBubbleView: View {
                 )
                 .padding(.horizontal)
                 .padding(.vertical, 4)
-                .background(Color("ChatBubbleColor"))
+                .background(Color.white)
+                .shadow(radius: 3)
                 .cornerRadius(20)
             } else {
                 Text(message)
@@ -34,5 +35,5 @@ struct MessageBubbleView: View {
 }
 
 #Preview {
-    MessageBubbleView(message: "test string")
+    ScreenshotMessageBubbleView(message: "test string")
 }

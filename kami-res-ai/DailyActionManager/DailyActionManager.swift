@@ -20,10 +20,10 @@ class DailyActionManager: NSObject, ObservableObject {
     private let lastActionKey = "lastActionDate"
     private let currentActionCountKey = "currentActionCount"
     
-    private let maxActionsPerDay = 2 // 1日に実行できる最大回数
+    private let maxActionsPerDay = 3 // 1日に実行できる最大回数
 
     /// アクションを実行できるかチェック
-    func canPerformAction() -> Bool {
+    public func canPerformAction() -> Bool {
         
         /// プレミアムプランに入っていたら回数を無制限に許可
         if isUserSubscribed() {
@@ -46,7 +46,7 @@ class DailyActionManager: NSObject, ObservableObject {
     }
 
     /// アクションを実行し、日付と回数を保存
-    func performActionIfNeeded() -> Bool {
+    public func performActionIfNeeded() -> Bool {
         if isUserSubscribed() {
             return true
         } else if canPerformAction() {
@@ -93,8 +93,16 @@ class DailyActionManager: NSObject, ObservableObject {
         return maxActionsPerDay - getCurrentActionCount()
     }
     
-    func isUserSubscribed() -> Bool {
+    public func isUserSubscribed() -> Bool {
         return Superwall.shared.subscriptionStatus == .active
+    }
+    
+    public func actionRemainedForTodayString() -> String {
+        if isUserSubscribed() {
+            return "返信を無制限に生成できます🙌"
+        } else {
+            return "今日はあと\(String(describing: getCurrentRemainedActionCount()))回返信を生成できます"
+        }
     }
 }
 
