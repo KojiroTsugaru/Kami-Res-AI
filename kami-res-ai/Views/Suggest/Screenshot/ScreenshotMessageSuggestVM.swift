@@ -11,7 +11,7 @@ import SwiftUI
 import UIKit
 import SuperwallKit
 
-class MessageSuggestVM: ObservableObject{
+class ScreenshotMessageSuggestVM: ObservableObject{
     private let openAIService = OpenAIService()
     private let loadingMessage = Constants.loadingMessage
     

@@ -9,14 +9,14 @@ import SwiftUI
 import PhotosUI
 import SuperwallKit
 
-struct MessageSuggestView: View {
+struct ScreenshotMessageSuggestView: View {
     let base64Image: String?
     let image: UIImage?
     
     @Environment(\.dismiss) private var dismiss
 
     @StateObject private var actionManager = DailyActionManager.shared
-    @ObservedObject private var viewModel = MessageSuggestVM()
+    @ObservedObject private var viewModel = ScreenshotMessageSuggestVM()
     @State private var showCopyConfirmation: Bool = false
     @State private var showMessageMoodChange: Bool = false
 
@@ -101,7 +101,7 @@ struct MessageSuggestView: View {
                 if case .message(let text) = item {
                     HStack {
                         Spacer()
-                        MessageBubbleView(message: text)
+                        ScreenshotMessageBubbleView(message: text)
                             .onTapGesture {
                                 handleTextCopy(text)
                             }

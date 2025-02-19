@@ -41,7 +41,7 @@ class OpenAIService {
                     "content": [
                         [
                             "type": "text",
-                            "text": prompt
+                            "text": finalPrompt
                         ],
                         [
                             "type": "image_url",
@@ -84,7 +84,7 @@ class OpenAIService {
         }
     }
     
-    func getSuggestedReply(with recipientName: String, and chatHistory: [ChatHistoryItem], prompt: String) async throws -> String {
+    func getSuggestedReply(recipientName: String, chatHistory: [ChatHistoryItem], prompt: String) async throws -> String {
         guard let url = URL(string: endpoint) else {
             throw OpenAIServiceError.invalidURL
         }
@@ -94,25 +94,22 @@ class OpenAIService {
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // チャット履歴をOpenAI APIのフォーマットに変換
-        let messageHistory = chatHistory.map { message in
-            ["role": "user", "content": message]
-        }
-        
         // プロンプト作成
         let formattedChatHistory = formatChatHistory(chatHistory: chatHistory)
         let promptHelper =
             """
             #前提
             ・以下は\(recipientName)との過去の会話履歴です。\n
-            \(formattedChatHistory)\n
             """
          
         let finalPrompt = promptHelper + prompt
         
         let payload: [String: Any] = [
             "model": model,
-            "messages": messageHistory + [["role": "system", "content": finalPrompt]],
+            "messages": [
+                ["role": "user", "content": formattedChatHistory],
+                ["role": "system", "content": finalPrompt]
+            ],
             "max_tokens": maxTokens
         ]
         
@@ -144,7 +141,7 @@ class OpenAIService {
     private func formatChatHistory(chatHistory: [ChatHistoryItem]) -> String {
         var formattedHistory = ""
         
-        for (index, item) in chatHistory.enumerated() {
+        for (_, item) in chatHistory.enumerated() {
             formattedHistory += "\"\(item.sender)\": \(item.message)\n"
         }
         

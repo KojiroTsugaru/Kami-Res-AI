@@ -5,7 +5,16 @@
 //  Created by KJ on 2/14/25.
 //
 
-struct ChatHistoryItem {
+import Foundation
+
+struct ChatHistoryItem: Identifiable {
+    let id: String
     let message: String
-    let sender: String
+    let sender: ChatHistorySender
+    
+    init(message: String, sender: ChatHistorySender) {
+        self.id = UUID().uuidString
+        self.message = message
+        self.sender = sender
+    }
 }
