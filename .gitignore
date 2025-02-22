@@ -14,4 +14,4 @@ xcuserdata/
 *.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
 # API Key
-MoteAI/Constants/AccessToken.swift
+Constants/Constants.swift
