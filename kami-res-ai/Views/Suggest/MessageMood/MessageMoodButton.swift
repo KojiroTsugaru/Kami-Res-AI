@@ -26,7 +26,7 @@ struct MessageMoodButton: View {
                 }
             }
         }) {
-            Text(mood.emoji)
+            Text(mood.type.emoji)
                 .font(.title3)
                 .frame(width: 50, height: 50)
                 .background(

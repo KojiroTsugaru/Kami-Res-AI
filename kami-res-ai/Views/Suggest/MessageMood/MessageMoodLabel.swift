@@ -9,11 +9,11 @@ import SwiftUI
 import SuperwallKit
 
 struct MessageMoodLabel: View {
-    @Binding var mood: MessageMood
+    @Binding var moodType: MessageMood.MoodType
     var isSelected: Bool = false
 
     var body: some View {
-        Text(mood.emoji)
+        Text(moodType.emoji)
             .font(.title)
             .frame(width: 50, height: 50)
             .background(
@@ -37,5 +37,5 @@ struct MessageMoodLabel: View {
 }
 
 #Preview {
-    MessageMoodLabel(mood: Binding.constant(MessageMood.defaultMood))
+    MessageMoodLabel(moodType: Binding.constant(MessageMood.defaultMood.type))
 }

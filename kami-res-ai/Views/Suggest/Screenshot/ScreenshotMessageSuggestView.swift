@@ -174,7 +174,7 @@ struct ScreenshotMessageSuggestView: View {
     private var MessageMoodChangeView: some View {
         VStack(spacing: 12) {
             GradientText("メッセージの雰囲気を変更しました", font: .headline)
-            Text("\(viewModel.messageMood.emoji) \(viewModel.messageMood.text)")
+            Text("\(viewModel.messageMood.type.emoji) \(viewModel.messageMood.type.title)")
                 .font(.subheadline)
                 .bold()
                 .foregroundColor(.white)

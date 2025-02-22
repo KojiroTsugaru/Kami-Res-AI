@@ -10,7 +10,13 @@ import SwiftUI
 struct MessageMoodModal: View {
     @Binding var showMoodModal: Bool
     @Binding var selectedMood: MessageMood
-    @State private var messageLength: Double = 2.0
+    @State private var messageLength: Double
+    
+    init(showMoodModal: Binding<Bool>, selectedMood: Binding<MessageMood>) {
+        self._showMoodModal = showMoodModal
+        self._selectedMood = selectedMood
+        self._messageLength = State(initialValue: selectedMood.wrappedValue.messageLength.rawValue)
+    }
 
     var body: some View {
         ZStack {
@@ -35,11 +41,14 @@ struct MessageMoodModal: View {
                     ],
                     spacing: 20
                 ) {
-                    ForEach(MessageMood.allCases, id: \.self) { mood in
-                        MessageMoodLabel(mood: .constant(mood), isSelected: selectedMood == mood)
+                    ForEach(
+                        MessageMood.MoodType.allCases,
+                        id: \.self
+                    ) { moodType in
+                        MessageMoodLabel(moodType: .constant(moodType), isSelected: selectedMood.type == moodType)
                             .onTapGesture {
                                 withAnimation {
-                                    selectedMood = mood
+                                    selectedMood.type = moodType
                                 }
                             }
                     }
@@ -48,9 +57,9 @@ struct MessageMoodModal: View {
                 
                 // 選択中のムード説明
                 HStack(spacing: 12) {
-                    Text(selectedMood.emoji)
+                    Text(selectedMood.type.emoji)
                         .font(.title2)
-                    Text(selectedMood.text)
+                    Text(selectedMood.type.title)
                         .foregroundColor(.black)
                         .font(.subheadline)
                 }
@@ -75,6 +84,12 @@ struct MessageMoodModal: View {
                     .tint(Color(.black))
                     .frame(width: 280)
                     .shadow(color: Color.gray.opacity(0.2), radius: 4)
+                    .onChange(of: messageLength, perform: { newValue in
+                        if let newLength = MessageLength(rawValue: newValue) {
+                            selectedMood.messageLength = newLength
+                        }
+                        print("new mood:", selectedMood)
+                    })
                 }
                 .padding()
                 .padding(.top, 8)
