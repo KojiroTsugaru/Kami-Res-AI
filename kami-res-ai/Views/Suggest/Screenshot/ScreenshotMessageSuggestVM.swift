@@ -37,7 +37,7 @@ class ScreenshotMessageSuggestVM: ObservableObject {
         do {
             let response = try await openAIService.getSuggestedReplyFromImage(
                 base64Image: base64Image ?? "",
-                prompt: messageMood.prompt
+                prompt: messageMood.type.prompt
             )
 
             self.removeLoadingMessage()
