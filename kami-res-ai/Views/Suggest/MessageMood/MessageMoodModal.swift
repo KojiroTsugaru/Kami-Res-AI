@@ -72,7 +72,7 @@ struct MessageMoodModal: View {
                     HStack(spacing: 8) {
                         Image(systemName: "text.alignleft")
                             .foregroundColor(.gray)
-                        Text("メッセージの長さ")
+                        Text("メッセージの長さ: \(messageLengthText)")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
@@ -98,8 +98,11 @@ struct MessageMoodModal: View {
                     showMoodModal = false
                 } label: {
                     Text("保存する")
-                        .foregroundColor(.black)
-                }.padding()
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.black)
+                        .cornerRadius(20)
+                }.padding(.vertical)
             }
             .frame(maxWidth: 320)  // 最大幅を設定
             .padding()
@@ -109,6 +112,17 @@ struct MessageMoodModal: View {
         }
         .transition(.opacity)  // Smooth fade-in transition
         .animation(.easeInOut, value: showMoodModal)
+    }
+    
+    private var messageLengthText: String {
+        switch selectedMood.messageLength {
+        case .short:
+            return "短め"
+        case .medium:
+            return "少し長め"
+        case .long:
+            return "長め"
+        }
     }
 }
 
