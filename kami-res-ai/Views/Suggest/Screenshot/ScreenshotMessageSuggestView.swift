@@ -5,20 +5,22 @@
 //  Created by KJ on 1/18/25.
 //
 
-import SwiftUI
 import PhotosUI
 import SuperwallKit
+import SwiftUI
 
 struct ScreenshotMessageSuggestView: View {
     let base64Image: String?
     let image: UIImage?
-    
+
     @Environment(\.dismiss) private var dismiss
 
     @StateObject private var actionManager = DailyActionManager.shared
     @ObservedObject private var viewModel = ScreenshotMessageSuggestVM()
     @State private var showCopyConfirmation: Bool = false
     @State private var showMessageMoodChange: Bool = false
+    @State private var showMoodModal: Bool = false
+    
 
     var body: some View {
         ZStack {
@@ -31,6 +33,12 @@ struct ScreenshotMessageSuggestView: View {
             }
             if showMessageMoodChange {
                 MessageMoodChangeView
+            }
+            if showMoodModal {
+                MessageMoodModal(
+                    showMoodModal: $showMoodModal,
+                    selectedMood: $viewModel.messageMood
+                )
             }
         }
         .toolbar {
@@ -57,7 +65,7 @@ struct ScreenshotMessageSuggestView: View {
                     DisplayImage(image: image)
                     InstructionText
                     ChatItemsList()
-                    
+
                     // Dummy hidden view for scrolling
                     Color.clear
                         .frame(height: 40)
@@ -118,13 +126,12 @@ struct ScreenshotMessageSuggestView: View {
             }
         }
     }
-    
+
     private var actionButtonsBottom: some View {
         VStack {
             HStack {
                 MessageMoodButton(
-                    showMessageMoodChange: $showMessageMoodChange,
-                    mood: $viewModel.messageMood
+                    mood: $viewModel.messageMood, showMoodModal: $showMoodModal
                 )
                 GenerateMoreButton
             }
@@ -141,10 +148,12 @@ struct ScreenshotMessageSuggestView: View {
                 await viewModel.generateResponseIfNeeded()
             }
         } label: {
-            GradientText("もっと返信を生成",
-                         font: .subheadline,
-                         gradient: Constants.ColorAsset
-                .createGradient(from: .topLeading, to: .bottomTrailing))
+            GradientText(
+                "もっと返信を生成",
+                font: .subheadline,
+                gradient: Constants.ColorAsset
+                    .createGradient(from: .topLeading, to: .bottomTrailing)
+            )
             .bold()
             .padding()
             .frame(maxWidth: 240)
@@ -161,11 +170,11 @@ struct ScreenshotMessageSuggestView: View {
             .background(.white)
             .cornerRadius(20)
     }
-    
+
     private var MessageMoodChangeView: some View {
         VStack(spacing: 12) {
             GradientText("メッセージの雰囲気を変更しました", font: .headline)
-            Text("\(viewModel.messageMood.emoji) \(viewModel.messageMood.text)")
+            Text("\(viewModel.messageMood.type.emoji) \(viewModel.messageMood.type.title)")
                 .font(.subheadline)
                 .bold()
                 .foregroundColor(.white)
@@ -175,7 +184,7 @@ struct ScreenshotMessageSuggestView: View {
         .cornerRadius(20)
         .shadow(color: Color.white.opacity(0.75), radius: 12)
     }
-    
+
     private var BackButtonToolbar: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
             GradientBackButton()
@@ -210,13 +219,13 @@ struct ScreenshotMessageSuggestView: View {
 
     private func handleTextCopy(_ text: String) {
         viewModel.copyToClipboard(text: text)
-            
-        withAnimation(.easeInOut(duration: 0.2)) { // Fade in animation
+
+        withAnimation(.easeInOut(duration: 0.2)) {  // Fade in animation
             showCopyConfirmation = true
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            withAnimation(.easeInOut(duration: 0.1)) { // Fade out animation
+            withAnimation(.easeInOut(duration: 0.1)) {  // Fade out animation
                 showCopyConfirmation = false
             }
         }
@@ -226,8 +235,7 @@ struct ScreenshotMessageSuggestView: View {
         guard newItem != nil else { return }
         Task {
             await viewModel.loadAndEncodePhoto(from: newItem!)
-            try? await Task.sleep(for: .seconds(1.0)) // Wait for 0.5 seconds
+            try? await Task.sleep(for: .seconds(1.0))  // Wait for 0.5 seconds
         }
     }
 }
-
