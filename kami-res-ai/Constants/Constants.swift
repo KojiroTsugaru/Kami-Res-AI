@@ -44,15 +44,15 @@ extension Constants {
 
 extension Constants {
     public struct ColorAsset {
+        static let primaryColor = Color("gradientPrimary")
+        static let secondaryColor = Color("gradientSecondary")
+        
+        
         public static let primaryGradient: LinearGradient = {
             // Define the gradient colors from the asset catalog
             let colors = [
-                Color(
-                    "gradientSecondary"
-                ),// Replace with your actual color name
-                Color(
-                    "gradientPrimary"
-                )   // Replace with your actual color name
+                secondaryColor,
+                primaryColor
             ]
             return LinearGradient(
                 gradient: Gradient(colors: colors),

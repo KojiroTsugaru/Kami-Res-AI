@@ -20,8 +20,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Constants.ColorAsset.primaryGradient.opacity(0.5)
-                    .ignoresSafeArea()
+                GradientAnimatedBackground()
 
                 ScrollView {
                     VStack(spacing: 28) {
@@ -58,30 +57,28 @@ struct HomeView: View {
                                     HStack(spacing: 12) {
                                         Image(systemName: "keyboard")
                                             .font(.largeTitle)
-                                            .foregroundColor(.white)
                                         VStack {
                                             Text("自分でメッセージを入力する")
                                                 .font(.headline)
-                                                .foregroundColor(.white)
                                             Text("過去のメッセージ内容を手動で登録")
                                                 .font(.caption)
-                                                .foregroundColor(.white)
                                         }
                                     }
+                                    .foregroundColor(.white)
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     .background(Color("gradientSecondary"))
                                     .cornerRadius(20)
                                     .shadow(
-                                        color: Color("gradientSecondary")
+                                        color: Color(.black)
                                             .opacity(0.25),
                                         radius: 8
                                     )
                                 }
                             
-                            Text("*アップロードされた画像はサーバーに保存されません")
+                            Text("*アップロードされた情報はサーバーに保存されません")
                                 .font(.caption)
-                                .foregroundColor(Color(.systemGray))
+                                .foregroundColor(Color(.white).opacity(0.9))
                         }
 
                         Spacer()
@@ -124,7 +121,7 @@ struct HomeView: View {
                             .foregroundColor(Color("premiumIcon"))
                             .padding(12)
                             .background(Circle().fill(Color.black))
-                            .shadow(color: Color.black.opacity(0.2), radius: 8)
+                            .shadow(color: Color.white.opacity(0.2), radius: 8)
                     }
                 }
             }
