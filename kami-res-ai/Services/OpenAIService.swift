@@ -23,22 +23,9 @@ class OpenAIService {
         request.httpMethod = "POST"
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let meessageLengthText = messageLengthText(messageMood: messageMood)
-        
-        let promptHelper =
-            """
-            #前提
-            ・この画像はあなたが仲良くなりたい思っている相手とのチャットのスクリーンショットです。
-            
-            #守らなければいけない制約
-            ・日本語で必ず回答すること。
-            ・"「", "」"を使わないでください。
-            ・\(meessageLengthText)文字以内で生成してください。\n
-            """
-         
-        let finalPrompt = promptHelper + messageMood.type.prompt
-        print(finalPrompt)
+       
+        let prompt = generatePrompt(messageMood: messageMood)
+        print(prompt)
         
         // Create the JSON payload
         let payload: [String: Any] = [
@@ -49,7 +36,7 @@ class OpenAIService {
                     "content": [
                         [
                             "type": "text",
-                            "text": finalPrompt
+                            "text": prompt
                         ],
                         [
                             "type": "image_url",
@@ -155,6 +142,24 @@ class OpenAIService {
         case .long:
             return "30"
         }
+    }
+    
+    private func generatePrompt(messageMood: MessageMood) -> String {
+        let meessageLengthText = messageLengthText(messageMood: messageMood)
+        
+        let promptHelper =
+            """
+            #前提
+            ・この画像はあなたが仲良くなりたい思っている相手とのチャットのスクリーンショットです。
+            
+            #守らなければいけない制約
+            ・日本語で必ず回答すること。
+            ・"「", "」"を使わないでください。
+            ・\(meessageLengthText)文字以内で生成してください。\n\n
+            """
+         
+        let finalPrompt = promptHelper + messageMood.type.prompt
+        return finalPrompt
     }
     
     private func formatChatHistory(chatHistory: [ChatHistoryItem]) -> String {
