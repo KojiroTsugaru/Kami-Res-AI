@@ -23,6 +23,7 @@
 		313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */; };
 		313FE70A2D3C9E99009EA68F /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */; };
 		313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE70E2D40B8EF009EA68F /* ChatItem.swift */; };
+		316278ED2D69C964009A8E07 /* kami_res_aiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316278EB2D69C964009A8E07 /* kami_res_aiTests.swift */; };
 		31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BBD2D44EADB00A30C7B /* Constants.swift */; };
 		31642BC12D46152E00A30C7B /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 31642BC02D46152E00A30C7B /* SuperwallKit */; };
 		31642BC42D46196400A30C7B /* OnboardingSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BC32D46196400A30C7B /* OnboardingSheetView.swift */; };
@@ -50,6 +51,16 @@
 		31F8A3BC2D66077500D82E34 /* MessageMoodModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F8A3BB2D66077500D82E34 /* MessageMoodModal.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		316278E62D69C953009A8E07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 313FE65F2D3B8C57009EA68F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 313FE6662D3B8C57009EA68F;
+			remoteInfo = "kami-res-ai";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		313FE6672D3B8C57009EA68F /* kami-res-ai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kami-res-ai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KamiResAIApp.swift; sourceTree = "<group>"; };
@@ -68,6 +79,8 @@
 		313FE6BA2D3B9E3A009EA68F /* kami-res-ai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "kami-res-ai.xcdatamodel"; sourceTree = "<group>"; };
 		313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		313FE70E2D40B8EF009EA68F /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		316278E22D69C953009A8E07 /* kami-res-aiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kami-res-aiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		316278EB2D69C964009A8E07 /* kami_res_aiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kami_res_aiTests.swift; sourceTree = "<group>"; };
 		31642BBD2D44EADB00A30C7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		31642BC32D46196400A30C7B /* OnboardingSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSheetView.swift; sourceTree = "<group>"; };
 		31642BC52D461A2200A30C7B /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
@@ -106,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		316278DF2D69C953009A8E07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -113,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				313FE6B92D3B9E3A009EA68F /* kami-res-ai */,
+				316278EC2D69C964009A8E07 /* kami-res-aiTests */,
 				3165BF152D49EE61005BDB8A /* Frameworks */,
 				313FE6682D3B8C57009EA68F /* Products */,
 			);
@@ -122,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				313FE6672D3B8C57009EA68F /* kami-res-ai.app */,
+				316278E22D69C953009A8E07 /* kami-res-aiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -212,6 +234,14 @@
 				31D1F7DD2D564433008A7E83 /* Prompts.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		316278EC2D69C964009A8E07 /* kami-res-aiTests */ = {
+			isa = PBXGroup;
+			children = (
+				316278EB2D69C964009A8E07 /* kami_res_aiTests.swift */,
+			);
+			path = "kami-res-aiTests";
 			sourceTree = "<group>";
 		};
 		31642BC22D46194800A30C7B /* Onboarding */ = {
@@ -325,6 +355,26 @@
 			productReference = 313FE6672D3B8C57009EA68F /* kami-res-ai.app */;
 			productType = "com.apple.product-type.application";
 		};
+		316278E12D69C953009A8E07 /* kami-res-aiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 316278EA2D69C953009A8E07 /* Build configuration list for PBXNativeTarget "kami-res-aiTests" */;
+			buildPhases = (
+				316278DE2D69C953009A8E07 /* Sources */,
+				316278DF2D69C953009A8E07 /* Frameworks */,
+				316278E02D69C953009A8E07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				316278E72D69C953009A8E07 /* PBXTargetDependency */,
+			);
+			name = "kami-res-aiTests";
+			packageProductDependencies = (
+			);
+			productName = "kami-res-aiTests";
+			productReference = 316278E22D69C953009A8E07 /* kami-res-aiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -337,6 +387,10 @@
 				TargetAttributes = {
 					313FE6662D3B8C57009EA68F = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					316278E12D69C953009A8E07 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 313FE6662D3B8C57009EA68F;
 					};
 				};
 			};
@@ -359,6 +413,7 @@
 			projectRoot = "";
 			targets = (
 				313FE6662D3B8C57009EA68F /* kami-res-ai */,
+				316278E12D69C953009A8E07 /* kami-res-aiTests */,
 			);
 		};
 /* End PBXProject section */
@@ -372,6 +427,13 @@
 				313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */,
 				31EAC9242D570ED2001AF978 /* HannariMincho-Regular.otf in Resources */,
 				316797C42D5B28C00062C8B7 /* Products.storekit in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		316278E02D69C953009A8E07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,7 +481,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		316278DE2D69C953009A8E07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				316278ED2D69C964009A8E07 /* kami_res_aiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		316278E72D69C953009A8E07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 313FE6662D3B8C57009EA68F /* kami-res-ai */;
+			targetProxy = 316278E62D69C953009A8E07 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		313FE67C2D3B8C5A009EA68F /* Debug */ = {
@@ -615,6 +693,42 @@
 			};
 			name = Release;
 		};
+		316278E82D69C953009A8E07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 265P8798N4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-aiTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kami-res-ai.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/kami-res-ai";
+			};
+			name = Debug;
+		};
+		316278E92D69C953009A8E07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 265P8798N4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-aiTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/kami-res-ai.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/kami-res-ai";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -632,6 +746,15 @@
 			buildConfigurations = (
 				313FE67C2D3B8C5A009EA68F /* Debug */,
 				313FE67D2D3B8C5A009EA68F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		316278EA2D69C953009A8E07 /* Build configuration list for PBXNativeTarget "kami-res-aiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				316278E82D69C953009A8E07 /* Debug */,
+				316278E92D69C953009A8E07 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
