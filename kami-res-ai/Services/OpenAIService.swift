@@ -13,7 +13,7 @@ class OpenAIService {
     private let model = "gpt-4o"
     private let maxTokens: Int = 1000
 
-    func getSuggestedReplyFromImage(base64Image: String, prompt: String) async throws -> String {
+    func getSuggestedReplyFromImage(base64Image: String, messageMood: MessageMood) async throws -> String {
         
         guard let url = URL(string: endpoint) else {
             throw OpenAIServiceError.invalidURL
@@ -23,14 +23,9 @@ class OpenAIService {
         request.httpMethod = "POST"
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let promptHelper =
-            """
-            #前提
-            ・この画像はあなたが仲良くなりたい思っている相手とのチャットのスクリーンショットです。\n
-            """
-         
-        let finalPrompt = promptHelper + prompt
+       
+        let prompt = generatePrompt(messageMood: messageMood)
+        print(prompt)
         
         // Create the JSON payload
         let payload: [String: Any] = [
@@ -41,7 +36,7 @@ class OpenAIService {
                     "content": [
                         [
                             "type": "text",
-                            "text": finalPrompt
+                            "text": prompt
                         ],
                         [
                             "type": "image_url",
@@ -136,6 +131,35 @@ class OpenAIService {
         } catch {
             throw OpenAIServiceError.decodingError
         }
+    }
+    
+    private func messageLengthText(messageMood: MessageMood) -> String {
+        switch messageMood.messageLength {
+        case .short:
+            return "10"
+        case .medium:
+            return "20"
+        case .long:
+            return "30"
+        }
+    }
+    
+    private func generatePrompt(messageMood: MessageMood) -> String {
+        let messageLengthText = messageLengthText(messageMood: messageMood)
+        
+        let promptHelper =
+            """
+            #前提
+            ・この画像はあなたが仲良くなりたい思っている相手とのチャットのスクリーンショットです。
+            
+            #守らなければいけない制約
+            ・日本語で必ず回答すること。
+            ・"「", "」"を使わないでください。
+            ・\(messageLengthText)文字以内で生成してください。\n\n
+            """
+         
+        let finalPrompt = promptHelper + messageMood.type.prompt
+        return finalPrompt
     }
     
     private func formatChatHistory(chatHistory: [ChatHistoryItem]) -> String {

@@ -10,58 +10,33 @@ import SwiftUI
 import SuperwallKit
 
 struct MessageMoodButton: View {
-    @Binding var showMessageMoodChange: Bool
     @Binding var mood: MessageMood
+    @Binding var showMoodModal: Bool
     @State private var scale: CGFloat = 1.0
-    @State private var canPressButton = true
 
     var body: some View {
         Button(action: {
-            if canPressButton {
-                withAnimation(.default) {
-                    canPressButton = false
-                    toggleMoodAlways()
-                    scale = 1.2
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    withAnimation(.default) { // Fade out animation
-                        showMessageMoodChange = false
-                        scale = 1.0
-                        canPressButton = true
-                    }
+            withAnimation(.default) {
+                scale = 1.2
+                showMoodModal = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation(.default) { // Fade out animation
+                    scale = 1.0
                 }
             }
         }) {
-            Text(mood.emoji)
-                .scaleEffect(scale)
+            Text(mood.type.emoji)
+                .font(.title3)
                 .frame(width: 50, height: 50)
-                .background(Circle().fill(Color.white))
-                .foregroundColor(.white)
-                .shadow(radius: 2)
-                .transition(.scale)
-        }
-    }
+                .background(
+                    Circle()
+                        .fill(.white)
 
-    private func toggleMoodIfNeeded() {
-        if Superwall.shared.subscriptionStatus == .active {
-            let moods = MessageMood.allCases
-            if let currentIndex = moods.firstIndex(of: mood) {
-                let nextIndex = (currentIndex + 1) % moods.count
-                mood = moods[nextIndex]
-            }
-        } else {
-            Superwall.shared.register(event: "campaign_trigger")
+                )
+                .foregroundColor(.black)
+                .shadow(color: .gray, radius: 2)
         }
-    }
-    
-    /// テスト用
-    private func toggleMoodAlways() {
-        let moods = MessageMood.allCases
-        if let currentIndex = moods.firstIndex(of: mood) {
-            let nextIndex = (currentIndex + 1) % moods.count
-            mood = moods[nextIndex]
-        }
-        showMessageMoodChange = true
     }
 }
 

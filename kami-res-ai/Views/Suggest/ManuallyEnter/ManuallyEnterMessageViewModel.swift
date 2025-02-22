@@ -29,7 +29,7 @@ class ManuallyEnterMessageViewModel: ObservableObject {
             .getSuggestedReply(
                 recipientName: recipientName!, // validated in validate method
                 chatHistory: chatHistory,
-                prompt: messageMood.prompt
+                prompt: messageMood.type.prompt
             )
         try await chatHistory
             .append(ChatHistoryItem(message: reply, sender: .api))
