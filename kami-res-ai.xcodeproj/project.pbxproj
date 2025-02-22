@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				313FE6B92D3B9E3A009EA68F /* kami-res-ai */,
-				316278EC2D69C964009A8E07 /* kami-res-aiTests */,
+				316278EE2D69CA08009A8E07 /* Tests */,
 				3165BF152D49EE61005BDB8A /* Frameworks */,
 				313FE6682D3B8C57009EA68F /* Products */,
 			);
@@ -242,6 +242,14 @@
 				316278EB2D69C964009A8E07 /* kami_res_aiTests.swift */,
 			);
 			path = "kami-res-aiTests";
+			sourceTree = "<group>";
+		};
+		316278EE2D69CA08009A8E07 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				316278EC2D69C964009A8E07 /* kami-res-aiTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		31642BC22D46194800A30C7B /* Onboarding */ = {
