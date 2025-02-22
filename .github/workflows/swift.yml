@@ -17,12 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install Swift 5.10.0
-      uses: swift-actions/setup-swift@v1
-      with:
-        swift-version: "5.10.0"
-
-
     - name: Build
       run: swift build -v
 
