@@ -145,7 +145,7 @@ class OpenAIService {
     }
     
     private func generatePrompt(messageMood: MessageMood) -> String {
-        let meessageLengthText = messageLengthText(messageMood: messageMood)
+        let messageLengthText = messageLengthText(messageMood: messageMood)
         
         let promptHelper =
             """
@@ -155,7 +155,7 @@ class OpenAIService {
             #守らなければいけない制約
             ・日本語で必ず回答すること。
             ・"「", "」"を使わないでください。
-            ・\(meessageLengthText)文字以内で生成してください。\n\n
+            ・\(messageLengthText)文字以内で生成してください。\n\n
             """
          
         let finalPrompt = promptHelper + messageMood.type.prompt
