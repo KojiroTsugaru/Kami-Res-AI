@@ -33,7 +33,6 @@ struct Constants {
 
 /// AccessToken
 extension Constants {
-    
     public struct AccessToken {
         /// OpenAI API Key
         public static let openAI = "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"
