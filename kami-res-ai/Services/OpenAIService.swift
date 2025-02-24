@@ -136,11 +136,11 @@ class OpenAIService {
     private func messageLengthText(messageMood: MessageMood) -> String {
         switch messageMood.messageLength {
         case .short:
-            return "10"
+            return "15文字以内"
         case .medium:
-            return "20"
+            return "20文字以上50文字以内"
         case .long:
-            return "30"
+            return "50文字以上"
         }
     }
     
@@ -155,7 +155,7 @@ class OpenAIService {
             #守らなければいけない制約
             ・日本語で必ず回答すること。
             ・"「", "」"を使わないでください。
-            ・\(messageLengthText)文字以内で生成してください。\n\n
+            ・文字数は\(messageLengthText)で生成してください。\n\n
             """
          
         let finalPrompt = promptHelper + messageMood.type.prompt
