@@ -20,7 +20,8 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                GradientAnimatedBackground()
+                Constants.ColorAsset.primaryGradient.opacity(0.5)
+                    .ignoresSafeArea()
 
                 ScrollView {
                     VStack(spacing: 28) {
