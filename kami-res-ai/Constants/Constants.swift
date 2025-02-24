@@ -33,7 +33,6 @@ struct Constants {
 
 /// AccessToken
 extension Constants {
-    
     public struct AccessToken {
         /// OpenAI API Key
         public static let openAI = "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"
@@ -44,15 +43,15 @@ extension Constants {
 
 extension Constants {
     public struct ColorAsset {
+        static let primaryColor = Color("gradientPrimary")
+        static let secondaryColor = Color("gradientSecondary")
+        
+        
         public static let primaryGradient: LinearGradient = {
             // Define the gradient colors from the asset catalog
             let colors = [
-                Color(
-                    "gradientSecondary"
-                ),// Replace with your actual color name
-                Color(
-                    "gradientPrimary"
-                )   // Replace with your actual color name
+                secondaryColor,
+                primaryColor
             ]
             return LinearGradient(
                 gradient: Gradient(colors: colors),
