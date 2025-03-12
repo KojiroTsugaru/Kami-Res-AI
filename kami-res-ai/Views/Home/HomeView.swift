@@ -79,7 +79,7 @@ struct HomeView: View {
                             
                             Text("*アップロードされた情報はサーバーに保存されません")
                                 .font(.caption)
-                                .foregroundColor(Color(.white).opacity(0.9))
+                                .foregroundColor(Color(.gray))
                         }
 
                         Spacer()
