@@ -28,8 +28,7 @@ class ManuallyEnterMessageViewModel: ObservableObject {
         async let reply = try await openAIService
             .getSuggestedReply(
                 recipientName: recipientName!, // validated in validate method
-                chatHistory: chatHistory,
-                prompt: messageMood.type.prompt
+                chatHistory: chatHistory
             )
         try await chatHistory
             .append(ChatHistoryItem(message: reply, sender: .api))

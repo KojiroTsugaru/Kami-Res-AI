@@ -39,6 +39,13 @@ extension Constants {
         
         public static let superWall = "pk_04123874dc7c2cbb917980ceca251d4a77368dc551838c88"
     }
+    
+    public struct Endpoint {
+        private static let promptBaseUrl = "https://kami-res-ai-backend-production.up.railway.app/api/v1"
+        public static let prompt = "\(promptBaseUrl)/prompt"
+        
+        public static let openAI = "https://api.openai.com/v1/chat/completions"
+    }
 }
 
 extension Constants {

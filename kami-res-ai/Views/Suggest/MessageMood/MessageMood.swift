@@ -13,10 +13,10 @@ struct MessageMood: Equatable {
 
     static let defaultMood = MessageMood(type: .casual, messageLength: .medium)
 
-    enum MoodType: CaseIterable {
-        case casual
-        case humorous
-        case cool
+    enum MoodType: String, CaseIterable {
+        case casual = "casual"
+        case humorous = "humorous"
+        case cool = "cool"
         
         var emoji: String {
             switch self {
@@ -31,14 +31,6 @@ struct MessageMood: Equatable {
             case .casual: return "カジュアルで話しやすい"
             case .humorous: return "ユーモア溢れる"
             case .cool: return "クールに大人っぽく"
-            }
-        }
-
-        var prompt: String {
-            switch self {
-            case .casual: return Constants.Prompts.casual
-            case .humorous: return Constants.Prompts.humorous
-            case .cool: return Constants.Prompts.cool
             }
         }
     }

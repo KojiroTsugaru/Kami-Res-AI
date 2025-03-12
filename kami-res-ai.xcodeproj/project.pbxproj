@@ -23,6 +23,7 @@
 		313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */; };
 		313FE70A2D3C9E99009EA68F /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */; };
 		313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE70E2D40B8EF009EA68F /* ChatItem.swift */; };
+		315D152C2D7F4ACE003B43A1 /* PromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315D152B2D7F4AC7003B43A1 /* PromptService.swift */; };
 		316278ED2D69C964009A8E07 /* kami_res_aiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316278EB2D69C964009A8E07 /* kami_res_aiTests.swift */; };
 		31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31642BBD2D44EADB00A30C7B /* Constants.swift */; };
 		31642BC12D46152E00A30C7B /* SuperwallKit in Frameworks */ = {isa = PBXBuildFile; productRef = 31642BC02D46152E00A30C7B /* SuperwallKit */; };
@@ -43,7 +44,6 @@
 		31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */; };
 		31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */; };
 		31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B7DBE52D5363210010CD9A /* MessageMood.swift */; };
-		31D1F7DE2D564443008A7E83 /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D1F7DD2D564433008A7E83 /* Prompts.swift */; };
 		31D23BAA2D6328BF00ECACB8 /* ManuallyEnterMessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D23BA92D6328A500ECACB8 /* ManuallyEnterMessageBubble.swift */; };
 		31D23BAC2D63556E00ECACB8 /* ChatHistorySender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D23BAB2D63556200ECACB8 /* ChatHistorySender.swift */; };
 		31EAC9242D570ED2001AF978 /* HannariMincho-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 31EAC9232D570ED2001AF978 /* HannariMincho-Regular.otf */; };
@@ -79,6 +79,7 @@
 		313FE6BA2D3B9E3A009EA68F /* kami-res-ai.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "kami-res-ai.xcdatamodel"; sourceTree = "<group>"; };
 		313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
 		313FE70E2D40B8EF009EA68F /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		315D152B2D7F4AC7003B43A1 /* PromptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptService.swift; sourceTree = "<group>"; };
 		316278E22D69C953009A8E07 /* kami-res-aiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kami-res-aiTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		316278EB2D69C964009A8E07 /* kami_res_aiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kami_res_aiTests.swift; sourceTree = "<group>"; };
 		31642BBD2D44EADB00A30C7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		31B7DBDB2D5242710010CD9A /* HomeTopButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonLabel.swift; sourceTree = "<group>"; };
 		31B7DBE22D5362A30010CD9A /* MessageMoodButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMoodButton.swift; sourceTree = "<group>"; };
 		31B7DBE52D5363210010CD9A /* MessageMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMood.swift; sourceTree = "<group>"; };
-		31D1F7DD2D564433008A7E83 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
 		31D23BA92D6328A500ECACB8 /* ManuallyEnterMessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterMessageBubble.swift; sourceTree = "<group>"; };
 		31D23BAB2D63556200ECACB8 /* ChatHistorySender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistorySender.swift; sourceTree = "<group>"; };
 		31EAC9232D570ED2001AF978 /* HannariMincho-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HannariMincho-Regular.otf"; sourceTree = "<group>"; };
@@ -171,6 +171,7 @@
 				313FE6C82D3B9ED9009EA68F /* OpenAIService.swift */,
 				313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */,
 				31A182AD2D5E43690013A9CE /* ChatHistoryItem.swift */,
+				315D152B2D7F4AC7003B43A1 /* PromptService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -231,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				31642BBD2D44EADB00A30C7B /* Constants.swift */,
-				31D1F7DD2D564433008A7E83 /* Prompts.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -457,6 +457,7 @@
 				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
 				31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */,
 				313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */,
+				315D152C2D7F4ACE003B43A1 /* PromptService.swift in Sources */,
 				31A182AE2D5E436F0013A9CE /* ChatHistoryItem.swift in Sources */,
 				31F8A3B82D6606A700D82E34 /* MessageMoodLabel.swift in Sources */,
 				31A182AA2D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift in Sources */,
@@ -471,7 +472,6 @@
 				313FE6C22D3B9E3A009EA68F /* RootView.swift in Sources */,
 				31B7DBDC2D5242790010CD9A /* HomeTopButtonLabel.swift in Sources */,
 				31893E702D69C2C4000803CC /* GradientAnimatedBackground.swift in Sources */,
-				31D1F7DE2D564443008A7E83 /* Prompts.swift in Sources */,
 				31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */,
 				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31D23BAC2D63556E00ECACB8 /* ChatHistorySender.swift in Sources */,
@@ -515,7 +515,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kami-res-ai/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
@@ -532,7 +532,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-ai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -552,7 +552,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kami-res-ai/Preview Content\"";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
@@ -569,7 +569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-ai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

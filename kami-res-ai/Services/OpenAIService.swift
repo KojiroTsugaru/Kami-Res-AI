@@ -9,7 +9,7 @@ import Foundation
 
 class OpenAIService {
     private let apiKey = Constants.AccessToken.openAI
-    private let endpoint = "https://api.openai.com/v1/chat/completions"
+    private let endpoint = Constants.Endpoint.openAI
     private let model = "gpt-4o"
     private let maxTokens: Int = 1000
 
@@ -24,8 +24,19 @@ class OpenAIService {
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
        
-        let prompt = generatePrompt(messageMood: messageMood)
-        print(prompt)
+        // MARK: Get prompt from api
+        var prompt: String = "Default Prompt"
+        
+        do {
+            let response = try await PromptService.shared.sendPromptRequest(
+                length: messageMood.messageLength.rawValue,
+                mood: messageMood.type.rawValue
+            )
+            prompt = response.prompt
+            print("Prompt: \(response.prompt), Status: \(response.status)")
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
         
         // Create the JSON payload
         let payload: [String: Any] = [
@@ -79,7 +90,7 @@ class OpenAIService {
         }
     }
     
-    func getSuggestedReply(recipientName: String, chatHistory: [ChatHistoryItem], prompt: String) async throws -> String {
+    func getSuggestedReply(recipientName: String, chatHistory: [ChatHistoryItem]) async throws -> String {
         guard let url = URL(string: endpoint) else {
             throw OpenAIServiceError.invalidURL
         }
@@ -97,6 +108,7 @@ class OpenAIService {
             ・以下は\(recipientName)との過去の会話履歴です。\n
             """
          
+        let prompt = ""
         let finalPrompt = promptHelper + prompt
         
         let payload: [String: Any] = [
@@ -131,35 +143,6 @@ class OpenAIService {
         } catch {
             throw OpenAIServiceError.decodingError
         }
-    }
-    
-    private func messageLengthText(messageMood: MessageMood) -> String {
-        switch messageMood.messageLength {
-        case .short:
-            return "15文字以内"
-        case .medium:
-            return "20文字以上50文字以内"
-        case .long:
-            return "50文字以上"
-        }
-    }
-    
-    private func generatePrompt(messageMood: MessageMood) -> String {
-        let messageLengthText = messageLengthText(messageMood: messageMood)
-        
-        let promptHelper =
-            """
-            #前提
-            ・この画像はあなたが仲良くなりたい思っている相手とのチャットのスクリーンショットです。
-            
-            #守らなければいけない制約
-            ・日本語で必ず回答すること。
-            ・"「", "」"を使わないでください。
-            ・文字数は\(messageLengthText)で生成してください。\n\n
-            """
-         
-        let finalPrompt = promptHelper + messageMood.type.prompt
-        return finalPrompt
     }
     
     private func formatChatHistory(chatHistory: [ChatHistoryItem]) -> String {

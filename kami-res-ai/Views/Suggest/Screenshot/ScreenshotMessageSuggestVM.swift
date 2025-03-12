@@ -14,6 +14,7 @@ import UIKit
 class ScreenshotMessageSuggestVM: ObservableObject {
     private let openAIService = OpenAIService()
     private let loadingMessage = Constants.loadingMessage
+    static let chatErrorMessage = "返信を取得できませんでした。インターネット接続を確認し、やりなおしてください。"
 
     @Published var chatItems: [ChatItem] = []
     @Published var selectedPhoto: PhotosPickerItem?
@@ -49,7 +50,7 @@ class ScreenshotMessageSuggestVM: ObservableObject {
             print("Error: \(error)")
 
             self.removeLoadingMessage()
-            self.addMessage(text: "レスポンスの取得に失敗しました。通信環境を確認し、再試行してください。")
+            self.addMessage(text: Self.chatErrorMessage)
         }
     }
 
