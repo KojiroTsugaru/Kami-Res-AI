@@ -10,7 +10,6 @@ import SuperwallKit
 
 @main
 struct KamiResAIApp: App {
-    let persistenceController = PersistenceController.shared
     
     init() {
         Superwall.configure(apiKey: Constants.AccessToken.superWall)
@@ -20,7 +19,6 @@ struct KamiResAIApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
     
