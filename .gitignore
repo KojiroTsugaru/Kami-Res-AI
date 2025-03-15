@@ -11,7 +11,6 @@ xcuserdata/
 
 # Swift Package Manager
 .build/
-*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
 # API Key
-Constants/Constants.swift
+./Constants/Constants.swift
