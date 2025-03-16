@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class SuggestHistoryObject: Object {
+class SuggestHistoryObject: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
     @Persisted var chatItems = List<ChatItemObject>()
     @Persisted var createdAt: Date = Date()

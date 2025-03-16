@@ -20,11 +20,10 @@ struct HomeView: View {
                 Constants.ColorAsset.primaryGradient.opacity(0.5)
                     .ignoresSafeArea()
 
-                ScrollView {
-                    VStack(spacing: 28) {
-                        Spacer()
-                            .frame(height: 200)
-                        
+                VStack(spacing: 28) {
+                    HomeViewHistoryGridView()
+
+                    VStack(spacing: 8) {
                         // 写真アップロードボタン
                         if DailyActionManager.shared.canPerformAction() {
                             PhotosPicker(
@@ -34,63 +33,31 @@ struct HomeView: View {
                             ) {
                                 HomeUploadScreenshotButtonLabel()
                             }
-                        } else {    
+                        } else {
                             Button {
                                 viewModel.showPaywallIfNeeded()
                             } label: {
                                 HomeUploadScreenshotButtonLabel()
                             }
                         }
-                                    
+                        
                         // メッセージ入力ボタン
-                        VStack(spacing: 12) {
-                            Button(
-                                action: {
-                                    // 手動入力開発中のアラートを表示
-                                    showComingSoonAlert = true
-                                    
-                                    // 手動入力Viewに遷移する(navigateToManuallyType = trueを追加すればOK)
-                                }) {
-                                    HStack(spacing: 12) {
-                                        Image(systemName: "keyboard")
-                                            .font(.largeTitle)
-                                        VStack {
-                                            Text("自分でメッセージを入力する")
-                                                .font(.headline)
-                                            Text("過去のメッセージ内容を手動で登録")
-                                                .font(.caption)
-                                        }
-                                    }
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color("gradientSecondary"))
-                                    .cornerRadius(20)
-                                    .shadow(
-                                        color: Color(.black)
-                                            .opacity(0.25),
-                                        radius: 8
-                                    )
-                                }
-                            
-                            Text("*アップロードされた情報はサーバーに保存されません")
-                                .font(.caption)
-                                .foregroundColor(Color(.gray))
+                        Button {
+                            showComingSoonAlert = true
+                        } label: {
+                            ManuallyEnterButtonLabel()
                         }
-
-                        Spacer()
                     }
-                    .padding()
                 }
-                
-                .navigationDestination(isPresented: $viewModel.navigateToSuggestView) {
-                    ScreenshotMessageSuggestView(
-                        history: viewModel.newHistory ?? SuggestHistoryObject()
-                    )
-                }
-                .navigationDestination(isPresented: $viewModel.navigateToManuallyType) {
-                    ManuallyEnterMeesageView()
-                }
+                .padding()
+            }
+            .navigationDestination(isPresented: $viewModel.navigateToSuggestView) {
+                ScreenshotMessageSuggestView(
+                    history: viewModel.newHistory ?? SuggestHistoryObject()
+                )
+            }
+            .navigationDestination(isPresented: $viewModel.navigateToManuallyType) {
+                ManuallyEnterMeesageView()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -135,7 +102,6 @@ struct HomeView: View {
         }
     }
 }
-
 
 #Preview {
     HomeView()

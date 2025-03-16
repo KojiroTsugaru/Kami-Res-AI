@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 
-class ChatItemObject: Object {
+class ChatItemObject: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id: String = UUID().uuidString
     @Persisted var textContent: String? // For text messages
     @Persisted var imagePath: String? // For image messages
