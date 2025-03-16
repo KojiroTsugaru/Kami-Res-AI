@@ -10,10 +10,7 @@ import PhotosUI
 import SuperwallKit
 
 struct HomeView: View {
-    
     @StateObject private var viewModel = HomeVM()
-    @State private var navigateToUploadScreenshot = false
-    @State private var navigateToManuallyType = false
     @State private var showComingSoonAlert = false
     @State private var showPremiumAlert = false
     
@@ -35,13 +32,13 @@ struct HomeView: View {
                                 matching: .images,
                                 photoLibrary: .shared()
                             ) {
-                                HomeTopButtonLabel()
+                                HomeUploadScreenshotButtonLabel()
                             }
-                        } else {
+                        } else {    
                             Button {
                                 viewModel.showPaywallIfNeeded()
                             } label: {
-                                HomeTopButtonLabel()
+                                HomeUploadScreenshotButtonLabel()
                             }
                         }
                                     
@@ -52,8 +49,7 @@ struct HomeView: View {
                                     // 手動入力開発中のアラートを表示
                                     showComingSoonAlert = true
                                     
-                                    // 手動入力Viewに移動する
-//                                    navigateToManuallyType = true
+                                    // 手動入力Viewに遷移する(navigateToManuallyType = trueを追加すればOK)
                                 }) {
                                     HStack(spacing: 12) {
                                         Image(systemName: "keyboard")
@@ -86,24 +82,14 @@ struct HomeView: View {
                     }
                     .padding()
                 }
-
-                // NavigationLink for screen shot upload
-                NavigationLink(
-                    destination: ScreenshotMessageSuggestView(
-                        base64Image: viewModel.base64String,
-                        image: viewModel.image
-                    ),
-                    isActive: $navigateToUploadScreenshot
-                ) {
-                    EmptyView()
-                }
                 
-                // NavigationLink for manually typed messages
-                NavigationLink(
-                    destination: ManuallyEnterMeesageView(),
-                    isActive: $navigateToManuallyType
-                ) {
-                    EmptyView()
+                .navigationDestination(isPresented: $viewModel.navigateToSuggestView) {
+                    ScreenshotMessageSuggestView(
+                        history: viewModel.newHistory ?? SuggestHistoryObject()
+                    )
+                }
+                .navigationDestination(isPresented: $viewModel.navigateToManuallyType) {
+                    ManuallyEnterMeesageView()
                 }
             }
             .toolbar {
@@ -129,10 +115,7 @@ struct HomeView: View {
             .onChange(of: viewModel.selectedPhoto) { newItem in
                 if let newItem = newItem {
                     Task {
-                        await viewModel.loadAndEncodePhoto(from: newItem)
-                        try? await Task
-                            .sleep(for: .seconds(0.5)) // Wait for 0.5 seconds
-                        self.navigateToUploadScreenshot = true
+                        await viewModel.didPhotoPicked(newItem)
                     }
                 }
             }

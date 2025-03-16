@@ -12,99 +12,83 @@ import SwiftUI
 import UIKit
 
 class ScreenshotMessageSuggestVM: ObservableObject {
+    static let networkErrorMessage = "返信を取得できませんでした。接続を確認し、やりなおしてください。"
+    
     private let openAIService = OpenAIService()
     private let loadingMessage = Constants.loadingMessage
-    static let chatErrorMessage = "返信を取得できませんでした。インターネット接続を確認し、やりなおしてください。"
-
-    @Published var chatItems: [ChatItem] = []
+    private let historyManager =  SuggestHistoryManager.shared
+    
+    @Published var history: SuggestHistoryObject
+    
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var errorMessage: String = ""
-    @Published var base64Image: String?
+    @Published var latestImageData: Data? = nil
     @Published var messageMood: MessageMood = MessageMood.defaultMood
+    @Published var isLoading: Bool = false
+    
+    @MainActor
+    init(with suggestHistory: SuggestHistoryObject) {
+        self.history = suggestHistory
+        setLatestImageQuery(with: suggestHistory)
+    }
 
     func addMessage(text: String) {
-        self.chatItems.append(.message(text))
+        historyManager.addTextMessage(to: history, text: text)
     }
 
     func addImage(image: UIImage) {
-        self.chatItems.append(.image(image))
+        historyManager.addImageMessage(to: history, image: image)
+    }
+    
+    @MainActor
+    func setLatestImageQuery(with history: SuggestHistoryObject) {
+        if let latestImageItem = history.chatItems.filter({ $0.imagePath != nil }).last,
+           let imagePath = latestImageItem.imagePath,
+           let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath)) {
+            latestImageData = imageData
+        }
     }
 
     @MainActor
     public func getSuggestedMessage() async {
-        // Add a loading placeholder message
-        self.addMessage(text: loadingMessage)
-
+        errorMessage = ""
+        isLoading = true
         do {
+            guard let latestImageData = latestImageData else { return }
+            
             let response = try await openAIService.getSuggestedReplyFromImage(
-                base64Image: base64Image ?? "",
+                imageData: latestImageData,
                 messageMood: messageMood
             )
 
-            self.removeLoadingMessage()
-
             // Add the response to chat item
             self.addMessage(text: response)
+            isLoading = false
             print("Response: \(response)")
         } catch {
+            isLoading = false
+            errorMessage = Self.networkErrorMessage
             print("Error: \(error)")
-
-            self.removeLoadingMessage()
-            self.addMessage(text: Self.chatErrorMessage)
         }
     }
-
-    /// Loads the selected photo and encodes it to Base64
+    
     @MainActor
-    public func loadAndEncodePhoto(from item: PhotosPickerItem) async {
+    func handleNewPhotoSelection(_ newItem: PhotosPickerItem?) async {
+        guard let newItem = newItem else { return }
+        
         do {
-            // Load image data
-            if let data = try await item.loadTransferable(type: Data.self) {
-                // Create a UIImage
-                if let uiImage = UIImage(data: data) {
-
-                    // add image to chatItem
-                    self.addImage(image: uiImage)
-
-                    // Encode the image data to Base64
-                    self.base64Image = data.base64EncodedString()
-
-                    try? await Task
-                        .sleep(for: .seconds(0.5))  // Wait for 0.5 seconds
-                    await self.generateResponseIfNeeded()
-
-                } else {
-                    self.errorMessage = "画像のアップロードに失敗しました"
+            // 画像データを取得
+            if let data = try await newItem.loadTransferable(type: Data.self) {
+                // Data を UIImage に変換
+                if let image = UIImage(data: data) {
+                    addImage(image: image)
+                    setLatestImageQuery(with: history)
+                    await generateResponseIfNeeded()
                 }
-            } else {
-                self.errorMessage = "写真のロードに失敗しました"
             }
         } catch {
             self.errorMessage = "An error occurred: \(error.localizedDescription)"
         }
-    }
-
-    private func removeLoadingMessage() {
-        // Remove the loading message
-        guard isLoadingMessage() else {
-            return
-        }
-
-        if let loadingIndex = chatItems.firstIndex(where: {
-            if case .message(let text) = $0, text == loadingMessage {
-                return true
-            }
-            return false
-        }) {
-            self.chatItems.remove(at: loadingIndex)
-        }
-    }
-
-    private func isLoadingMessage() -> Bool {
-        if let lastItem = chatItems.last, case .message("Loading") = lastItem {
-            return true
-        }
-        return false
     }
 
     public func copyToClipboard(text: String) {
@@ -112,7 +96,7 @@ class ScreenshotMessageSuggestVM: ObservableObject {
     }
 
     public func generateResponseIfNeeded() async {
-        guard !isLoadingMessage() else {
+        guard !isLoading else {
             return
         }
 
@@ -123,7 +107,7 @@ class ScreenshotMessageSuggestVM: ObservableObject {
             Superwall.shared.register(event: "campaign_trigger")
         }
     }
-
+    
     public func actionRemainedForTodayString() -> String {
         let actionManager = DailyActionManager.shared
         if actionManager.isUserSubscribed() {

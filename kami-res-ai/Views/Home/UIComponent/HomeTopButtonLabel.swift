@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeTopButtonLabel: View {
+struct HomeUploadScreenshotButtonLabel: View {
     var body: some View {
         VStack {
             HStack(spacing: 12) {

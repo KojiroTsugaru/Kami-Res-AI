@@ -1,10 +1,5 @@
 import Foundation
 
-public struct Endpoint {
-    private static let baseUrl = "https://kami-res-ai-backend-production.up.railway.app/api/v1"
-    public static let prompt = "\(baseUrl)/prompt"
-}
-
 // Define the response model
 struct PromptResponse: Codable {
     let prompt: String
@@ -18,7 +13,7 @@ class PromptService {
 
     /// `POST` request to fetch a prompt
     func sendPromptRequest(length: Double, mood: String) async throws -> PromptResponse {
-        guard let url = URL(string: Endpoint.prompt) else {
+        guard let url = URL(string: Constants.Endpoint.prompt) else {
             throw PromptError.invalidURL
         }
 

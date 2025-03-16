@@ -1,0 +1,16 @@
+//
+//  AIResponseHistory.swift
+//  kami-res-ai
+//
+//  Created by KJ on 3/15/25.
+//
+
+import Foundation
+import RealmSwift
+
+class SuggestHistoryObject: Object {
+    @Persisted(primaryKey: true) var id: String = UUID().uuidString
+    @Persisted var chatItems = List<ChatItemObject>()
+    @Persisted var createdAt: Date = Date()
+}
+

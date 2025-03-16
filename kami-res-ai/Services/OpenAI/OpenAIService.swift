@@ -8,67 +8,53 @@
 import Foundation
 
 class OpenAIService {
-    private let apiKey = Constants.AccessToken.openAI
-    private let endpoint = Constants.Endpoint.openAI
-    private let model = "gpt-4o"
-    private let maxTokens: Int = 1000
+    static let apiKey = Constants.AccessToken.openAI
+    static let endpoint = Constants.Endpoint.openAI
+    static let model = "gpt-4o"
+    static let maxTokens: Int = 1000
 
-    func getSuggestedReplyFromImage(base64Image: String, messageMood: MessageMood) async throws -> String {
+    func getSuggestedReplyFromImage(imageData: Data, messageMood: MessageMood) async throws -> String {
         
-        guard let url = URL(string: endpoint) else {
+        // MARK: Get prompt from api
+        let prompt = await getPrompt(for: messageMood)
+        
+        guard let prompt = prompt else { return "" }
+        
+        guard let url = URL(string: Self.endpoint) else {
             throw OpenAIServiceError.invalidURL
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(Self.apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-       
-        // MARK: Get prompt from api
-        var prompt: String = "Default Prompt"
         
-        do {
-            let response = try await PromptService.shared.sendPromptRequest(
-                length: messageMood.messageLength.rawValue,
-                mood: messageMood.type.rawValue
-            )
-            prompt = response.prompt
-            print("Prompt: \(response.prompt), Status: \(response.status)")
-        } catch {
-            print("Error: \(error.localizedDescription)")
-        }
-        
-        // Create the JSON payload
+        // Convert image to Base64
+        let base64Image = imageData.base64EncodedString()
+
+        // JSON Payload (Valid for OpenAI API)
         let payload: [String: Any] = [
-            "model": model,
+            "model": Self.model,
             "messages": [
                 [
                     "role": "user",
                     "content": [
-                        [
-                            "type": "text",
-                            "text": prompt
-                        ],
-                        [
-                            "type": "image_url",
-                            "image_url": ["url": "data:image/jpeg;base64,\(base64Image)"]
-                        ]
+                        ["type": "text", "text": prompt],
+                        ["type": "image_url", "image_url": ["url": "data:image/jpeg;base64,\(base64Image)"]]
                     ]
                 ]
             ],
-            "max_tokens": maxTokens
+            "max_tokens": Self.maxTokens
         ]
-        
+
+        // Convert to JSON
         do {
-            let jsonData = try JSONSerialization.data(
-                withJSONObject: payload,
-                options: []
-            )
+            let jsonData = try JSONSerialization.data(withJSONObject: payload, options: [])
             request.httpBody = jsonData
         } catch {
-            throw OpenAIServiceError.encodingError
+            print("Error encoding JSON: \(error)")
         }
-        
+
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
@@ -91,13 +77,13 @@ class OpenAIService {
     }
     
     func getSuggestedReply(recipientName: String, chatHistory: [ChatHistoryItem]) async throws -> String {
-        guard let url = URL(string: endpoint) else {
+        guard let url = URL(string: Self.endpoint) else {
             throw OpenAIServiceError.invalidURL
         }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(Self.apiKey)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // プロンプト作成
@@ -112,12 +98,12 @@ class OpenAIService {
         let finalPrompt = promptHelper + prompt
         
         let payload: [String: Any] = [
-            "model": model,
+            "model": Self.model,
             "messages": [
                 ["role": "user", "content": formattedChatHistory],
                 ["role": "system", "content": finalPrompt]
             ],
-            "max_tokens": maxTokens
+            "max_tokens": Self.maxTokens
         ]
         
         do {
@@ -153,5 +139,20 @@ class OpenAIService {
         }
         
         return formattedHistory.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    // MARK: Get prompt from api
+    private func getPrompt(for messageMood: MessageMood) async -> String? {
+        do {
+            let response = try await PromptService.shared.sendPromptRequest(
+                length: messageMood.messageLength.rawValue,
+                mood: messageMood.type.rawValue
+            )
+            print("Prompt: \(response.prompt), Status: \(response.status)")
+            return response.prompt
+        } catch {
+            print("Error: \(error.localizedDescription)")
+            return nil
+        }
     }
 }

@@ -10,22 +10,26 @@ import SuperwallKit
 import SwiftUI
 
 struct ScreenshotMessageSuggestView: View {
-    let base64Image: String?
-    let image: UIImage?
 
     @Environment(\.dismiss) private var dismiss
 
     @StateObject private var actionManager = DailyActionManager.shared
-    @ObservedObject private var viewModel = ScreenshotMessageSuggestVM()
+    @ObservedObject private var viewModel: ScreenshotMessageSuggestVM
     @State private var showCopyConfirmation: Bool = false
     @State private var showMessageMoodChange: Bool = false
     @State private var showMoodModal: Bool = false
     
-
+    let history: SuggestHistoryObject
+    
+    init(history: SuggestHistoryObject) {
+        self.history = history
+        self.viewModel = ScreenshotMessageSuggestVM(with: history)
+    }
+    
     var body: some View {
         ZStack {
             VStack {
-                ScrollableContent(image: image)
+                ScrollableContent()
                 actionButtonsBottom
             }
             if showCopyConfirmation {
@@ -40,6 +44,17 @@ struct ScreenshotMessageSuggestView: View {
                     selectedMood: $viewModel.messageMood
                 )
             }
+            if viewModel.isLoading {
+                VStack(alignment: .center, spacing: 8) {
+                    ProgressView()
+                    Text("メッセージを生成しています...")
+                        .foregroundColor(.black)
+                        .font(.body)
+                }
+                .padding()
+                .background(Color(.white))
+                .cornerRadius(16)
+            }
         }
         .toolbar {
             BackButtonToolbar
@@ -48,23 +63,52 @@ struct ScreenshotMessageSuggestView: View {
         .background(BackgroundGradient)
         .ignoresSafeArea(.all)
         .task {
-            viewModel.base64Image = base64Image
             await viewModel.generateResponseIfNeeded()
         }
         .onChange(of: viewModel.selectedPhoto) { newItem in
-            handlePhotoSelection(newItem)
+            Task {
+                await viewModel.handleNewPhotoSelection(newItem)
+            }
         }
         .navigationBarBackButtonHidden()
     }
 
     // MARK: - Subviews
-    private func ScrollableContent(image: UIImage?) -> some View {
+    private func ScrollableContent() -> some View {
         ScrollViewReader { proxy in
             ScrollView(.vertical) {
-                VStack {
-                    DisplayImage(image: image)
-                    InstructionText
-                    ChatItemsList()
+                VStack(alignment: .trailing) {
+                    ForEach(history.chatItems, id: \.id) { chatItem in
+                        if let text = chatItem.textContent {
+                            HStack {
+                                Spacer()
+                                ScreenshotMessageBubbleView(message: text)
+                                    .onTapGesture {
+                                        handleTextCopy(text)
+                                    }
+                            }
+                        } else if let imagePath = chatItem.imagePath, let uiImage = UIImage(contentsOfFile: imagePath) {
+                            VStack {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .cornerRadius(8)
+                                    .shadow(radius: 4)
+                                    .padding()
+                                MessageCopyInstructionText
+                            }
+                        }
+                    }
+                    
+                    if !viewModel.errorMessage.isEmpty {
+                        HStack {
+                            Spacer()
+                            ScreenshotMessageBubbleView(message: viewModel.errorMessage)
+                        }
+                        .onAppear {
+                            chatItemListScrollToBottom(proxy: proxy)
+                        }
+                    }
 
                     // Dummy hidden view for scrolling
                     Color.clear
@@ -72,59 +116,22 @@ struct ScreenshotMessageSuggestView: View {
                         .id("BottomAnchor")
                 }
             }
-            .onChange(of: viewModel.chatItems.count) { _ in
-                DispatchQueue.main.async {
-                    proxy.scrollTo("BottomAnchor", anchor: .bottom)
-                }
+            .onChange(of: viewModel.history.chatItems.count) { _ in
+                chatItemListScrollToBottom(proxy: proxy)
             }
         }
     }
-
-    private func DisplayImage(image: UIImage?) -> some View {
-        Group {
-            if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(8)
-                    .shadow(radius: 4)
-                    .padding()
-            } else {
-                Spacer().frame(height: 100)
-                ProgressView("画像をロード中...")
-                    .padding()
-            }
+    
+    private func chatItemListScrollToBottom(proxy: ScrollViewProxy) {
+        DispatchQueue.main.async {
+            proxy.scrollTo("BottomAnchor", anchor: .bottom)
         }
     }
 
-    private var InstructionText: some View {
+    private var MessageCopyInstructionText: some View {
         Text("-- 📎メッセージをタップしてコピー --")
             .font(.caption)
             .foregroundColor(.gray)
-    }
-
-    private func ChatItemsList() -> some View {
-        VStack(alignment: .trailing) {
-            ForEach(viewModel.chatItems) { item in
-                if case .message(let text) = item {
-                    HStack {
-                        Spacer()
-                        ScreenshotMessageBubbleView(message: text)
-                            .onTapGesture {
-                                handleTextCopy(text)
-                            }
-                    }
-                } else if case .image(let image) = item {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(8)
-                        .shadow(radius: 4)
-                        .padding()
-                        .id(item.id)
-                }
-            }
-        }
     }
 
     private var actionButtonsBottom: some View {
@@ -228,14 +235,6 @@ struct ScreenshotMessageSuggestView: View {
             withAnimation(.easeInOut(duration: 0.1)) {  // Fade out animation
                 showCopyConfirmation = false
             }
-        }
-    }
-
-    private func handlePhotoSelection(_ newItem: PhotosPickerItem?) {
-        guard newItem != nil else { return }
-        Task {
-            await viewModel.loadAndEncodePhoto(from: newItem!)
-            try? await Task.sleep(for: .seconds(1.0))  // Wait for 0.5 seconds
         }
     }
 }
