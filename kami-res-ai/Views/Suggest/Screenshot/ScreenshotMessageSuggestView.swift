@@ -63,7 +63,7 @@ struct ScreenshotMessageSuggestView: View {
         .background(BackgroundGradient)
         .ignoresSafeArea(.all)
         .task {
-            await viewModel.generateResponseIfNeeded()
+            await viewModel.handleViewAppear()
         }
         .onChange(of: viewModel.selectedPhoto) { newItem in
             Task {

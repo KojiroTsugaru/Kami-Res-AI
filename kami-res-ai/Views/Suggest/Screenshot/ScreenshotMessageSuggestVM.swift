@@ -90,16 +90,19 @@ class ScreenshotMessageSuggestVM: ObservableObject {
             self.errorMessage = "An error occurred: \(error.localizedDescription)"
         }
     }
+    
+    @MainActor
+    func handleViewAppear() async {
+        if history.chatItems.count == 1 && history.chatItems.first?.imagePath != nil {
+            await generateResponseIfNeeded()
+        }
+    }
 
     public func copyToClipboard(text: String) {
         UIPasteboard.general.string = text
     }
 
     public func generateResponseIfNeeded() async {
-        guard !isLoading else {
-            return
-        }
-
         if DailyActionManager.shared.performActionIfNeeded() {
             await self.getSuggestedMessage()
             print("Action remained today: \(DailyActionManager.shared.getCurrentActionCount())")

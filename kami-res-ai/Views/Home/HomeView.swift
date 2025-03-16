@@ -44,6 +44,8 @@ struct HomeView: View {
                         // メッセージ入力ボタン
                         Button {
                             showComingSoonAlert = true
+                            SuggestHistoryManager.shared
+                                .deleteAllSuggestHistoryObjects()
                         } label: {
                             ManuallyEnterButtonLabel()
                         }

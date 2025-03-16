@@ -74,4 +74,62 @@ class SuggestHistoryManager {
             realm.delete(chatItem)
         }
     }
+    
+    func deleteHistory(_ history: SuggestHistoryObject) {
+        do {
+            let realm = try Realm() // Get a new live Realm instance
+            
+            guard let existingHistory = realm.object(ofType: SuggestHistoryObject.self, forPrimaryKey: history.id) else {
+                print("Error: The history object does not exist in this Realm.")
+                return
+            }
+
+            try realm.write {
+                // Delete all images associated with the history
+                for chatItem in existingHistory.chatItems {
+                    if let imagePath = chatItem.imagePath {
+                        deleteImage(at: imagePath)
+                    }
+                }
+
+                // Delete the history object from Realm
+                realm.delete(existingHistory)
+                print("History and associated images deleted from Realm")
+            }
+        } catch {
+            print("Failed to delete history: \(error.localizedDescription)")
+        }
+    }
+
+
+    
+    func deleteAllSuggestHistoryObjects() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                let allHistoryObjects = realm.objects(SuggestHistoryObject.self)
+                realm.delete(allHistoryObjects) // Delete all `SuggestHistoryObject`
+            }
+            print("All SuggestHistoryObjects deleted.")
+        } catch {
+            print("Error deleting SuggestHistoryObjects:", error.localizedDescription)
+        }
+    }
+    
+    private func deleteImage(at path: String) {
+        let fileManager = FileManager.default
+        let url = URL(fileURLWithPath: path)
+
+        if fileManager.fileExists(atPath: url.path) {
+            do {
+                try fileManager.removeItem(at: url)
+                print("Deleted image at: \(url.path)")
+            } catch {
+                print("Failed to delete image: \(error.localizedDescription)")
+            }
+        } else {
+            print("Image not found at path: \(url.path), skipping deletion")
+        }
+    }
+
 }

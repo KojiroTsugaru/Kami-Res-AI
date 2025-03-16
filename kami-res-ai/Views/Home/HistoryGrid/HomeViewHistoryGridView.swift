@@ -18,14 +18,24 @@ struct HomeViewHistoryGridView: View {
 
     var body: some View {
         ScrollView {
-            Spacer()
-                .frame(height: 8)
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(histories) { history in
-                    NavigationLink(
-                        destination: ScreenshotMessageSuggestView(history: history)
-                    ) {
-                        HomeViewHistoryGridCell(history: history)
+            if histories.isEmpty {
+                Text("スクリーンショットをアップロード\nしてみよう！")
+                    .font(.largeTitle)
+                    .bold()
+                    .padding()
+                    .foregroundColor(.white)
+            } else {
+                Spacer()
+                    .frame(height: 8)
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(
+                        histories.sorted(by: { $0.createdAt > $1.createdAt })
+                    ) { history in
+                        NavigationLink(
+                            destination: ScreenshotMessageSuggestView(history: history)
+                        ) {
+                            HomeViewHistoryGridCell(history: history)
+                        }
                     }
                 }
             }
