@@ -21,7 +21,7 @@ struct ManuallyEnterButtonLabel: View {
         .foregroundColor(.white)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 3)
-        .background(Color("gradientSecondary"))
+        .background(Color("gradientSecondary").opacity(0.8))
         .cornerRadius(24)
         .shadow(
             color: Color(.black)

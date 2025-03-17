@@ -29,17 +29,19 @@ struct HomeViewHistoryGridCell: View {
                         .scaledToFill()
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 } else {
-                    Image(systemName: "photo")
+                    Image("historyPlaceholder")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(.gray)
+                        .frame(width: 48, height: 48)
+                        .rotationEffect(.degrees(-15))
+                        .padding(.bottom, 4)
+                        .padding(.top, 8)
                     
                     Group {
                         Text(history.createdAt, style: .date)
-                            .font(.caption)
+                            .font(.caption2)
                         Text(history.createdAt, style: .time)
-                            .font(.caption)
+                            .font(.caption2)
                     }.foregroundColor(.gray)
                 }
             }
@@ -54,7 +56,7 @@ struct HomeViewHistoryGridCell: View {
                 Image(systemName: "xmark.circle.fill")
                     .resizable()
                     .frame(width: 20, height: 20)
-                    .foregroundColor(Color.gray.opacity(0.7))
+                    .foregroundColor(Color.black)
                     .background(Circle().fill(Color.white))
                     .clipShape(Circle())
                     .padding(6)
