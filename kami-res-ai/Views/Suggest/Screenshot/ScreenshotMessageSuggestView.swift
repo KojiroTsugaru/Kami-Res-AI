@@ -8,6 +8,7 @@
 import PhotosUI
 import SuperwallKit
 import SwiftUI
+import SwiftfulLoadingIndicators
 
 struct ScreenshotMessageSuggestView: View {
 
@@ -46,7 +47,11 @@ struct ScreenshotMessageSuggestView: View {
             }
             if viewModel.isLoading {
                 VStack(alignment: .center, spacing: 8) {
-                    ProgressView()
+                    LoadingIndicator(
+                        animation: .threeBalls,
+                        color: Color.black,
+                        size: .small
+                    )
                     Text("メッセージを生成しています...")
                         .foregroundColor(.black)
                         .font(.body)
@@ -139,7 +144,7 @@ struct ScreenshotMessageSuggestView: View {
             HStack {
                 MessageMoodButton(
                     mood: $viewModel.messageMood, showMoodModal: $showMoodModal
-                )
+                ).disabled(viewModel.isLoading)
                 GenerateMoreButton
             }
             Text(viewModel.actionRemainedForTodayString())
@@ -167,6 +172,7 @@ struct ScreenshotMessageSuggestView: View {
             .background(Color(.black))
             .cornerRadius(24)
         }
+        .disabled(viewModel.isLoading)
     }
 
     private var CopyConfirmationView: some View {
@@ -215,6 +221,7 @@ struct ScreenshotMessageSuggestView: View {
                         .createGradient(from: .topLeading, to: .bottomTrailing)
                 )
             }
+            .disabled(viewModel.isLoading)
         }
     }
 

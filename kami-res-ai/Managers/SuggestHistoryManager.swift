@@ -3,7 +3,6 @@ import RealmSwift
 
 class SuggestHistoryManager {
     static let shared = SuggestHistoryManager()
-    private let realm = try! Realm()
     
     func createChatHistoryWithImage(imageData: Data?) -> SuggestHistoryObject? {
         guard let imageData = imageData else { return nil }
@@ -20,6 +19,8 @@ class SuggestHistoryManager {
             chatItem.imagePath = fileURL.path
             chatHistory.chatItems.append(chatItem)
             
+            let realm = try! Realm()
+            
             try realm.write {
                 realm.add(chatHistory)
             }
@@ -32,11 +33,16 @@ class SuggestHistoryManager {
     func addTextMessage(to history: SuggestHistoryObject, text: String) {
         guard !text.isEmpty else { return }
         let realm = try! Realm()
-        try! realm.write {
-            let chatItem = ChatItemObject()
-            chatItem.textContent = text
-            history.chatItems.append(chatItem)
-            realm.add(history, update: .modified)
+        
+        if let history = realm.object(
+            ofType: SuggestHistoryObject.self,
+            forPrimaryKey: history.id) {
+            try! realm.write {
+                let chatItem = ChatItemObject()
+                chatItem.textContent = text
+                history.chatItems.append(chatItem)
+                realm.add(history, update: .modified)
+            }
         }
     }
     
@@ -51,11 +57,16 @@ class SuggestHistoryManager {
         do {
             try imageData.write(to: fileURL)
             let realm = try! Realm()
-            try realm.write {
-                let chatItem = ChatItemObject()
-                chatItem.imagePath = fileURL.path
-                history.chatItems.append(chatItem)
-                realm.add(history, update: .modified)
+            
+            if let history = realm.object(
+                ofType: SuggestHistoryObject.self,
+                forPrimaryKey: history.id) {
+                try realm.write {
+                    let chatItem = ChatItemObject()
+                    chatItem.imagePath = fileURL.path
+                    history.chatItems.append(chatItem)
+                    realm.add(history, update: .modified)
+                }
             }
         } catch {
             print("Failed to save image: \(error.localizedDescription)")
@@ -63,6 +74,8 @@ class SuggestHistoryManager {
     }
     
     func deleteChatItem(chatItem: ChatItemObject) {
+        let realm = try! Realm()
+        
         try! realm.write {
             if let imagePath = chatItem.imagePath {
                 let fileURL = URL(fileURLWithPath: imagePath)
@@ -101,8 +114,6 @@ class SuggestHistoryManager {
         }
     }
 
-
-    
     func deleteAllSuggestHistoryObjects() {
         do {
             let realm = try Realm()
