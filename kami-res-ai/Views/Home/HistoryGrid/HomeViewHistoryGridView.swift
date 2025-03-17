@@ -19,11 +19,28 @@ struct HomeViewHistoryGridView: View {
     var body: some View {
         ScrollView {
             if histories.isEmpty {
-                Text("スクリーンショットをアップロード\nしてみよう！")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
-                    .foregroundColor(.white)
+                VStack(spacing: 16) {
+                    Spacer()
+                        .frame(height: 168)
+            
+                    Image(systemName: "photo.badge.plus.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 124)
+                        .foregroundColor(Color.white)
+                        .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
+
+                    Text("メッセージのスクショを選択して\nはじめての神レスを生成してみよう")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color.white)
+                        .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 2)
+                    
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity) // Makes sure it expands properly
+
             } else {
                 Spacer()
                     .frame(height: 8)

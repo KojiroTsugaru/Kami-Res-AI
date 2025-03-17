@@ -59,6 +59,10 @@ struct ScreenshotMessageSuggestView: View {
                 .padding()
                 .background(Color(.white))
                 .cornerRadius(16)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+                )
             }
         }
         .toolbar {
