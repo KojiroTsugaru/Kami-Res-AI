@@ -8,7 +8,6 @@
 import PhotosUI
 import SuperwallKit
 import SwiftUI
-import SwiftfulLoadingIndicators
 
 struct ScreenshotMessageSuggestView: View {
 
@@ -46,23 +45,7 @@ struct ScreenshotMessageSuggestView: View {
                 )
             }
             if viewModel.isLoading {
-                VStack(alignment: .center, spacing: 8) {
-                    LoadingIndicator(
-                        animation: .threeBalls,
-                        color: Color.black,
-                        size: .small
-                    )
-                    Text("メッセージを生成しています...")
-                        .foregroundColor(.black)
-                        .font(.body)
-                }
-                .padding()
-                .background(Color(.white))
-                .cornerRadius(16)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                )
+                SuggestLoadigView()
             }
         }
         .toolbar {

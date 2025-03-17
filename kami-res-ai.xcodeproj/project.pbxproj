@@ -42,6 +42,7 @@
 		3198E09E2D86E86F00A3BB1C /* HomeViewHistoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E09D2D86E86F00A3BB1C /* HomeViewHistoryGridView.swift */; };
 		3198E0A22D86E8F900A3BB1C /* HomeViewHistoryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E0A12D86E8F900A3BB1C /* HomeViewHistoryGridCell.swift */; };
 		3198E0A42D86F0EC00A3BB1C /* ManuallyEnterButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E0A32D86F0DC00A3BB1C /* ManuallyEnterButtonLabel.swift */; };
+		3198E0A72D88500300A3BB1C /* SuggestLoadigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E0A62D88500300A3BB1C /* SuggestLoadigView.swift */; };
 		31A182AA2D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A182A92D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift */; };
 		31A182AC2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A182AB2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift */; };
 		31A182AE2D5E436F0013A9CE /* ChatHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A182AD2D5E43690013A9CE /* ChatHistoryItem.swift */; };
@@ -102,6 +103,7 @@
 		3198E09D2D86E86F00A3BB1C /* HomeViewHistoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHistoryGridView.swift; sourceTree = "<group>"; };
 		3198E0A12D86E8F900A3BB1C /* HomeViewHistoryGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewHistoryGridCell.swift; sourceTree = "<group>"; };
 		3198E0A32D86F0DC00A3BB1C /* ManuallyEnterButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterButtonLabel.swift; sourceTree = "<group>"; };
+		3198E0A62D88500300A3BB1C /* SuggestLoadigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLoadigView.swift; sourceTree = "<group>"; };
 		31A182A92D5E39BA0013A9CE /* ManuallyEnterMeesageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterMeesageView.swift; sourceTree = "<group>"; };
 		31A182AB2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManuallyEnterMessageViewModel.swift; sourceTree = "<group>"; };
 		31A182AD2D5E43690013A9CE /* ChatHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryItem.swift; sourceTree = "<group>"; };
@@ -343,6 +345,14 @@
 			path = HistoryGrid;
 			sourceTree = "<group>";
 		};
+		3198E0A52D884FD200A3BB1C /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				3198E0A62D88500300A3BB1C /* SuggestLoadigView.swift */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
 		31A182A62D5E396A0013A9CE /* ManuallyEnter */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +380,7 @@
 				313FE6B12D3B9E3A009EA68F /* Screenshot */,
 				31A182A62D5E396A0013A9CE /* ManuallyEnter */,
 				31B7DBE42D5363040010CD9A /* MessageMood */,
+				3198E0A52D884FD200A3BB1C /* UIComponent */,
 			);
 			path = Suggest;
 			sourceTree = "<group>";
@@ -533,6 +544,7 @@
 				31642BC82D461BC700A30C7B /* OnboadingPageView.swift in Sources */,
 				313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */,
 				313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */,
+				3198E0A72D88500300A3BB1C /* SuggestLoadigView.swift in Sources */,
 				31642BC62D461A2200A30C7B /* OnboardingPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
