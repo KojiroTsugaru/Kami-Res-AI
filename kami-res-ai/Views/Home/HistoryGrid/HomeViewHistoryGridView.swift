@@ -13,7 +13,7 @@ struct HomeViewHistoryGridView: View {
     @ObservedResults(SuggestHistoryObject.self) var histories
     
     let columns = [
-        GridItem(.adaptive(minimum: 100)) // Adjust cell size dynamically
+        GridItem(.adaptive(minimum: 112)) // Adjust cell size dynamically
     ]
 
     var body: some View {

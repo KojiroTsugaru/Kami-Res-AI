@@ -45,8 +45,8 @@ struct HomeViewHistoryGridCell: View {
                     }.foregroundColor(.gray)
                 }
             }
-            .frame(width: 100, height: 150)
-            .background(Color(.white))
+            .frame(width: 112, height: 168)
+            .background(Color("ChatBubbleColor"))
             .cornerRadius(16)
             .shadow(radius: 2)
             
