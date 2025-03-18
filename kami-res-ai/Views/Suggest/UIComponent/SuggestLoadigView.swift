@@ -23,7 +23,7 @@ struct SuggestLoadigView: View {
                 .padding(.horizontal, 16)
         }
         .padding()
-        .background(Color(.white))
+        .background(Color("ChatBubbleColor"))
         .cornerRadius(16)
         .shadow(color: .gray.opacity(0.5), radius: 1, x: 2, y: 2)
     }
