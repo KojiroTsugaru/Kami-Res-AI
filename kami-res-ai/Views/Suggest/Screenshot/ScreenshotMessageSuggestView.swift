@@ -107,6 +107,9 @@ struct ScreenshotMessageSuggestView: View {
                         .frame(height: 40)
                         .id("BottomAnchor")
                 }
+                .onAppear {
+                    chatItemListScrollToBottom(proxy: proxy)
+                }
             }
             .onChange(of: viewModel.history.chatItems.count) { _ in
                 chatItemListScrollToBottom(proxy: proxy)

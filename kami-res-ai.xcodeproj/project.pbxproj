@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3133911D2D5B2BBA004120B5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
+		31103FAD2D89B863006080FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; };
+		31103FAE2D89BA34006080FD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		31103FB02D89BA52006080FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
 		313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */; };
 		313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */; };
 		313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AB2D3B9E3A009EA68F /* HomeView.swift */; };
@@ -35,7 +37,6 @@
 		3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3165BF192D4E6015005BDB8A /* DailyActionManager.swift */; };
 		316797C42D5B28C00062C8B7 /* Products.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 316797C32D5B28C00062C8B7 /* Products.storekit */; };
 		31893E702D69C2C4000803CC /* GradientAnimatedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31893E6F2D69C2C4000803CC /* GradientAnimatedBackground.swift */; };
-		3198E0882D85919D00A3BB1C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3198E0872D85919D00A3BB1C /* RealmSwift */; };
 		3198E0932D85C64E00A3BB1C /* SuggestHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E0922D85C63700A3BB1C /* SuggestHistoryManager.swift */; };
 		3198E0952D85C66800A3BB1C /* SuggestHistoryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E0942D85C65D00A3BB1C /* SuggestHistoryObject.swift */; };
 		3198E0972D85C9B300A3BB1C /* ChatItemObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3198E0962D85C9A600A3BB1C /* ChatItemObject.swift */; };
@@ -65,6 +66,20 @@
 			remoteInfo = "kami-res-ai";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		31103FAF2D89BA34006080FD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				31103FAE2D89BA34006080FD /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		313FE6672D3B8C57009EA68F /* kami-res-ai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kami-res-ai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,10 +137,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3198E0882D85919D00A3BB1C /* RealmSwift in Frameworks */,
-				3133911D2D5B2BBA004120B5 /* StoreKit.framework in Frameworks */,
+				31103FAD2D89B863006080FD /* RealmSwift in Frameworks */,
 				313FE70A2D3C9E99009EA68F /* SwiftfulLoadingIndicators in Frameworks */,
 				31642BC12D46152E00A30C7B /* SuperwallKit in Frameworks */,
+				31103FB02D89BA52006080FD /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +418,7 @@
 				313FE6632D3B8C57009EA68F /* Sources */,
 				313FE6642D3B8C57009EA68F /* Frameworks */,
 				313FE6652D3B8C57009EA68F /* Resources */,
+				31103FAF2D89BA34006080FD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,7 +428,7 @@
 			packageProductDependencies = (
 				313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */,
 				31642BC02D46152E00A30C7B /* SuperwallKit */,
-				3198E0872D85919D00A3BB1C /* RealmSwift */,
+				31103FAC2D89B863006080FD /* RealmSwift */,
 			);
 			productName = MoteAI;
 			productReference = 313FE6672D3B8C57009EA68F /* kami-res-ai.app */;
@@ -469,7 +485,7 @@
 			packageReferences = (
 				313FE7082D3C9E99009EA68F /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
 				31642BBF2D46152E00A30C7B /* XCRemoteSwiftPackageReference "Superwall-iOS" */,
-				3198E0862D85919D00A3BB1C /* XCRemoteSwiftPackageReference "realm-swift" */,
+				31103FAB2D89B863006080FD /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 313FE6682D3B8C57009EA68F /* Products */;
@@ -575,7 +591,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
@@ -592,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-ai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -612,7 +628,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
@@ -629,7 +645,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "KojiroTsugaru.kami-res-ai";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -830,6 +846,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		31103FAB2D89B863006080FD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		313FE7082D3C9E99009EA68F /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators.git";
@@ -846,17 +870,14 @@
 				minimumVersion = 3.12.2;
 			};
 		};
-		3198E0862D85919D00A3BB1C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		31103FAC2D89B863006080FD /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31103FAB2D89B863006080FD /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		313FE7092D3C9E99009EA68F /* SwiftfulLoadingIndicators */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 313FE7082D3C9E99009EA68F /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
@@ -866,11 +887,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 31642BBF2D46152E00A30C7B /* XCRemoteSwiftPackageReference "Superwall-iOS" */;
 			productName = SuperwallKit;
-		};
-		3198E0872D85919D00A3BB1C /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3198E0862D85919D00A3BB1C /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
