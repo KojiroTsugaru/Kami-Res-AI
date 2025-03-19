@@ -11,12 +11,12 @@ struct HistoryGridEmptyStateView: View {
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
-                .frame(height: 168)
+                .frame(height: 144)
     
             Image("historyPlaceholder")
                 .resizable()
                 .scaledToFit()
-                .frame(height: 124)
+                .frame(height: 140)
                 .rotationEffect(.degrees(15))
 
             VStack(spacing: 12) {
