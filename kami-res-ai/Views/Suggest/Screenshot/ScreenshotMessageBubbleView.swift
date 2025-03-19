@@ -14,7 +14,7 @@ struct ScreenshotMessageBubbleView: View {
             Text(message)
                 .foregroundColor(Color(.black))
                 .padding()
-                .background(Color(.white))
+                .background(Color("AntiFlashWhite"))
                 .cornerRadius(20)
         }.padding()
     }

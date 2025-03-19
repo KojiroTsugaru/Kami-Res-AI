@@ -16,14 +16,14 @@ struct SuggestLoadigView: View {
                 color: Color.black,
                 size: .small
             )
-            Text("メッセージを生成しています...")
+            Text("AIがメッセージを生成しています...")
                 .foregroundColor(.black)
                 .font(.caption)
                 .bold()
                 .padding(.horizontal, 16)
         }
         .padding()
-        .background(Color("ChatBubbleColor"))
+        .background(Color("AntiFlashWhite"))
         .cornerRadius(16)
         .shadow(color: .gray.opacity(0.5), radius: 1, x: 2, y: 2)
     }
