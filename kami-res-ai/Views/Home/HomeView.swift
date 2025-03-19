@@ -59,6 +59,7 @@ struct HomeView: View {
             .navigationDestination(isPresented: $viewModel.navigateToManuallyType) {
                 ManuallyEnterMeesageView()
             }
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -77,6 +78,12 @@ struct HomeView: View {
                             .background(Circle().fill(Color.black))
                             .shadow(color: Color.white.opacity(0.2), radius: 8)
                     }
+                }
+                
+                ToolbarItem(placement: .principal) {
+                    Text("ホーム")
+                        .font(.headline)
+                        .foregroundColor(.primary)
                 }
             }
             .onChange(of: viewModel.selectedPhoto) { newItem in

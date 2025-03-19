@@ -10,6 +10,7 @@
 		31103FAD2D89B863006080FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; };
 		31103FAE2D89BA34006080FD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		31103FB02D89BA52006080FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
+		31103FB32D8AE9DC006080FD /* HistoryGridEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */; };
 		313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */; };
 		313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */; };
 		313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AB2D3B9E3A009EA68F /* HomeView.swift */; };
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridEmptyStateView.swift; sourceTree = "<group>"; };
 		313FE6672D3B8C57009EA68F /* kami-res-ai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kami-res-ai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KamiResAIApp.swift; sourceTree = "<group>"; };
 		313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			children = (
 				3198E09D2D86E86F00A3BB1C /* HomeViewHistoryGridView.swift */,
 				3198E0A12D86E8F900A3BB1C /* HomeViewHistoryGridCell.swift */,
+				31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */,
 			);
 			path = HistoryGrid;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				3198E0A42D86F0EC00A3BB1C /* ManuallyEnterButtonLabel.swift in Sources */,
 				3198E09E2D86E86F00A3BB1C /* HomeViewHistoryGridView.swift in Sources */,
 				313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */,
+				31103FB32D8AE9DC006080FD /* HistoryGridEmptyStateView.swift in Sources */,
 				31B7DBE32D5362AB0010CD9A /* MessageMoodButton.swift in Sources */,
 				313FE70F2D40B8EF009EA68F /* ChatItem.swift in Sources */,
 				315D152C2D7F4ACE003B43A1 /* PromptService.swift in Sources */,
@@ -591,7 +595,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
@@ -628,7 +632,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "kami-res-ai/kami-res-ai.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 265P8798N4;
 				ENABLE_PREVIEWS = YES;
