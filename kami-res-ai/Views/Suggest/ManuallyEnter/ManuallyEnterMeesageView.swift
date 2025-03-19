@@ -114,7 +114,7 @@ struct ManuallyEnterMeesageView: View {
     private var BackgroundGradient: some View {
         Constants.ColorAsset
             .createGradient(from: .bottom, to: .top)
-            .opacity(0.5)
+            .opacity(0.3)
     }
     
     private var GenerateMoreButton: some View {

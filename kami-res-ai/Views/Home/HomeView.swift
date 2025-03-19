@@ -17,7 +17,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Constants.ColorAsset.primaryGradient.opacity(0.5)
+                Constants.ColorAsset.primaryGradient.opacity(0.3)
                     .ignoresSafeArea()
 
                 VStack(spacing: 28) {

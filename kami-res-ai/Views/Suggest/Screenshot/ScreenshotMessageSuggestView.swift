@@ -218,7 +218,7 @@ struct ScreenshotMessageSuggestView: View {
     private var BackgroundGradient: some View {
         Constants.ColorAsset
             .createGradient(from: .bottom, to: .top)
-            .opacity(0.5)
+            .opacity(0.3)
     }
 
     private func handleTextCopy(_ text: String) {
