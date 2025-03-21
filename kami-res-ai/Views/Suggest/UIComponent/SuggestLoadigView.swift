@@ -13,19 +13,21 @@ struct SuggestLoadigView: View {
         VStack(alignment: .center, spacing: 8) {
             LoadingIndicator(
                 animation: .threeBalls,
-                color: Color.black,
+                color: Color.white,
                 size: .small
             )
-            Text("AIがメッセージを生成しています...")
-                .foregroundColor(.black)
-                .font(.caption)
-                .bold()
-                .padding(.horizontal, 16)
+            GradientText(
+                "メッセージを生成しています...",
+                font: .caption.bold(),
+                gradient: Constants.ColorAsset
+                    .createGradient(from: .topLeading, to: .bottomTrailing)
+            )
+            .padding(.horizontal, 16)
         }
         .padding()
-        .background(Color("AntiFlashWhite"))
+        .background(Color.black)
         .cornerRadius(16)
-        .shadow(color: .gray.opacity(0.5), radius: 1, x: 2, y: 2)
+        .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
     }
 }
 
