@@ -58,6 +58,8 @@ final class HomeVM: ObservableObject {
     
     public func refreshViewModel() {
         self.image = nil
+        self.selectedPhoto = nil
+        self.newHistory = nil
         self.errorMessage = ""
     }
 }
