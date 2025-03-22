@@ -19,6 +19,11 @@ struct ScreenshotMessageSuggestView: View {
     @State private var showMessageMoodChange: Bool = false
     @State private var showMoodModal: Bool = false
     
+    // for app review alert
+    @State private var showFirstReviewAlert = false
+    @State private var showSecondReviewAlertYes = false
+    @State private var showSecondReviewAlertNo = false
+    
     let history: SuggestHistoryObject
     
     init(history: SuggestHistoryObject) {
@@ -61,6 +66,18 @@ struct ScreenshotMessageSuggestView: View {
             Task {
                 await viewModel.handleNewPhotoSelection(newItem)
             }
+        }
+        .alert(isPresented: $showFirstReviewAlert) {
+            AppReviewAlertBuilder.firstAlert(
+                showSecondReviewAlertYes: $showSecondReviewAlertYes,
+                showSecondReviewAlertNo: $showSecondReviewAlertNo
+            )
+        }
+        .alert(isPresented: $showSecondReviewAlertYes) {
+            AppReviewAlertBuilder.secondAlertYes()
+        }
+        .alert(isPresented: $showSecondReviewAlertNo) {
+            AppReviewAlertBuilder.secondAlertNo()
         }
         .navigationBarBackButtonHidden()
     }
@@ -148,6 +165,10 @@ struct ScreenshotMessageSuggestView: View {
         Button {
             Task {
                 await viewModel.generateResponseIfNeeded()
+                
+                ReviewAlertManager.shared.incrementGenerateActionCount()
+                showFirstReviewAlert = ReviewAlertManager.shared
+                    .shouldShowAlert()
             }
         } label: {
             GradientText(

@@ -11,6 +11,8 @@
 		31103FAE2D89BA34006080FD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		31103FB02D89BA52006080FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
 		31103FB32D8AE9DC006080FD /* HistoryGridEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */; };
+		31103FB52D8EA499006080FD /* ReviewAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31103FB42D8EA481006080FD /* ReviewAlertManager.swift */; };
+		31103FB72D8EAF57006080FD /* AppReviewAlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31103FB62D8EAF4A006080FD /* AppReviewAlertBuilder.swift */; };
 		313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */; };
 		313FE6BC2D3B9E3A009EA68F /* OpenAIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */; };
 		313FE6BD2D3B9E3A009EA68F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313FE6AB2D3B9E3A009EA68F /* HomeView.swift */; };
@@ -84,6 +86,8 @@
 
 /* Begin PBXFileReference section */
 		31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridEmptyStateView.swift; sourceTree = "<group>"; };
+		31103FB42D8EA481006080FD /* ReviewAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAlertManager.swift; sourceTree = "<group>"; };
+		31103FB62D8EAF4A006080FD /* AppReviewAlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewAlertBuilder.swift; sourceTree = "<group>"; };
 		313FE6672D3B8C57009EA68F /* kami-res-ai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kami-res-ai.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		313FE66A2D3B8C57009EA68F /* KamiResAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KamiResAIApp.swift; sourceTree = "<group>"; };
 		313FE6A62D3B9E3A009EA68F /* OpenAIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIResponse.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 			children = (
 				3198E0922D85C63700A3BB1C /* SuggestHistoryManager.swift */,
 				3165BF192D4E6015005BDB8A /* DailyActionManager.swift */,
+				31103FB42D8EA481006080FD /* ReviewAlertManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 		3198E09A2D869D9200A3BB1C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				31103FB62D8EAF4A006080FD /* AppReviewAlertBuilder.swift */,
 				3165BF0A2D491366005BDB8A /* UIComponent */,
 			);
 			path = Common;
@@ -542,6 +548,7 @@
 				3165BF122D492302005BDB8A /* GradientPlusIcon.swift in Sources */,
 				313FE6BE2D3B9E3A009EA68F /* HomeVM.swift in Sources */,
 				313FE6BF2D3B9E3A009EA68F /* ScreenshotMessageBubbleView.swift in Sources */,
+				31103FB52D8EA499006080FD /* ReviewAlertManager.swift in Sources */,
 				31A182AC2D5E3AF10013A9CE /* ManuallyEnterMessageViewModel.swift in Sources */,
 				31642BC42D46196400A30C7B /* OnboardingSheetView.swift in Sources */,
 				3165BF0C2D491399005BDB8A /* GradientText.swift in Sources */,
@@ -553,6 +560,7 @@
 				31B7DBDC2D5242790010CD9A /* UploadScreenshotButtonLabel.swift in Sources */,
 				31893E702D69C2C4000803CC /* GradientAnimatedBackground.swift in Sources */,
 				31B7DBE62D5363210010CD9A /* MessageMood.swift in Sources */,
+				31103FB72D8EAF57006080FD /* AppReviewAlertBuilder.swift in Sources */,
 				3165BF142D492B22005BDB8A /* GradientBackButton.swift in Sources */,
 				31D23BAC2D63556E00ECACB8 /* ChatHistorySender.swift in Sources */,
 				31642BBE2D44EAEB00A30C7B /* Constants.swift in Sources */,

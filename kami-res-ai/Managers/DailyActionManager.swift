@@ -17,8 +17,8 @@ class DailyActionManager: NSObject, ObservableObject {
     }
     
     private let userDefaults = UserDefaults.standard
-    private let lastActionKey = "lastActionDate"
-    private let currentActionCountKey = "currentActionCount"
+    private let lastActionKey = "lastGenerateDate"
+    private let currentActionCountKey = "currentGenerateCount"
     
     private let maxActionsPerDay = 3 // 1日に実行できる最大回数
 
