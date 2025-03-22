@@ -167,7 +167,7 @@ struct ScreenshotMessageSuggestView: View {
                 await viewModel.generateResponseIfNeeded()
                 
                 ReviewAlertManager.shared.incrementGenerateActionCount()
-                showFirstReviewAlert = ReviewAlertManager.shared
+                self.showFirstReviewAlert = ReviewAlertManager.shared
                     .shouldShowAlert()
             }
         } label: {

@@ -65,6 +65,6 @@ class ReviewAlertManager {
     
     func incrementGenerateActionCount() {
         let newVal = userDefaults.integer(forKey: generateActionCountKey) + 1
-        userDefaults.set(newVal, forKey: hasWrittenReviewKey)
+        userDefaults.set(newVal, forKey: generateActionCountKey)
     }
 }
