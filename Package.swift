@@ -14,15 +14,13 @@ let package = Package(
         // Realm from master (adjust URL/branch/commit as needed)
         .package(
             url: "https://github.com/realm/realm-swift.git",
-            .branch("master")
-        ),    
+            branch: "master"
+        ),
         // SuperwallKit at version 3.12.2
-        // (Update URL if different; this is the current known SuperwallKit repo)
         .package(
-            url: "https://github.com/superwall-me/superwall-ios-sdk.git",
+            url: "https://github.com/superwall/Superwall-iOS.git",
             from: "3.0.0"
         ),
-        
         // SwiftfulLoadingIndicators at version 0.0.4
         .package(
             url: "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators",
@@ -33,7 +31,6 @@ let package = Package(
         .executableTarget(
             name: "kami-res-ai",
             dependencies: [
-                // Update product names to match each package’s product definition:
                 .product(name: "RealmSwift", package: "realm-swift"),
                 .product(name: "SuperwallKit", package: "superwall-ios-sdk"),
                 .product(name: "SwiftfulLoadingIndicators", package: "SwiftfulLoadingIndicators")
