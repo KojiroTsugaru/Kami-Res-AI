@@ -34,7 +34,11 @@ let package = Package(
                 .product(name: "SuperwallKit", package: "Superwall-iOS"),
                 .product(name: "SwiftfulLoadingIndicators", package: "SwiftfulLoadingIndicators")
             ],
-            path: "kami-res-ai/App"
+            path: "kami-res-ai/App",
+            swiftSettings: [
+                // Force the compiler to use macOS 10.15 as the target for Swift concurrency features
+                .unsafeFlags(["-target", "arm64-apple-macos10.15"])
+            ]
         )
     ]
 )
