@@ -20,9 +20,7 @@ struct ScreenshotMessageSuggestView: View {
     @State private var showMoodModal: Bool = false
     
     // for app review alert
-    @State private var showFirstReviewAlert = false
-    @State private var showSecondReviewAlertYes = false
-    @State private var showSecondReviewAlertNo = false
+    @State private var appReviewAlertType: AppReviewAlert?
     
     let history: SuggestHistoryObject
     
@@ -67,17 +65,10 @@ struct ScreenshotMessageSuggestView: View {
                 await viewModel.handleNewPhotoSelection(newItem)
             }
         }
-        .alert(isPresented: $showFirstReviewAlert) {
-            AppReviewAlertBuilder.firstAlert(
-                showSecondReviewAlertYes: $showSecondReviewAlertYes,
-                showSecondReviewAlertNo: $showSecondReviewAlertNo
-            )
-        }
-        .alert(isPresented: $showSecondReviewAlertYes) {
-            AppReviewAlertBuilder.secondAlertYes()
-        }
-        .alert(isPresented: $showSecondReviewAlertNo) {
-            AppReviewAlertBuilder.secondAlertNo()
+        .alert(item: $appReviewAlertType) { alertType in
+            AppReviewAlertBuilder.build(for: alertType, completion: { nextAlert in
+                appReviewAlertType = nextAlert
+            })
         }
         .navigationBarBackButtonHidden()
     }
@@ -167,8 +158,10 @@ struct ScreenshotMessageSuggestView: View {
                 await viewModel.generateResponseIfNeeded()
                 
                 ReviewAlertManager.shared.incrementGenerateActionCount()
-                self.showFirstReviewAlert = ReviewAlertManager.shared
-                    .shouldShowAlert()
+                
+                if ReviewAlertManager.shared.shouldShowAlert() {
+                    appReviewAlertType = .initial
+                }
             }
         } label: {
             GradientText(

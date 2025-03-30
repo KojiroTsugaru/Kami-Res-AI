@@ -18,10 +18,11 @@ class ReviewAlertManager {
     private let hasWrittenReviewKey = "hasWrittenReview"
     private let generateActionCountKey = "generateActionCount"
     
-    private let oneMonthInSeconds: Double = 60 * 60 * 24 * 30
+    private let threeWeeksInSeconds: Double = 60 * 60 * 24 * 21
     private let generateCountToShowAlert = 4
 
     /// Call this from your view to determine whether to show the alert
+    /// 表示する条件: レビューを書いたことがない & 最後にアラートが表示されてから3週間以上経っている & 返信を5回以上生成した
     func shouldShowAlert() -> Bool {
         guard !userDefaults.bool(forKey: hasWrittenReviewKey) else { return false }
         guard userDefaults.integer(forKey: generateActionCountKey) > generateCountToShowAlert else { return false }
@@ -29,7 +30,7 @@ class ReviewAlertManager {
         let now = Date().timeIntervalSince1970
         let lastPrompt = userDefaults.double(forKey: lastReviewPromptDateKey)
         
-        return (now - lastPrompt) > oneMonthInSeconds
+        return (now - lastPrompt) > threeWeeksInSeconds
     }
     
     /// Call this when the user taps the "Review" button
@@ -39,6 +40,7 @@ class ReviewAlertManager {
             UIApplication.shared.open(writeReviewURL)
         }
         markReviewShown()
+        markReviewCompleted()
     }
     
     /// Call this when the alert is shown or dismissed (optional)
@@ -61,6 +63,8 @@ class ReviewAlertManager {
         if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+        markReviewShown()
+        markReviewCompleted()
     }
     
     func incrementGenerateActionCount() {
