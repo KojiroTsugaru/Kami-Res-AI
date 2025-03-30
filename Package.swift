@@ -19,7 +19,7 @@ let package = Package(
         // SuperwallKit at version 3.12.2
         .package(
             url: "https://github.com/superwall/Superwall-iOS.git",
-            from: "3.0.0"
+            exact: "3.12.2"
         ),
         // SwiftfulLoadingIndicators at version 0.0.4
         .package(
@@ -32,7 +32,7 @@ let package = Package(
             name: "kami-res-ai",
             dependencies: [
                 .product(name: "RealmSwift", package: "realm-swift"),
-                .product(name: "SuperwallKit", package: "superwall-ios-sdk"),
+                .product(name: "SuperwallKit", package: "Superwall-iOS"),
                 .product(name: "SwiftfulLoadingIndicators", package: "SwiftfulLoadingIndicators")
             ],
             path: "kami-res-ai/App"
