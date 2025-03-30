@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "kami-res-ai",
     platforms: [
-        .iOS(.v15),
+        .iOS(.v16),
         .macOS(.v11)
     ],
     products: [
