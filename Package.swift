@@ -35,7 +35,10 @@ let package = Package(
                 .product(name: "SuperwallKit", package: "Superwall-iOS"),
                 .product(name: "SwiftfulLoadingIndicators", package: "SwiftfulLoadingIndicators")
             ],
-            path: "kami-res-ai/App"
+            path: "kami-res-ai/App",
+            swiftSettings: [
+                .unsafeFlags(["-target", "arm64-apple-macos11"])
+            ]
         )
     ]
 )
