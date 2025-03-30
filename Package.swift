@@ -6,9 +6,9 @@ import PackageDescription
 let package = Package(
     name: "kami-res-ai",
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .executableTarget(
-            name: "kami-res-ai"),
+            name: "kami-res-ai",
+            path: "kami-res-ai/App"
+        ),
     ]
 )
