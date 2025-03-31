@@ -13,7 +13,6 @@ struct MessageMoodModal: View {
     @Binding var currentConfig: MessageConfiguration
     @State private var selectedMood: MessageMood
     @State private var selectedLength: MessageLength
-    @State private var sliderLength: Double = 2.0
     
     init(showMoodModal: Binding<Bool>, currentConfig: Binding<MessageConfiguration>) {
         self._showMoodModal = showMoodModal
@@ -82,30 +81,28 @@ struct MessageMoodModal: View {
                 .cornerRadius(8)
                 
                 // メッセージの長さ
-                VStack(spacing: 4) {
+                VStack(spacing: 20) {
                     HStack(spacing: 8) {
                         Image(systemName: "text.alignleft")
                             .foregroundColor(.gray)
                         Text("メッセージの長さ: \(selectedLength.description)")
                             .font(.caption)
                             .foregroundColor(.gray)
-                    }.padding(.bottom, 8)
-                    Slider(
-                        value: $sliderLength,
-                        in: 1.0...3.0,
-                        step: 1.0
-                    )
-                    .tint(Color(.black))
-                    .frame(width: 280)
-                    .shadow(color: Color.gray.opacity(0.2), radius: 4)
-                    .onChange(of: sliderLength, perform: { newValue in
-                        if let newLength = MessageLength(rawValue: newValue) {
-                            selectedLength = newLength
+                    }
+                    
+                    HStack(spacing: 20) {
+                        ForEach(MessageLength.allCases, id: \.self) { length in
+                            MessageLengthLabel(
+                                length: length,
+                                isSelected: length == selectedLength
+                            )
+                            .onTapGesture {
+                                selectedLength = length
+                            }
                         }
-                    })
+                    }
                 }
                 .padding()
-                .padding(.top, 8)
             
                 Button {
                     didTapSaveButton()
