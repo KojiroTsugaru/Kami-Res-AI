@@ -28,7 +28,6 @@ struct ScreenshotMessageSuggestView: View {
         self.history = history
         self.viewModel = ScreenshotMessageSuggestVM(with: history)
     }
-    
     var body: some View {
         ZStack {
             VStack {
@@ -44,7 +43,7 @@ struct ScreenshotMessageSuggestView: View {
             if showMoodModal {
                 MessageMoodModal(
                     showMoodModal: $showMoodModal,
-                    selectedMood: $viewModel.messageMood
+                    currentConfig: $viewModel.messageConfig
                 )
             }
             if viewModel.isLoading {
@@ -140,9 +139,7 @@ struct ScreenshotMessageSuggestView: View {
     private var actionButtonsBottom: some View {
         VStack {
             HStack {
-                MessageMoodButton(
-                    mood: $viewModel.messageMood, showMoodModal: $showMoodModal
-                ).disabled(viewModel.isLoading)
+                MessageMoodButton
                 GenerateMoreButton
             }
             Text(viewModel.actionRemainedForTodayString())
@@ -150,6 +147,23 @@ struct ScreenshotMessageSuggestView: View {
                 .font(.caption)
                 .padding(.bottom, 16)
         }
+    }
+    
+    private var MessageMoodButton: some View {
+        Button {
+            showMoodModal = true
+        } label: {
+            Text(viewModel.messageConfig.mood.emoji)
+                .font(.title3)
+                .frame(width: 50, height: 50)
+                .background(
+                    Circle()
+                        .fill(.white)
+
+                )
+                .foregroundColor(.black)
+                .shadow(color: .gray, radius: 2)
+        }.disabled(viewModel.isLoading)
     }
 
     private var GenerateMoreButton: some View {
@@ -191,7 +205,9 @@ struct ScreenshotMessageSuggestView: View {
     private var MessageMoodChangeView: some View {
         VStack(spacing: 12) {
             GradientText("メッセージの雰囲気を変更しました", font: .headline)
-            Text("\(viewModel.messageMood.type.emoji) \(viewModel.messageMood.type.title)")
+            Text(
+                "\(viewModel.messageConfig.mood.emoji) \(viewModel.messageConfig.mood.title)"
+            )
                 .font(.subheadline)
                 .bold()
                 .foregroundColor(.white)

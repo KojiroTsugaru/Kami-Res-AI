@@ -13,10 +13,10 @@ class OpenAIService {
     static let model = "gpt-4o"
     static let maxTokens: Int = 1000
 
-    func getSuggestedReplyFromImage(imageData: Data, messageMood: MessageMood) async throws -> String {
+    func getSuggestedReplyFromImage(imageData: Data, messageConfig: MessageConfiguration) async throws -> String {
         
         // MARK: Get prompt from api
-        let prompt = await getPrompt(for: messageMood)
+        let prompt = await getPrompt(for: messageConfig)
         
         guard let prompt = prompt else { return "" }
         
@@ -142,11 +142,11 @@ class OpenAIService {
     }
     
     // MARK: Get prompt from api
-    private func getPrompt(for messageMood: MessageMood) async -> String? {
+    private func getPrompt(for config: MessageConfiguration) async -> String? {
         do {
             let response = try await PromptService.shared.sendPromptRequest(
-                length: messageMood.messageLength.rawValue,
-                mood: messageMood.type.rawValue
+                length: config.length.rawValue,
+                mood: config.mood.rawValue
             )
             print("Prompt: \(response.prompt), Status: \(response.status)")
             return response.prompt

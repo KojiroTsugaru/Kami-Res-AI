@@ -7,14 +7,21 @@
 
 import Foundation
 
-struct MessageConfiguration: Equatable {
-    var type: MessageMood
-    var messageLength: MessageLength
+class MessageConfiguration: Equatable, ObservableObject {
+    static func == (lhs: MessageConfiguration, rhs: MessageConfiguration) -> Bool {
+        return lhs.mood == rhs.mood && lhs.length == rhs.length
+    }
 
-    static let defaultMood = MessageConfiguration(type: .casual, messageLength: .medium)
+    var mood: MessageMood
+    var length: MessageLength
+
+    static let defaultConfig = MessageConfiguration(
+        mood: .casual,
+        length: .medium
+    )
     
-    init(type: MessageMood, messageLength: MessageLength) {
-        self.type = type
-        self.messageLength = messageLength
+    init(mood: MessageMood, length: MessageLength) {
+        self.mood = mood
+        self.length = length
     }
 }

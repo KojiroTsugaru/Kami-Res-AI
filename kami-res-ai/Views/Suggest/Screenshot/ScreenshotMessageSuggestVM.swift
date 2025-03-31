@@ -18,12 +18,11 @@ class ScreenshotMessageSuggestVM: ObservableObject {
     private let loadingMessage = Constants.loadingMessage
     private let historyManager =  SuggestHistoryManager.shared
     
+    @Published var messageConfig: MessageConfiguration = .defaultConfig
     @Published var history: SuggestHistoryObject
-    
     @Published var selectedPhoto: PhotosPickerItem?
     @Published var errorMessage: String = ""
     @Published var latestImageData: Data? = nil
-    @Published var messageMood: MessageMood = MessageMood.defaultMood
     @Published var isLoading: Bool = false
     
     @MainActor
@@ -58,7 +57,7 @@ class ScreenshotMessageSuggestVM: ObservableObject {
             
             let response = try await openAIService.getSuggestedReplyFromImage(
                 imageData: latestImageData,
-                messageMood: messageMood
+                messageConfig: messageConfig
             )
 
             // Add the response to chat item

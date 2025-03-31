@@ -14,7 +14,7 @@ class ManuallyEnterMessageViewModel: ObservableObject {
     
     @Published var recipientName: String?
     @Published var chatHistory: [ChatHistoryItem] = []
-    @Published var messageMood: MessageMood = MessageMood.defaultMood
+    @Published var messageConfig: MessageConfiguration = .defaultConfig
     @Published var errorMessage: String?
     
     /// func to get reply suggestion from manually entered texts.

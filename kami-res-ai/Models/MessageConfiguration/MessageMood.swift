@@ -48,7 +48,17 @@ enum MessageMood: String, CaseIterable {
         case .romantic:
             return "ロマンティックに"
         case .empathetic:
-            return "共感と思いやり"
+            return "全力で共感"
+        }
+    }
+    
+    var isPremiumOnly: Bool {
+        switch self {
+        case .casual, .formal:
+            return false
+        case .humorous, .cool, .romantic, .empathetic:
+            return true
+            
         }
     }
 }

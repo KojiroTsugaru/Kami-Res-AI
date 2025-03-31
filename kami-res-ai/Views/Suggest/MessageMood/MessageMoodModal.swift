@@ -6,16 +6,20 @@
 //
 
 import SwiftUI
+import SuperwallKit
 
 struct MessageMoodModal: View {
     @Binding var showMoodModal: Bool
-    @Binding var selectedMood: MessageMood
-    @State private var messageLength: Double
+    @Binding var currentConfig: MessageConfiguration
+    @State private var selectedMood: MessageMood
+    @State private var selectedLength: MessageLength
+    @State private var sliderLength: Double = 2.0
     
-    init(showMoodModal: Binding<Bool>, selectedMood: Binding<MessageMood>) {
+    init(showMoodModal: Binding<Bool>, currentConfig: Binding<MessageConfiguration>) {
         self._showMoodModal = showMoodModal
-        self._selectedMood = selectedMood
-        self._messageLength = State(initialValue: selectedMood.wrappedValue.messageLength.rawValue)
+        self._currentConfig = currentConfig
+        _selectedMood = State(initialValue: currentConfig.mood.wrappedValue)
+        _selectedLength = State(initialValue: currentConfig.length.wrappedValue)
     }
 
     var body: some View {
@@ -29,10 +33,20 @@ struct MessageMoodModal: View {
 
             // Modal
             VStack(spacing: 12) {
+                HStack {
+                    Button {
+                        showMoodModal = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 18, height: 18)
+                            .foregroundColor(.black)
+                    }.padding(6)
+                    Spacer()
+                }
                 Text("メッセージの雰囲気を選択")
                     .font(.headline)
                     .padding()
-                    .padding(.bottom, 8)
                 
                 // Moodの選択部分を複数行に対応
                 LazyVGrid(
@@ -42,24 +56,24 @@ struct MessageMoodModal: View {
                     spacing: 20
                 ) {
                     ForEach(
-                        MessageMood.MoodType.allCases,
+                        MessageMood.allCases,
                         id: \.self
-                    ) { moodType in
-                        MessageMoodLabel(moodType: .constant(moodType), isSelected: selectedMood.type == moodType)
-                            .onTapGesture {
-                                withAnimation {
-                                    selectedMood.type = moodType
-                                }
-                            }
+                    ) { mood in
+                        MessageMoodLabel(
+                            mood: mood,
+                            isSelected: selectedMood == mood
+                        ).onTapGesture {
+                            selectedMood = mood
+                        }
                     }
                 }
                 .padding()
                 
                 // 選択中のムード説明
                 HStack(spacing: 12) {
-                    Text(selectedMood.type.emoji)
+                    Text(selectedMood.emoji)
                         .font(.title2)
-                    Text(selectedMood.type.title)
+                    Text(selectedMood.title)
                         .foregroundColor(.black)
                         .font(.subheadline)
                 }
@@ -72,37 +86,44 @@ struct MessageMoodModal: View {
                     HStack(spacing: 8) {
                         Image(systemName: "text.alignleft")
                             .foregroundColor(.gray)
-                        Text("メッセージの長さ: \(messageLengthText)")
+                        Text("メッセージの長さ: \(selectedLength.description)")
                             .font(.caption)
                             .foregroundColor(.gray)
-                    }
+                    }.padding(.bottom, 8)
                     Slider(
-                        value: $messageLength,
+                        value: $sliderLength,
                         in: 1.0...3.0,
                         step: 1.0
                     )
                     .tint(Color(.black))
                     .frame(width: 280)
                     .shadow(color: Color.gray.opacity(0.2), radius: 4)
-                    .onChange(of: messageLength, perform: { newValue in
+                    .onChange(of: sliderLength, perform: { newValue in
                         if let newLength = MessageLength(rawValue: newValue) {
-                            selectedMood.messageLength = newLength
+                            selectedLength = newLength
                         }
-                        print("new mood:", selectedMood)
                     })
                 }
                 .padding()
                 .padding(.top, 8)
             
                 Button {
-                    showMoodModal = false
+                    didTapSaveButton()
                 } label: {
-                    Text("保存する")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.black)
-                        .cornerRadius(20)
-                }.padding(.vertical)
+                    GradientText(
+                        "保存する",
+                        font: .subheadline,
+                        gradient: Constants.ColorAsset
+                            .createGradient(from: .topLeading, to: .bottomTrailing)
+                    )
+                    .bold()
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(.black))
+                    .cornerRadius(24)
+                }
+                .padding()
+                .padding(.top, 8)
             }
             .frame(maxWidth: 320)  // 最大幅を設定
             .padding()
@@ -113,22 +134,28 @@ struct MessageMoodModal: View {
         .transition(.opacity)  // Smooth fade-in transition
         .animation(.easeInOut, value: showMoodModal)
     }
-    
-    private var messageLengthText: String {
-        switch selectedMood.messageLength {
-        case .short:
-            return "短め"
-        case .medium:
-            return "少し長め"
-        case .long:
-            return "長め"
+}
+
+// MARK: Helper functions
+extension MessageMoodModal {
+    private func didTapSaveButton() {
+        guard !selectedMood.isPremiumOnly || Superwall.shared.subscriptionStatus == .active else {
+            Superwall.shared.register(event: "campaign_trigger")
+            return
         }
+        
+        let newConfig = MessageConfiguration(
+            mood: selectedMood,
+            length: selectedLength
+        )
+        currentConfig = newConfig
+        showMoodModal = false
     }
 }
 
 #Preview {
     MessageMoodModal(
-        showMoodModal: Binding.constant(true),
-        selectedMood: Binding.constant(MessageMood.defaultMood)
+        showMoodModal: Binding.constant(true), 
+        currentConfig: Binding.constant(.defaultConfig)
     )
 }
