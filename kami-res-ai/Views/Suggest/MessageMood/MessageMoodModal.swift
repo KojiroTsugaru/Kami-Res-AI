@@ -85,7 +85,7 @@ struct MessageMoodModal: View {
                     HStack(spacing: 8) {
                         Image(systemName: "text.alignleft")
                             .foregroundColor(.gray)
-                        Text("メッセージの長さ: \(selectedLength.description)")
+                        Text("メッセージの長さ")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
