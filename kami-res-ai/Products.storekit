@@ -110,6 +110,70 @@
           "winbackOffers" : [
 
           ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "480",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "0E25759C",
+          "introductoryOffer" : {
+            "internalID" : "A3CE9D04",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "１ヶ月で自動更新されるプレミアムプラン",
+              "displayName" : "神レスプレミアムMonthly",
+              "locale" : "ja"
+            }
+          ],
+          "productID" : "premium_480_1w_7d0",
+          "recurringSubscriptionPeriod" : "P1W",
+          "referenceName" : "神レスプレミアム Weekly 480",
+          "subscriptionGroupID" : "65A6A083",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "1380",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "B21807B5",
+          "introductoryOffer" : {
+            "internalID" : "01EBA288",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "１週間で自動更新されるプレミアムプラン",
+              "displayName" : "神レスプレミアムWeekly",
+              "locale" : "ja"
+            }
+          ],
+          "productID" : "premium_1380_1m_7d0",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "神レスプレミアム Monthy 1380",
+          "subscriptionGroupID" : "65A6A083",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
         }
       ]
     }
