@@ -20,4 +20,14 @@ enum MessageLength: Double, CaseIterable {
             "長め"
         }
     }
+    
+    var isPremiumOnly: Bool {
+        switch self {
+        case .medium:
+            return false
+        case .short, .long:
+            return true
+            
+        }
+    }
 }

@@ -92,14 +92,18 @@ struct MessageMoodModal: View {
                     
                     HStack(spacing: 20) {
                         ForEach(MessageLength.allCases, id: \.self) { length in
-                            MessageLengthLabel(
-                                length: length,
-                                isSelected: length == selectedLength
-                            )
-                            .onTapGesture {
-                                selectedLength = length
+                            let isSelected = length == selectedLength
+                            let label = MessageLengthLabel(length: length, isSelected: isSelected)
+
+                            if !length.isPremiumOnly {
+                                label.onTapGesture {
+                                    selectedLength = length
+                                }
+                            } else {
+                                label
                             }
                         }
+
                     }
                 }
                 .padding()
