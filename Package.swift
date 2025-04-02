@@ -1,14 +1,44 @@
 // swift-tools-version:5.10
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
     name: "kami-res-ai",
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v11)
+    ],
+    products: [
+        .executable(name: "kami-res-ai", targets: ["kami-res-ai"])
+    ],
+    dependencies: [
+        // Realm from master (adjust URL/branch/commit as needed)
+        .package(
+            url: "https://github.com/realm/realm-swift.git",
+            branch: "master"
+        ),
+        // SuperwallKit at version 3.12.2
+        .package(
+            url: "https://github.com/superwall/Superwall-iOS.git",
+            exact: "3.12.2"
+        ),
+        // SwiftfulLoadingIndicators at version 0.0.4
+        .package(
+            url: "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators",
+            exact: "0.0.4"
+        )
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .executableTarget(
-            name: "kami-res-ai"),
+            name: "kami-res-ai",
+            dependencies: [
+                .product(name: "RealmSwift", package: "realm-swift"),
+                .product(name: "SuperwallKit", package: "Superwall-iOS"),
+                .product(name: "SwiftfulLoadingIndicators", package: "SwiftfulLoadingIndicators")
+            ],
+            path: "kami-res-ai/App",
+            swiftSettings: [
+                .unsafeFlags(["-target", "arm64-apple-macos11"])
+            ]
+        )
     ]
 )
