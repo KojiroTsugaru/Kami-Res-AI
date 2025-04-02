@@ -148,8 +148,8 @@ class OpenAIService {
                 length: config.length.rawValue,
                 mood: config.mood.rawValue
             )
-            print("Prompt: \(response.prompt), Status: \(response.status)")
-            return response.prompt
+            print("Prompt: \(response.data.prompt), Status: \(response.status)")
+            return response.data.prompt
         } catch {
             print("Error: \(error.localizedDescription)")
             return nil

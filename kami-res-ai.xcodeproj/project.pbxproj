@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3102D90C2D9D77CB00EE398F /* PromptDTOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3102D90B2D9D77C400EE398F /* PromptDTOs.swift */; };
 		31103FAD2D89B863006080FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; };
 		31103FAE2D89BA34006080FD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		31103FB02D89BA52006080FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
@@ -88,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3102D90B2D9D77C400EE398F /* PromptDTOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDTOs.swift; sourceTree = "<group>"; };
 		31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridEmptyStateView.swift; sourceTree = "<group>"; };
 		31103FB42D8EA481006080FD /* ReviewAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAlertManager.swift; sourceTree = "<group>"; };
 		31103FB62D8EAF4A006080FD /* AppReviewAlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewAlertBuilder.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				315D152B2D7F4AC7003B43A1 /* PromptService.swift */,
+				3102D90B2D9D77C400EE398F /* PromptDTOs.swift */,
 			);
 			path = Prompt;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				31D23BAA2D6328BF00ECACB8 /* ManuallyEnterMessageBubble.swift in Sources */,
 				3165BF1A2D4E601B005BDB8A /* DailyActionManager.swift in Sources */,
 				3165BF0E2D4914DC005BDB8A /* GradientIcon.swift in Sources */,
+				3102D90C2D9D77CB00EE398F /* PromptDTOs.swift in Sources */,
 				31642BC82D461BC700A30C7B /* OnboadingPageView.swift in Sources */,
 				313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */,
 				313FE6C92D3B9ED9009EA68F /* OpenAIService.swift in Sources */,

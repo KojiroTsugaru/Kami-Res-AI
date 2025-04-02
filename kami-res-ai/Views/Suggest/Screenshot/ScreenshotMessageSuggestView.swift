@@ -8,6 +8,7 @@
 import PhotosUI
 import SuperwallKit
 import SwiftUI
+import SwiftfulLoadingIndicators
 
 struct ScreenshotMessageSuggestView: View {
 
@@ -98,6 +99,18 @@ struct ScreenshotMessageSuggestView: View {
                             }
                         }
                     }
+                    
+//                    if viewModel.isLoading{
+//                        LoadingIndicator(
+//                            animation: .threeBalls,
+//                            color: Color.black,
+//                            size: .small
+//                        )
+//                        .padding()
+//                        .background(Color("AntiFlashWhite"))
+//                        .cornerRadius(20)
+//                        .padding()
+//                    }
                     
                     if !viewModel.errorMessage.isEmpty {
                         HStack {

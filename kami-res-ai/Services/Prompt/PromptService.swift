@@ -1,18 +1,22 @@
 import Foundation
 
-// Define the response model
-struct PromptResponse: Codable {
-    let prompt: String
-    let status: String
+// MARK: - エラー定義
+
+enum PromptError: Error {
+    case invalidURL
+    case encodingError
+    case decodingError
 }
+
+// MARK: - PromptService
 
 class PromptService {
     static let shared = PromptService()
     
-    private init() {} // Singleton: Prevent external instantiation
+    private init() {} // Singleton: 外部からのインスタンス生成を防ぐ
 
-    /// `POST` request to fetch a prompt
-    func sendPromptRequest(length: Double, mood: String) async throws -> PromptResponse {
+    /// `POST`リクエストを送信して、promptを取得する
+    func sendPromptRequest(length: Double, mood: String) async throws -> PromptSuccessResponse {
         guard let url = URL(string: Constants.Endpoint.prompt) else {
             throw PromptError.invalidURL
         }
@@ -21,31 +25,23 @@ class PromptService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let parameters: [String: Any] = [
-            "mood": mood,
-            "length": length
-        ]
-        
+        // DTOを作成し、JSONエンコードする
+        let promptRequest = PromptRequestDTO(mood: mood, length: length)
         do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+            request.httpBody = try JSONEncoder().encode(promptRequest)
         } catch {
             throw PromptError.encodingError
         }
         
+        // リクエスト送信
         let (data, _) = try await URLSession.shared.data(for: request)
         
+        // レスポンスをDTOにデコード
         do {
-            let decodedResponse = try JSONDecoder().decode(PromptResponse.self, from: data)
+            let decodedResponse = try JSONDecoder().decode(PromptSuccessResponse.self, from: data)
             return decodedResponse
         } catch {
             throw PromptError.decodingError
         }
     }
-}
-
-// Define possible errors
-enum PromptError: Error {
-    case invalidURL
-    case encodingError
-    case decodingError
 }
