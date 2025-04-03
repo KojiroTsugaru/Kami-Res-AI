@@ -94,13 +94,8 @@ struct MessageMoodModal: View {
                         ForEach(MessageLength.allCases, id: \.self) { length in
                             let isSelected = length == selectedLength
                             let label = MessageLengthLabel(length: length, isSelected: isSelected)
-
-                            if !length.isPremiumOnly {
-                                label.onTapGesture {
-                                    selectedLength = length
-                                }
-                            } else {
-                                label
+                            label.onTapGesture {
+                                selectedLength = length
                             }
                         }
 
@@ -119,7 +114,7 @@ struct MessageMoodModal: View {
                     )
                     .bold()
                     .padding()
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: 240)
                     .background(Color(.black))
                     .cornerRadius(24)
                 }
@@ -140,7 +135,7 @@ struct MessageMoodModal: View {
 // MARK: Helper functions
 extension MessageMoodModal {
     private func didTapSaveButton() {
-        guard !selectedMood.isPremiumOnly || Superwall.shared.subscriptionStatus == .active else {
+        guard !selectedMood.isPremiumOnly || !selectedLength.isPremiumOnly || Superwall.shared.subscriptionStatus == .active else {
             Superwall.shared.register(event: "campaign_trigger")
             return
         }

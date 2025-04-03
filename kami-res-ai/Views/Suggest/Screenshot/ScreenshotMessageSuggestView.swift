@@ -100,17 +100,18 @@ struct ScreenshotMessageSuggestView: View {
                         }
                     }
                     
-//                    if viewModel.isLoading{
-//                        LoadingIndicator(
-//                            animation: .threeBalls,
-//                            color: Color.black,
-//                            size: .small
-//                        )
-//                        .padding()
-//                        .background(Color("AntiFlashWhite"))
-//                        .cornerRadius(20)
-//                        .padding()
-//                    }
+                    if viewModel.isLoading {
+                        LoadingIndicator(
+                            animation: .threeBalls,
+                            color: Color.black,
+                            size: .small
+                        )
+                        .padding(.horizontal)
+                        .padding(.vertical, 4)
+                        .background(Color("AntiFlashWhite"))
+                        .cornerRadius(20)
+                        .padding()
+                    }
                     
                     if !viewModel.errorMessage.isEmpty {
                         HStack {
@@ -267,8 +268,10 @@ struct ScreenshotMessageSuggestView: View {
     private func handleTextCopy(_ text: String) {
         viewModel.copyToClipboard(text: text)
 
-        withAnimation(.easeInOut(duration: 0.2)) {  // Fade in animation
-            showCopyConfirmation = true
+        DispatchQueue.main.async {
+            withAnimation(.easeInOut(duration: 0.2)) {  // Fade in animation
+                showCopyConfirmation = true
+            }
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
