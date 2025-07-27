@@ -8,8 +8,6 @@
 import Foundation
 
 class ManuallyEnterMessageViewModel: ObservableObject {
-    
-    private let openAIService = OpenAIService()
     private let loadingMessage = Constants.loadingMessage
     
     @Published var recipientName: String?
@@ -25,11 +23,8 @@ class ManuallyEnterMessageViewModel: ObservableObject {
             return
         }
         
-        async let reply = try await openAIService
-            .getSuggestedReply(
-                recipientName: recipientName!, // validated in validate method
-                chatHistory: chatHistory
-            )
+        // TODO: get actualy generated reply from api call
+        async let reply = ""
         try await chatHistory
             .append(ChatHistoryItem(message: reply, sender: .api))
     }

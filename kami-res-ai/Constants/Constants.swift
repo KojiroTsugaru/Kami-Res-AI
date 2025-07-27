@@ -35,16 +35,13 @@ struct Constants {
 extension Constants {
     public struct AccessToken {
         /// OpenAI API Key
-        public static let openAI = "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"
         
-        public static let superWall = "pk_04123874dc7c2cbb917980ceca251d4a77368dc551838c88"
+        static let superWall = "pk_04123874dc7c2cbb917980ceca251d4a77368dc551838c88"
     }
     
-    public struct Endpoint {
-        private static let promptBaseUrl = "https://kami-res-ai-backend-production.up.railway.app/api/v1"
-        public static let prompt = "\(promptBaseUrl)/prompt"
-        
-        public static let openAI = "https://api.openai.com/v1/chat/completions"
+    public struct baseUrl {
+      static let production = "https://kami-res-ai-backend-production.up.railway.app/api/v1"
+      static let localhost = "http://127.0.0.1:8000/api/v1"
     }
 }
 

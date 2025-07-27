@@ -24,7 +24,7 @@ struct HistoryGridEmptyStateView: View {
                     .font(.headline)
                     .multilineTextAlignment(.center)
                 
-                Text("スクリーンショットをアップロードすると\nAIが最適な返信を生成します...！")
+                Text("スクリーンショットをアップロードすると\nAIが最適な返信を生成します！")
                     .font(.subheadline)
                     .foregroundColor(Color(.black).opacity(0.5))
                     .multilineTextAlignment(.center)

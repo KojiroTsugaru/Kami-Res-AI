@@ -14,9 +14,8 @@ import UIKit
 class ScreenshotMessageSuggestVM: ObservableObject {
     static let networkErrorMessage = "返信を取得できませんでした。接続を確認し、やりなおしてください。"
     
-    private let openAIService = OpenAIService()
-    private let loadingMessage = Constants.loadingMessage
     private let historyManager =  SuggestHistoryManager.shared
+    private let generateReplyService = GenerateReplyService.shared
     
     @Published var messageConfig: MessageConfiguration = .defaultConfig
     @Published var history: SuggestHistoryObject
@@ -55,13 +54,13 @@ class ScreenshotMessageSuggestVM: ObservableObject {
         do {
             guard let latestImageData = latestImageData else { return }
             
-            let response = try await openAIService.getSuggestedReplyFromImage(
-                imageData: latestImageData,
-                messageConfig: messageConfig
+            let response = try await generateReplyService.generateReplyFromImage(
+              replyRequest: .init(imageData: latestImageData, config: messageConfig)
             )
 
             // Add the response to chat item
-            self.addMessage(text: response)
+            let reply = response.data.choices.first?.message.content ?? ""
+            self.addMessage(text: reply)
             isLoading = false
             print("Response: \(response)")
         } catch {
