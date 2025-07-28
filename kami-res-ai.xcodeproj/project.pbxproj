@@ -11,6 +11,9 @@
 		2B5D40D22E36AD300071C7B1 /* GenerateReplyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D40D12E36AD2C0071C7B1 /* GenerateReplyResponse.swift */; };
 		2B5D40D52E36B1B60071C7B1 /* JSONDecoder+SnakeCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D40D42E36B1A50071C7B1 /* JSONDecoder+SnakeCase.swift */; };
 		2B5D40D72E36B7550071C7B1 /* GenerateReplyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5D40D62E36B74A0071C7B1 /* GenerateReplyRequest.swift */; };
+		2BA80D692E37E76B00D319FE /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2BA80D682E37E75700D319FE /* Debug.xcconfig */; };
+		2BA80D6B2E37E78800D319FE /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2BA80D6A2E37E77F00D319FE /* Release.xcconfig */; };
+		2BA80D6E2E37E8BB00D319FE /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA80D6D2E37E8B500D319FE /* Env.swift */; };
 		31103FAD2D89B863006080FD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; };
 		31103FAE2D89BA34006080FD /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 31103FAC2D89B863006080FD /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		31103FB02D89BA52006080FD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3165BF162D49EE61005BDB8A /* StoreKit.framework */; };
@@ -93,6 +96,9 @@
 		2B5D40D12E36AD2C0071C7B1 /* GenerateReplyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateReplyResponse.swift; sourceTree = "<group>"; };
 		2B5D40D42E36B1A50071C7B1 /* JSONDecoder+SnakeCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+SnakeCase.swift"; sourceTree = "<group>"; };
 		2B5D40D62E36B74A0071C7B1 /* GenerateReplyRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateReplyRequest.swift; sourceTree = "<group>"; };
+		2BA80D682E37E75700D319FE /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		2BA80D6A2E37E77F00D319FE /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		2BA80D6D2E37E8B500D319FE /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		31103FB22D8AE9DC006080FD /* HistoryGridEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGridEmptyStateView.swift; sourceTree = "<group>"; };
 		31103FB42D8EA481006080FD /* ReviewAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAlertManager.swift; sourceTree = "<group>"; };
 		31103FB62D8EAF4A006080FD /* AppReviewAlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewAlertBuilder.swift; sourceTree = "<group>"; };
@@ -186,6 +192,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2BA80D6C2E37E8AE00D319FE /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				2BA80D6D2E37E8B500D319FE /* Env.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		313FE65E2D3B8C57009EA68F = {
 			isa = PBXGroup;
 			children = (
@@ -257,19 +271,21 @@
 		313FE6B92D3B9E3A009EA68F /* kami-res-ai */ = {
 			isa = PBXGroup;
 			children = (
+				313FE6A42D3B9E3A009EA68F /* App */,
 				313FE6B22D3B9E3A009EA68F /* Views */,
 				3198E09A2D869D9200A3BB1C /* Common */,
 				2B5D40D32E36B1930071C7B1 /* Extensions */,
 				3198E08E2D85C4C800A3BB1C /* Models */,
 				3198E0912D85C62500A3BB1C /* Managers */,
 				313FE6AA2D3B9E3A009EA68F /* Services */,
-				313FE6CC2D3BA083009EA68F /* Constants */,
-				313FE6A42D3B9E3A009EA68F /* App */,
+				2BA80D6C2E37E8AE00D319FE /* Environment */,
 				31EAC9222D570EAE001AF978 /* Fonts */,
 				313FE6B32D3B9E3A009EA68F /* Assets.xcassets */,
 				313FE6B52D3B9E3A009EA68F /* Info.plist */,
 				313FE6B62D3B9E3A009EA68F /* kami-res-ai.entitlements */,
 				316797C32D5B28C00062C8B7 /* Products.storekit */,
+				2BA80D6A2E37E77F00D319FE /* Release.xcconfig */,
+				2BA80D682E37E75700D319FE /* Debug.xcconfig */,
 			);
 			path = "kami-res-ai";
 			sourceTree = "<group>";
@@ -363,6 +379,7 @@
 			children = (
 				31B401942D990C03008F4749 /* AppReviewAlert */,
 				3165BF0A2D491366005BDB8A /* UIComponent */,
+				313FE6CC2D3BA083009EA68F /* Constants */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -548,9 +565,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA80D692E37E76B00D319FE /* Debug.xcconfig in Resources */,
 				313FE6C62D3B9E3A009EA68F /* Assets.xcassets in Resources */,
 				31EAC9242D570ED2001AF978 /* HannariMincho-Regular.otf in Resources */,
 				316797C42D5B28C00062C8B7 /* Products.storekit in Resources */,
+				2BA80D6B2E37E78800D319FE /* Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +633,7 @@
 				313FE66B2D3B8C57009EA68F /* KamiResAIApp.swift in Sources */,
 				3198E0A72D88500300A3BB1C /* SuggestLoadigView.swift in Sources */,
 				31642BC62D461A2200A30C7B /* OnboardingPage.swift in Sources */,
+				2BA80D6E2E37E8BB00D319FE /* Env.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +658,7 @@
 /* Begin XCBuildConfiguration section */
 		313FE67C2D3B8C5A009EA68F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA80D682E37E75700D319FE /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -675,6 +696,7 @@
 		};
 		313FE67D2D3B8C5A009EA68F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA80D6A2E37E77F00D319FE /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -712,6 +734,7 @@
 		};
 		313FE67E2D3B8C5A009EA68F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA80D682E37E75700D319FE /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -775,6 +798,7 @@
 		};
 		313FE67F2D3B8C5A009EA68F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA80D6A2E37E77F00D319FE /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -831,6 +855,7 @@
 		};
 		316278E82D69C953009A8E07 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA80D682E37E75700D319FE /* Debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -849,6 +874,7 @@
 		};
 		316278E92D69C953009A8E07 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA80D6A2E37E77F00D319FE /* Release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

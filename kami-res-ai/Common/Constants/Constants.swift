@@ -31,20 +31,6 @@ struct Constants {
     ]
 }
 
-/// AccessToken
-extension Constants {
-    public struct AccessToken {
-        /// OpenAI API Key
-        
-        static let superWall = "pk_04123874dc7c2cbb917980ceca251d4a77368dc551838c88"
-    }
-    
-    public struct baseUrl {
-      static let production = "https://kami-res-ai-backend-production.up.railway.app/api/v1"
-      static let localhost = "http://127.0.0.1:8000/api/v1"
-    }
-}
-
 extension Constants {
     public struct ColorAsset {
         static let primaryColor = Color("gradientPrimary")

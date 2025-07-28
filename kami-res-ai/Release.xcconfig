@@ -1,0 +1,4 @@
+// Release.xcconfig
+
+API_HOST = kami-res-ai-backend-production.up.railway.app/api
+API_VERSION = v1

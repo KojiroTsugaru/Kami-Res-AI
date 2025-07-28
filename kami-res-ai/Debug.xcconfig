@@ -1,0 +1,4 @@
+// Debug.xcconfig
+
+API_HOST = 127.0.0.1:8000/api
+API_VERSION = v1

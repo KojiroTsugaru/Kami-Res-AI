@@ -32,7 +32,7 @@ class GenerateReplyService {
   func generateReplyFromImage(replyRequest: GenerateReplyRequest) async throws -> ChatCompletionResponse {
     
     // make url
-    guard let url = URL(string:  "\(Constants.baseUrl.production)/generate-response") else {
+    guard let url = URL(string: "\(Env.apiBaseURL)/generate-response") else {
       throw ServiceError.invalidURL
     }
     

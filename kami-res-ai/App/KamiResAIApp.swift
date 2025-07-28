@@ -12,7 +12,7 @@ import SuperwallKit
 struct KamiResAIApp: App {
     
     init() {
-        Superwall.configure(apiKey: Constants.AccessToken.superWall)
+        Superwall.configure(apiKey: Env.superwallAccessToken)
         setGlobalNavigationBarAppearance()
     }
 
