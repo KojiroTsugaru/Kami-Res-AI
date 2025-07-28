@@ -1,6 +1,7 @@
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   build:
@@ -8,11 +9,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Build & Test with xcodebuild
+
+      - name: Build & Test
         run: |
-          xcodebuild \
-            -workspace YourApp.xcworkspace \
-            -scheme kami-res-ai \
+          set -eux
+          xcodebuild -project kami-res-ai.xcodeproj -list
+          
+          xcodebuild clean test \
+            -project kami-res-ai.xcodeproj \
+            -scheme "kami-res-ai" \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
-            clean build test
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.5'
