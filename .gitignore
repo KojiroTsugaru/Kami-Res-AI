@@ -11,6 +11,3 @@ xcuserdata/
 
 # Swift Package Manager
 .build/
-
-# API Key
-./Constants/Constants.swift
