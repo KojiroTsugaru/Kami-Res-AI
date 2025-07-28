@@ -22,4 +22,4 @@ jobs:
             -project kami-res-ai.xcodeproj \
             -scheme "kami-res-ai" \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15,OS=18.2'
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.2'
