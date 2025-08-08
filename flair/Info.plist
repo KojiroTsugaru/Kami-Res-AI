@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUPERWALL_ACCESS_TOKEN</key>
+	<string>pk_04123874dc7c2cbb917980ceca251d4a77368dc551838c88</string>
+	<key>API_HOST</key>
+	<string>$(API_HOST)</string>
+	<key>API_VERSION</key>
+	<string>$(API_VERSION)</string>
+	<key>CFBundleIdentifier</key>
+	<string>Flair</string>
+	<key>OTHER_SWIFT_FLAGS</key>
+	<string>-Xfrontend-enable-actor-data-race-checks</string>
+	<key>SWIFT_STRICT_CONCURRENCY</key>
+	<string>complete</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HannariMincho-Regular.otf</string>
+	</array>
+</dict>
+</plist>
